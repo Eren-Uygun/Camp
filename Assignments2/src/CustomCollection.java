@@ -15,10 +15,12 @@ public class CustomCollection {
 		
 		
 		
-
+		
 		myList.remove(2);
-		myList.remove(1);
 		myList.remove("Test3");
+		myList.remove(1);
+		myList.add("Test3");
+		myList.remove(1);
 		
 		
 		

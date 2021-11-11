@@ -9,6 +9,7 @@ public class MyCollection {
 		myCollection = new String[0];
 	}
 
+	
 	void add(String value) {
 		// Dizimiz eleman tutamayacağı için geçici bir dizi oluşturuyoruz.
 		// Dizimizin adreslerini yeni oluşturduğumuz diziye atıyoruz.
@@ -24,53 +25,53 @@ public class MyCollection {
 		myCollection[myCollection.length - 1] = value;
 
 	}
+	
 
 	void remove(String item) {
-		int nullcount = 0;
-		for (int i = 0; i < myCollection.length-1; i++) {
-			if (myCollection[i] == item) {
-				myCollection[i] = null;
-				nullcount++;
-			}
-			
+		
+		//Geçici dizimize tüm içeriklerimizi atıyoruz.
+		String[] tempArray = new String[myCollection.length];
+		for (int i = 0; i < myCollection.length; i++) {
+			tempArray[i] = myCollection[i];
 		}
-		
-		String[] tempArray = myCollection;
-		myCollection = new String[myCollection.length-nullcount];
-		
-		for (int i = 0; i < tempArray.length-1; i++) {
-			if (tempArray[i]!=null) {
+//Veri silindiğinde dizimizdeki eleman sayısı azalacağı için diziyi küçültüyoruz.
+		myCollection = new String[myCollection.length - 1];
+		for (int i = 0; i < myCollection.length; i++) {
+			if (tempArray[i] == item) {
+				continue;
+			} else {
 				myCollection[i] = tempArray[i];
+				
 			}
 		}
-		
 		
 	}
 
 	void remove(int index) {
-		int nullcount = 0;
+		/*
+		if (myCollection[index]!=null) { Bu bölüm dizi içinde nulların oluşmasını sağlıyor.
+			myCollection[index] = null;
+		}*/
+		//Geçici dizimize tüm içeriklerimizi atıyoruz.
+		String[] tempArray = new String[myCollection.length];
+		for (int i = 0; i < tempArray.length; i++) {
+			tempArray[i] = myCollection[i];
+		}
+		//Veri silindiğinde dizimizdeki eleman sayısı azalacağı için diziyi küçültüyoruz.
+		myCollection = new String[tempArray.length - 1];
 		
-		for (int i = 0; i < myCollection.length-1; i++) {
-			if (myCollection[i] == myCollection[index]) {
-
-				myCollection[index] = null;
-				nullcount++;
+		
+		
+		
+		for (int i = 0; i < myCollection.length; i++) {
+			if (i == index) {
+				//Null olan bölümü atamıyoruz.Bu sayede
+				continue; //Şart bloklarını kırar ve sonraki for elemanına geçer.
+			}else {
+				myCollection[i] = tempArray[i];
 			}
 			
 		}
-		
-		String[] tempArray = myCollection;
-		myCollection = new String[myCollection.length-nullcount];
-		
-		for (int i = 0; i < myCollection.length-1; i++) {
-			if (tempArray[i]!=null) {
-				myCollection[i] = tempArray[i];
-			}
-		}
-		
-		
-		
-
 	}
 
 	String get(int index) {
