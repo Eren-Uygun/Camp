@@ -24,7 +24,7 @@ public class Main {
 	//Interface -> 
 	public static void main(String[] args) {
 		
-		
+	
 		//JdbcCustomerDao jdbcCustomerDao = new JdbcCustomerDao();
 		//jdbcCustomerDao.save(null);
 		
@@ -44,14 +44,21 @@ public class Main {
 		product.setUnitPrice(12);
 		
 		
-		ProductService productService = new ProductManager(new JdbcProductDao(),new FileLoggerManager());
-		ProductService productService1 = new ProductManager(new JdbcProductDao(),new DbLoggerManager());
+		//ProductService productService = new ProductManager(new JdbcProductDao(),new FileLoggerManager());
+		//ProductService productService1 = new ProductManager(new JdbcProductDao(),new DbLoggerManager());
 		
-		productService.save(product);
+		
+		LoggerService[] loggerServices = {
+				new FileLoggerManager(), new DbLoggerManager(),new Slf4jLoggerManager()
+		};
+		
+		
+		ProductService productService1 = new ProductManager(new JdbcProductDao(),loggerServices);
+		//productService.save(product);
 		productService1.save(product);
 		
 		
-	
+	//Polymorphism
 		
 		
 

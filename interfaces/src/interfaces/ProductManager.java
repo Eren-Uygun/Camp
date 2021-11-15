@@ -1,24 +1,27 @@
 package interfaces;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductManager implements ProductService {
 	
 	private ProductDao productDao;
-	private LoggerService loggerService;
+	private LoggerService[] loggerService;
 	
 	
-	
-	public ProductManager(ProductDao productDao, LoggerService loggerService) {
+
+
+	public ProductManager(ProductDao productDao, LoggerService[] loggerService) {
 		this.productDao = productDao;
 		this.loggerService = loggerService;
 	}
+	
 
 	@Override
 	public void save(Product product) {
 		productDao.save(product);
-		loggerService.log();
+		Utility.RunLogger(loggerService);
 		
 		
 		
