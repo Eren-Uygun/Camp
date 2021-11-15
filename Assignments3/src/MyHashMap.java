@@ -33,7 +33,7 @@ public class MyHashMap<Key,Value> {
 		}
 		
 		//Veri atamalarý bölümü
-		tempArray[tempArray.length-1] = key + " = " + value;
+		tempArray[tempArray.length-1] = key + " : " + value;
 		tempKeyArray[tempArray.length-1] = key;
 		tempValueArray[tempValueArray.length-1] = value;
 		
@@ -59,6 +59,12 @@ public class MyHashMap<Key,Value> {
 			valueArray[i] = tempValueArray[i];
 		}
 	
+		
+		
+		
+		
+		
+		
 		
 	}
 	
@@ -86,6 +92,7 @@ public class MyHashMap<Key,Value> {
 		
 		
 		//
+		/*
 		int x = 0;
 		int y = -1;
 		while (x < keyArray.length) {			
@@ -97,6 +104,19 @@ public class MyHashMap<Key,Value> {
 				x++;
 				continue;
 			}
+		}
+		*/
+		
+		
+		int y = -1;
+		for (int i = 0; i < keyArray.length; i++) {
+			if (keyArray[i] == key) {								
+				y = i;											
+				break;
+			} else {											
+				continue;
+			}
+			
 		}
 
 		//Silinecek Data için dizilerin tekrar düzenlenme iþlemi
@@ -221,7 +241,7 @@ public class MyHashMap<Key,Value> {
 			}
 			
 		}
-		return "Data Not Found Exception";
+		return "Data Key Not Found Exception";
 		
 		
 	}

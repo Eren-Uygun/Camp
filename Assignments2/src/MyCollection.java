@@ -46,6 +46,8 @@ public class MyCollection {
 		}
 		
 	}
+	
+	//koleksiyonlarda silme yaparken eleman sayısı -1 olmalı ve eleman kaymalıdır.
 
 	void remove(int index) {
 		/*
@@ -53,10 +55,14 @@ public class MyCollection {
 			myCollection[index] = null;
 		}*/
 		//Geçici dizimize tüm içeriklerimizi atıyoruz.
+		/*
 		String[] tempArray = new String[myCollection.length];
 		for (int i = 0; i < tempArray.length; i++) {
 			tempArray[i] = myCollection[i];
 		}
+		*/
+		
+		String[] tempArray =  myCollection;
 		//Veri silindiğinde dizimizdeki eleman sayısı azalacağı için diziyi küçültüyoruz.
 		myCollection = new String[tempArray.length - 1];
 		

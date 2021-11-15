@@ -14,6 +14,7 @@ public class Main {
 		//Back-end , Front-end
 		
 		//String metinsel Veri tipimiz. String javada S si büyük yazılır. Değer çift tırnak içinde yazılır.
+		//Değer tekli tırnak içinde yazılır ise bu char olur.
 
 		String news1 = "Yeni kredi geldi.";
 		
