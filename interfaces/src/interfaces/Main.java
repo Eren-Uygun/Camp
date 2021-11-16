@@ -53,12 +53,15 @@ public class Main {
 		};
 		
 		
+		//ProductService productService = new ProductManager(loggerServices);
+		//Kullanım Doğru
 		ProductService productService1 = new ProductManager(new JdbcProductDao(),loggerServices);
 		//productService.save(product);
 		productService1.save(product);
+	    //productService.save(product);
 		
 		
-	//Polymorphism
+	//Polymorphism => Çok biçimlilik
 		
 		
 

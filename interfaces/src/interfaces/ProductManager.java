@@ -9,7 +9,10 @@ public class ProductManager implements ProductService {
 	private ProductDao productDao;
 	private LoggerService[] loggerService;
 	
+
 	
+
+
 
 
 	public ProductManager(ProductDao productDao, LoggerService[] loggerService) {
