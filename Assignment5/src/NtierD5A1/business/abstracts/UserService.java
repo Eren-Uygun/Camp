@@ -9,5 +9,7 @@ public interface UserService {
 	void register(User user);
 	
 	List<User> getUsers();
+	
+	void signInWithGoogle(String email);
  
 }
