@@ -1,0 +1,5 @@
+package northwind.dataAccess.abstracts;
+
+public interface EmployeeRepository {
+
+}

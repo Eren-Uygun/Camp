@@ -1,0 +1,26 @@
+package northwind.dataAccess.concretes;
+
+import java.util.List;
+
+import northwind.dataAccess.abstracts.EmployeeRepository;
+import northwind.entities.concretes.Employee;
+
+public class EmployeeDao implements EmployeeRepository {
+
+	
+	List<Employee>  employees;
+	
+	
+	@Override
+	public void add(Employee employee) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Employee> employees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

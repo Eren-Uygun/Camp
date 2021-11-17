@@ -1,0 +1,5 @@
+package dataAccess.abstracts;
+
+public interface ColorRepository extends DaoRepository<Color> {
+
+}

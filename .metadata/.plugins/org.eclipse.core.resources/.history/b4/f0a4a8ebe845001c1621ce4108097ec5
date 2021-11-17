@@ -1,0 +1,21 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+public class ProductManager implements ProductService {
+	
+	private ProductDao productDao;
+
+	@Override
+	public void save(Product product) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Customer> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

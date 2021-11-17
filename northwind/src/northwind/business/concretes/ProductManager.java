@@ -28,12 +28,12 @@ public class ProductManager implements ProductService {
 	@Override
 	public List<Product> getAll() {
 		// TODO Auto-generated method stub
-		return this.productRepository.getAll();
+		return this.productRepository.getAll().getData();
 	}
 	
 	@Override
 	public DataResult<List<Product>> getDtAll() {
-		return new SuccessDataResult<List<Product>>(this.productRepository.getAll(), "Veriler getirildi.");
+		return new SuccessDataResult<List<Product>>(this.productRepository.getAll().getData(), "Veriler getirildi.");
 		
 	}
 	
@@ -85,7 +85,7 @@ public class ProductManager implements ProductService {
 	//Bu metoda String Name'de geçebiliriz.
 	private boolean checkIfProductNameExist(Product product) {
 		boolean isExists = false;
-		for (Product iterableProduct : productRepository.getAll()) {
+		for (Product iterableProduct : productRepository.getAll().getData()) {
 			if (iterableProduct.getProductName().equals(product.getProductName())) {
 				System.out.println("Bu veri mevcut");
 				isExists = true;
@@ -97,7 +97,7 @@ public class ProductManager implements ProductService {
 	
 	private Result checkIfProductNameExistResult(String productName) {
 		
-		for (Product iterableProduct : productRepository.getAll()) {
+		for (Product iterableProduct : productRepository.getAll().getData()) {
 			if (iterableProduct.getProductName().equals(productName)) {
 				//return new Result(false, "Ürün ismi tekrar edemez.");
 				return new ErrorResult("Ürün ismi tekrar edemez.");	}
@@ -111,7 +111,7 @@ public class ProductManager implements ProductService {
 	
 	private int checkCategoryCountOfProduct(int categoryId) {
 		int categoryCount = 0;
-		for (Product categoryName : productRepository.getAll()) {
+		for (Product categoryName : productRepository.getAll().getData()) {
 			if (categoryName.getCategoryId() == categoryId) {
 				categoryCount++;
 			}

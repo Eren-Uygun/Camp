@@ -1,0 +1,33 @@
+import business.abstracts.BrandService;
+import business.concretes.BrandManager;
+import dataAccess.concretes.BrandDao;
+import entities.Brand;
+import entities.Car;
+import entities.Color;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Car car = new Car();
+		car.setCarId(1);
+		car.setBrandId(1);
+		car.setColorId(1);
+		car.setDailyPrice(50);
+		car.setDescription("Yeni model araba");
+		car.setYear(2010);
+		
+		Brand brand = new Brand();
+		brand.setBrandId(1);
+		brand.setBrandName("Nissan");
+		
+		Color color = new Color();
+		color.setColorId(1);
+		color.setColorName("Mavi");
+		
+		BrandService brandService = new BrandManager(new BrandDao());
+		
+
+	}
+
+}

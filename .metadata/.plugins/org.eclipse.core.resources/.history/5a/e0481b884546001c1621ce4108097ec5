@@ -1,0 +1,11 @@
+package interfaces;
+
+public class Utility {
+	
+	public void RunLogger(LoggerService[] loggerServices) {
+		for (iterable_type iterable_element : iterable) {
+			
+		}
+	}
+
+}

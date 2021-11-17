@@ -1,0 +1,32 @@
+package D5A1;
+
+public class UserManager implements UserService {
+	
+	private UserDao userDao;
+	
+	
+	
+
+	public UserManager(UserDao userDao) {
+		super();
+		this.userDao = userDao;
+	}
+
+
+
+
+	@Override
+	public void register(User user) {
+		if (user.getPassword().length()<6) {
+			System.out.println("Şifreniz 6 karakterden az olamaz.");
+		}
+		if (user.getFirstName().length() < 2 || user.getLastName().length()<2) {
+			System.out.println("Adınız ve soyadınız 2 karakterden fazla olmalıdır.");
+		}
+		
+		
+		
+	}
+	
+
+}

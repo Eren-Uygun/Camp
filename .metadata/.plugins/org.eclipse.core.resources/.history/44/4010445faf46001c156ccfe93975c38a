@@ -1,0 +1,10 @@
+package northwind.business.abstracts;
+
+import northwind.entities.concretes.Category;
+
+public interface CategoryService {
+	
+	void add(Category category);
+	List<Category> getAll();
+
+}

@@ -1,0 +1,7 @@
+package dataAccess.abstracts;
+
+public interface DaoRepository<T> {
+	
+	
+
+}

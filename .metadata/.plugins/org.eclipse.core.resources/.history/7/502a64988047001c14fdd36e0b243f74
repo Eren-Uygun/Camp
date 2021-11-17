@@ -1,0 +1,5 @@
+package core.utilities.results;
+
+public class ErrorDataResult {
+
+}

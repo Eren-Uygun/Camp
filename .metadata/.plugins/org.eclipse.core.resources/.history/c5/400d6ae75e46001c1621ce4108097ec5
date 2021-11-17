@@ -1,0 +1,11 @@
+package D4A3;
+
+public class Game {
+	
+	private int id;
+	private String name;
+	private double price;
+	private double discountedPrice;
+	private double discountRate;
+
+}

@@ -1,0 +1,12 @@
+package NtierD5A1.entities.concretes;
+
+public class User {
+	
+	private int id;
+	private String firstName;
+	private String lastName;
+	private String nationalIdentityNumber;
+	private String email;
+	private String password;
+
+}

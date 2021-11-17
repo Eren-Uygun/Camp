@@ -2,6 +2,7 @@ package dataAccess.concretes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import core.utilities.results.DataResult;
 import core.utilities.results.Result;
@@ -28,26 +29,26 @@ public class BrandDao implements BrandRepository {
 
 	@Override
 	public Result update(Brand entity) {
-		// TODO Auto-generated method stub
-		return null;
+		brands.set(entity.getBrandId(), entity);
+		return new SuccessResult("Marka güncellendi.");
 	}
 
 	@Override
 	public Result delete(Brand entity) {
-		// TODO Auto-generated method stub
-		return null;
+		brands.remove(entity);
+	
+		return new SuccessResult("Marka silindi.");
 	}
 
 	@Override
 	public DataResult<Brand> getById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<Brand>(brands.get(id),"Marka id ile getirildi.");
 	}
 
 	@Override
 	public DataResult<List<Brand>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<Brand>>(brands,"Veri getirildi.");
 	}
 
 }

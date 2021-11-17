@@ -1,0 +1,48 @@
+package classes;
+
+import java.util.List;
+
+//Generic type
+//T convention => type demekdir.Hangi nesneyi verirsen çalışır.
+public class MyList<T> {
+	
+	Object[] genericArray;
+	
+	
+	public MyList() {
+		genericArray = new Object[0];
+	}
+	
+	
+	
+	public void add(T item) {
+		
+	}
+	
+	public void remove(T item) {
+		
+	}
+	
+	public void remove(int index) {
+		
+	}
+	
+	public void list(){
+		for (Object object : genericArray) {
+			System.out.println(object);
+			
+		}
+	}
+	
+	public boolean contains(T item) {
+		boolean isExists = false;
+		for (int i = 0; i < genericArray.length; i++) {
+			if (genericArray[i] == item) {
+				isExists = true;
+			}
+			
+		}
+		return isExists;
+	}
+
+}

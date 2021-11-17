@@ -1,0 +1,20 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+//Bir class Interface'i implement eder.
+public class CustomerManager implements CustomerService {
+
+	@Override
+	public void save(Customer customer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Customer> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

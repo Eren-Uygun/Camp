@@ -1,0 +1,12 @@
+package northwind.dataAccess.abstracts;
+
+import java.util.List;
+
+import northwind.entities.concretes.Category;
+
+public interface CategoryRepository {
+	
+	void add(Category category);
+	List<Category> categories();
+
+}

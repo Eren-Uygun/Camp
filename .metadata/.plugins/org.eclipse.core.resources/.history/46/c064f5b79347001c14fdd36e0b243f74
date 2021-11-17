@@ -1,0 +1,49 @@
+package northwind.dataAccess.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import northwind.core.utilities.results.DataResult;
+import northwind.core.utilities.results.Result;
+import northwind.dataAccess.abstracts.CategoryRepository;
+import northwind.entities.concretes.Category;
+
+public class CategoryDao implements CategoryRepository {
+	
+	List<Category> categories;
+	
+	public CategoryDao() {
+		categories = new ArrayList<Category>();
+	}
+
+	@Override
+	public Result add(Category category) {
+		this.categories.add(category);
+		
+	}
+
+	@Override
+	public Result update(Category entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Result delete(Category entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public DataResult<Category> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Category> getAll() {
+		// TODO Auto-generated method stub
+		return categories;
+	}
+
+}

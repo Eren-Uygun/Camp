@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main(String[] args) {
+		//Arraylist'de çalışırken generic olarak bir veri tipi gerekir.ArrayList<String>
+		
+		ArrayList<String> list = new ArrayList<String>();
+		
+		//Bu listenin veri tipi stringdir.String kabul eder;
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

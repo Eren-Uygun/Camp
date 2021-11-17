@@ -1,0 +1,6 @@
+package classes;
+
+public class MyList<T> {
+	//T convention => type demekdir.
+
+}

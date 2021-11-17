@@ -1,0 +1,25 @@
+import java.util.Iterator;
+
+public class AmicableNumbersFind {
+
+	public static void main(String[] args) {
+
+		for (int sayi1 = 0; sayi1 < 300; sayi1++) {
+
+			int totalDivider = 0;
+
+			for (int divider1 = 1; divider1 < sayi1; divider1++) {
+				if (sayi1 % divider1 == 0) {
+					totalDivider += divider1;
+				}
+
+			}
+			
+			System.out.println(totalDivider);
+				
+			
+		}
+
+	}
+
+}

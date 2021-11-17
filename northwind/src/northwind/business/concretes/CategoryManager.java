@@ -3,6 +3,8 @@ package northwind.business.concretes;
 import java.util.List;
 
 import northwind.business.abstracts.CategoryService;
+import northwind.core.utilities.results.DataResult;
+import northwind.core.utilities.results.Result;
 import northwind.dataAccess.abstracts.CategoryRepository;
 import northwind.entities.concretes.Category;
 
@@ -16,13 +18,13 @@ public class CategoryManager implements CategoryService {
 	}
 
 	@Override
-	public void add(Category category) {
-		this.categoryRepository.add(category);
+	public Result add(Category category) {
+	return	this.categoryRepository.add(category);
 		
 	}
 
 	@Override
-	public List<Category> getAll() {
+	public DataResult<List<Category>> getAll() {
 		// TODO Auto-generated method stub
 		return categoryRepository.getAll();
 	}

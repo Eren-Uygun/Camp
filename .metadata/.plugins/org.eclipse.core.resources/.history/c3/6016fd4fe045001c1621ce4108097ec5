@@ -1,0 +1,23 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+//Bir class Interface'i kendine implement eder.
+//Interface'ler referans tutucudur.
+//implement edilen class'ın referansını tutabilir.
+public class CustomerManager implements CustomerService {
+	//3 Katmanlı yapılarda Dao->Business->UI
+
+	@Override
+	public void save(Customer customer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Customer> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

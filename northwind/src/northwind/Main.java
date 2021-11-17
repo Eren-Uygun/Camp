@@ -37,6 +37,8 @@ public class Main {
 		productService.add(new Product(7,3,"Nar",-50));
 		productService.add(new Product(8,1,"Elma",40));
 		
+		
+		
 		//getData yapmamızın sebebi DataResult döndüğü için içindeki datayı çekmek.
 		for (Product product : productService.getDtAll().getData()) {
 			System.out.println(product.getProductName() +" "+ product.getUnitPrice());

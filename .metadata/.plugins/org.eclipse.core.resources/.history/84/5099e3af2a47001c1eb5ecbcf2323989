@@ -1,0 +1,13 @@
+package NtierD5A1.core.externalAuths.concretes;
+
+import NtierD5A1.core.externalAuths.Abstracts.ExternalAuthService;
+
+public class ExternalLoginAdapter implements ExternalAuthService  {
+
+	@Override
+	public void signIn(String email) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

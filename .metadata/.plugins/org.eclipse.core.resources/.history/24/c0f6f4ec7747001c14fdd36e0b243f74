@@ -1,0 +1,5 @@
+package northwind.core.utilities.results;
+
+public class ErrorDataResult {
+
+}

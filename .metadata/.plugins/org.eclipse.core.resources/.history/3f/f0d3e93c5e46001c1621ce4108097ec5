@@ -1,0 +1,23 @@
+package D4A3;
+
+public class Gamer {
+	private int id;
+	private String firstName;
+	private String lastName;
+	private String nationalIdentityNumber;
+	public Gamer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Gamer(int id, String firstName, String lastName, String nationalIdentityNumber) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.nationalIdentityNumber = nationalIdentityNumber;
+	}
+	
+	
+	
+	
+
+}

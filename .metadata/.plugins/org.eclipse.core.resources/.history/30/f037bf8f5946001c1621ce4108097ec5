@@ -1,0 +1,14 @@
+package D5A1;
+
+import java.util.Arrays;
+import java.util.Iterator;
+
+public class UserDao {
+	
+	void register(User user) {
+		
+		System.out.println(user.getNationalIdentityNumber() +" : "+ user.getFirstName() +" : "+ user.getLastName() + " kullanıcı sisteme kaydedildi.");
+		System.out.println( user.getEmail() + user.getPassword() + " bilgileri ile sisteme giriş yapabilirsiniz.");
+	}
+
+}

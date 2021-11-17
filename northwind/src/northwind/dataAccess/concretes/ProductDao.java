@@ -3,6 +3,10 @@ package northwind.dataAccess.concretes;
 import java.util.ArrayList;
 import java.util.List;
 
+import northwind.core.utilities.results.DataResult;
+import northwind.core.utilities.results.Result;
+import northwind.core.utilities.results.SuccessDataResult;
+import northwind.core.utilities.results.SuccessResult;
 import northwind.dataAccess.abstracts.ProductRepository;
 import northwind.entities.concretes.Product;
 
@@ -19,33 +23,36 @@ public class ProductDao implements ProductRepository {
 	}
 
 	@Override
-	public void add(Product product) {
+	public Result add(Product product) {
 		products.add(product);
+		return new SuccessResult("Ürün eklendi");
 		
 	}
 
 	@Override
-	public void update(Product product) {
-		// TODO Auto-generated method stub
+	public Result update(Product product) {
+		products.set(product.getId(), product);
+		return new SuccessResult("Ürün güncellendi.");
 		
 	}
 
 	@Override
-	public void delete(Product product) {
-		// TODO Auto-generated method stub
+	public Result delete(Product product) {
+		products.remove(product);
+		return new SuccessResult("Ürün silindi.");
 		
 	}
 
 	@Override
-	public Product getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<Product> getById(int id) {
+		
+		return new SuccessDataResult<Product>(this.products.get(id),"Ürün getirildi.");
 	}
 
 	@Override
-	public List<Product> getAll() {
+	public DataResult<List<Product>> getAll() {
 		// TODO Auto-generated method stub
-		return products;
+		return new SuccessDataResult<List<Product>>(products,"Ürünler getirildi.");
 	}
 	
 

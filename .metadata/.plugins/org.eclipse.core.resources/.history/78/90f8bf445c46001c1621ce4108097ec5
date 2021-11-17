@@ -1,0 +1,6 @@
+package D5A1;
+
+public interface BaseLogger {
+	void log();
+
+}

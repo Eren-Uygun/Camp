@@ -1,0 +1,15 @@
+package northwind;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		//Klasik katmanlı mimaride Db -> DataAccess -> Business -> UI
+		
+		//DataAccess => Veri tabanı işlemlerini yaptığımız yer.
+		
+		//İş kuralları ve validasyon yaptığımız yerdir.
+
+	}
+
+}

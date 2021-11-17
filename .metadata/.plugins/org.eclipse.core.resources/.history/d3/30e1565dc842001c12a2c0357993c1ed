@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main(String[] args) {
+		//Arraylist'de çalışırken generic olarak bir veri tipi gerekir.ArrayList<String>
+		//Koleksiyon yapıları dinamiktir.Biz ekledikce limiti artar.
+		
+		ArrayList<String> list = new ArrayList<String>();
+		
+		//Bu listenin veri tipi Stringdir.String kabul eder;
+		
+		list.add("Ankara");
+		list.add("İstanbul");
+		
+		list.remove(0);
+		//list.remove("İstanbul");
+		
+		//Arraylist itere edilebilen yapılardır yani döngülerle dolaşılabilir.
+		for (String city : list) {
+			
+			System.out.println(city);
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

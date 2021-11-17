@@ -1,0 +1,13 @@
+package interfaces;
+
+public class Main {
+
+	
+	//Interface -> 
+	public static void main(String[] args) {
+		
+		
+
+	}
+
+}

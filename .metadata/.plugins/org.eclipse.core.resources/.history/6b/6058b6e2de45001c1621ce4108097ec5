@@ -1,0 +1,10 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+//DataAccess Object
+//DataAccess bölümünde Veri tabanıyla yapılacak işlerin implementasyonu ve imzaları tutulur.
+public interface CustomerDao {
+	void save(Customer customer);
+	ArrayList<Customer> list();
+}

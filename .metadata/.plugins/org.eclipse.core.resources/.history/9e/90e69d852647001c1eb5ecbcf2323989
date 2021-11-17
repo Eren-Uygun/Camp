@@ -1,0 +1,11 @@
+package NtierD5A1.business.abstracts;
+
+import NtierD5A1.entities.concretes.User;
+
+public interface UserService {
+
+	void register(User user);ü
+	
+	List<User> getUsers();
+ 
+}

@@ -1,0 +1,77 @@
+package NtierD5A1.business.concretes;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import NtierD5A1.business.abstracts.UserService;
+import NtierD5A1.dataAccess.abstracts.UserRepository;
+import NtierD5A1.entities.concretes.User;
+
+public class UserManager implements UserService {
+	
+	private UserRepository userRepository;
+	
+	
+
+	public UserManager(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+
+
+
+	@Override
+	public void register(User user) {
+		if (checkCredentials(user.getFirstName(), user.getLastName())) {
+			System.out.println("Ad ve soyad 2 karakterden fazla olmalıdır.");
+		}else if (checkEmail(user.getEmail())) {
+			System.out.println("Mail adresiniz düzgün formatta değil mail adresinizi kontrol ediniz.");
+		}
+		
+		 userRepository.add(user);
+		
+	}
+
+
+
+	@Override
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		return userRepository.getAll();
+	}
+	
+	private boolean checkCredentials(String firstName,String lastName) {
+		
+		if (firstName.length()<2 && lastName.length()<2) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean checkEmail(String email) {
+		
+		 String regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+		 Pattern pattern = Pattern.compile(regex);
+		 Matcher matcher = pattern.matcher(email);
+		 
+		 if (matcher.matches()) {
+			return false;
+		}
+		 return true;
+	}
+	
+	private boolean isEmailExists(String email) {
+		boolean isExists = false;
+		for (User iterableUser : userRepository.getAll()) {
+			
+			if (iterableUser.getEmail().equals(email)) {
+				isExists = true;			
+		}
+			return isExists;
+		
+	}
+	
+	
+
+}

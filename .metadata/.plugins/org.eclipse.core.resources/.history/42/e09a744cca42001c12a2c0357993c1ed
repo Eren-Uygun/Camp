@@ -1,0 +1,6 @@
+package classes;
+
+public class Employee {
+	//Class nedir? => Davranışları ve özellikleri olan yapılardır.
+
+}

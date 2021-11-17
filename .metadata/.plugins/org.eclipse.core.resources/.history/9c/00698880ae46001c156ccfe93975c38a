@@ -1,0 +1,7 @@
+package northwind.dataAccess.abstracts;
+
+public interface CategoryRepository {
+	
+	void add(Category category);
+
+}

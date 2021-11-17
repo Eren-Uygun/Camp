@@ -3,6 +3,10 @@ package northwind.dataAccess.concretes;
 import java.util.ArrayList;
 import java.util.List;
 
+import northwind.core.utilities.results.DataResult;
+import northwind.core.utilities.results.Result;
+import northwind.core.utilities.results.SuccessDataResult;
+import northwind.core.utilities.results.SuccessResult;
 import northwind.dataAccess.abstracts.CategoryRepository;
 import northwind.entities.concretes.Category;
 
@@ -15,33 +19,38 @@ public class CategoryDao implements CategoryRepository {
 	}
 
 	@Override
-	public void add(Category category) {
+	public Result add(Category category) {
 		this.categories.add(category);
+		return new SuccessResult("Kategori eklendi.");
 		
 	}
 
 	@Override
-	public void update(Category entity) {
+	public Result update(Category entity) {
 		// TODO Auto-generated method stub
+		this.categories.set(entity.getId(), entity);
+		return new SuccessResult("Kategori güncellendi.");
 		
 	}
 
 	@Override
-	public void delete(Category entity) {
+	public Result delete(Category entity) {
 		// TODO Auto-generated method stub
+		this.categories.remove(entity);
+		return new SuccessResult("Kategori Silindi.");
 		
 	}
 
 	@Override
-	public Category getById(int id) {
+	public DataResult<Category> getById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<Category>(categories.get(id));
 	}
 
 	@Override
-	public List<Category> getAll() {
+	public DataResult<List<Category>> getAll() {
 		// TODO Auto-generated method stub
-		return categories;
+		return new SuccessDataResult<List<Category>>(categories,"Kategoriler getirildi.");
 	}
 
 }

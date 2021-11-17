@@ -1,0 +1,33 @@
+package NtierD5A1.entities.concretes;
+
+public class User {
+	
+	private int id;
+	private String firstName;
+	private String lastName;
+	private String nationalIdentityNumber;
+	private String email;
+	private String password;
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(int id, String firstName, String lastName, String nationalIdentityNumber, String email,
+			String password) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.nationalIdentityNumber = nationalIdentityNumber;
+		this.email = email;
+		this.password = password;
+	}
+	
+	
+	
+	
+	
+
+}

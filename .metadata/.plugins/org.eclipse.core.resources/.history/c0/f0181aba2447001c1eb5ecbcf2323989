@@ -1,0 +1,16 @@
+package NtierD5A1.business.concretes;
+
+import NtierD5A1.business.abstracts.UserService;
+import NtierD5A1.dataAccess.abstracts.UserRepository;
+
+public class UserManager implements UserService {
+	
+	private UserRepository userRepository;
+
+	@Override
+	public void register() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

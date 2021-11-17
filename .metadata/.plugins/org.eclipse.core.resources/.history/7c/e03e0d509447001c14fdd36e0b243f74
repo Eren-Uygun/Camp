@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/northwind/Main.java=UTF-8
+encoding//src/northwind/business/concretes/ProductManager.java=UTF-8
+encoding//src/northwind/core/utilities/results/DataResult.java=UTF-8
+encoding//src/northwind/dataAccess/abstracts/ProductRepository.java=UTF-8

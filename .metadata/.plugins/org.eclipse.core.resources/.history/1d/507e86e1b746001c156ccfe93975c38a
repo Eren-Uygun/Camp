@@ -1,0 +1,70 @@
+package northwind.business.concretes;
+
+import java.util.Iterator;
+import java.util.List;
+
+import northwind.business.abstracts.ProductService;
+import northwind.dataAccess.abstracts.ProductRepository;
+import northwind.entities.concretes.Product;
+
+public class ProductManager implements ProductService {
+	
+	//Katmanlar birbirleriyle soyutları üzerinden haberleşirler.
+	
+	private ProductRepository productRepository;
+	
+	
+	public ProductManager(ProductRepository productRepository) {
+		super();//Base anasınıfın constructorunu calıstır.
+		this.productRepository = productRepository;
+	}
+
+	@Override
+	public List<Product> getAll() {
+		// TODO Auto-generated method stub
+		return this.productRepository.getAll();
+	}
+
+	@Override
+	public void add(Product product) {
+		
+		if (isExists(product)) {
+			
+		}else if(categoryCount(product.getCategoryId())>=5) {
+			
+		}	
+		else {
+			this.productRepository.add(product);
+		}
+		
+	
+		
+	}
+	
+	public boolean isExists(Product product) {
+		boolean isExists = false;
+		for (Product iterableProduct : productRepository.getAll()) {
+			if (iterableProduct.getProductName().equals(product.getProductName())) {
+				System.out.println("Bu veri mevcut");
+				isExists = true;
+				return isExists;			}
+		}
+		return isExists;
+	}
+	
+	
+	public int categoryCount(int categoryId) {
+		int categoryCount = 0;
+		for (Product categoryName : productRepository.getAll()) {
+			if (categoryName.getCategoryId() == categoryId) {
+				categoryCount++;
+			}
+			
+			
+		}
+		return categoryCount;
+		
+	}
+	
+
+}

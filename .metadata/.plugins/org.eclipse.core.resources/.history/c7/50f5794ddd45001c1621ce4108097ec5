@@ -1,0 +1,7 @@
+package interfaces;
+
+
+//Interfaceler tamamlanmış sadece imza içeren yani yetenek içeren metotlar içerir.
+public interface CustomerService {
+
+}

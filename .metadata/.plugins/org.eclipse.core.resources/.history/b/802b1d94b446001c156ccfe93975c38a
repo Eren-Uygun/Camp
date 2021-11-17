@@ -1,0 +1,29 @@
+package northwind.dataAccess.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import northwind.dataAccess.abstracts.CategoryRepository;
+import northwind.entities.concretes.Category;
+
+public class CategoryDao implements CategoryRepository {
+	
+	List<Category> categories;
+	
+	public CategoryDao() {
+		categories = new ArrayList<Category>();
+	}
+
+	@Override
+	public void add(Category category) {
+		this.categories.add(category);
+		
+	}
+
+	@Override
+	public List<Category> categories() {
+		
+		return categories;
+	}
+
+}

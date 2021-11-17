@@ -1,0 +1,10 @@
+package classes;
+//Generic type
+public class MyList<T> {
+	//T convention => type demekdir.
+	
+	public void add(T item) {
+		
+	}
+
+}

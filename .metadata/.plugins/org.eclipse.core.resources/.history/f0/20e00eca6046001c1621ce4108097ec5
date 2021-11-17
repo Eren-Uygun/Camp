@@ -1,0 +1,11 @@
+package D4A3;
+
+public class GameSellManager implements GameSellService {
+
+	@Override
+	public void sellGame(Game game, Gamer gamer, Campaign campaign) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,11 @@
+package D5A1;
+
+public class FileLoggerManager implements BaseLoggerService{
+
+	@Override
+	public void log() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

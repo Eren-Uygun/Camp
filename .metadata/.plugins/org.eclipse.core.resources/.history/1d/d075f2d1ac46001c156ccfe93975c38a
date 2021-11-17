@@ -1,0 +1,29 @@
+package northwind.entities.concretes;
+
+public class Product {
+	
+	private int id;
+	private int categoryId;
+	private String productName;
+	private double unitPrice;
+	
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Product(int id, int categoryId, String productName, double unitPrice) {
+		super();
+		this.id = id;
+		this.categoryId = categoryId;
+		this.productName = productName;
+		this.unitPrice = unitPrice;
+	}
+	
+	
+	
+	
+	
+	
+
+}

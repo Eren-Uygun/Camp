@@ -1,0 +1,17 @@
+package northwind.core.utilities.results;
+
+public class DataResult<T> extends Result {
+//Gelecek VEri tipini bilmediğimiz için T
+	
+	
+	
+	private T data;
+	
+	
+	public DataResult(T data,boolean success,String message) {
+		this.data = data;
+	}
+	
+
+	
+}

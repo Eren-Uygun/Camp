@@ -1,0 +1,16 @@
+package NtierD5A1;
+
+import NtierD5A1.business.abstracts.UserService;
+import NtierD5A1.business.concretes.UserManager;
+import NtierD5A1.dataAccess.concretes.JpaUserDao;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		UserService service = new UserManager(new JpaUserDao());
+		service.register(new User(1,"Eren","Uygun","eu@testmail.com",123456));
+
+	}
+
+}

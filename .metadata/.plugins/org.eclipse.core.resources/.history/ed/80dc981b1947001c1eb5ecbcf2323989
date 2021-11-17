@@ -1,0 +1,5 @@
+package NtierD5A1.dataAccess.abstracts;
+
+public interface UserRepository {
+
+}
