@@ -37,10 +37,12 @@ public class Main {
 		productService.add(new Product(7,3,"Nar",-50));
 		productService.add(new Product(8,1,"Elma",40));
 		
-		
-		for (Product product : productService.getAll()) {
+		//getData yapmamızın sebebi DataResult döndüğü için içindeki datayı çekmek.
+		for (Product product : productService.getDtAll().getData()) {
 			System.out.println(product.getProductName() +" "+ product.getUnitPrice());
 		}
+		
+		
 		
 		/*
 		CategoryService categoryService = new CategoryManager(new CategoryDao());
@@ -65,6 +67,9 @@ public class Main {
 			System.out.println(employee.getId()+" "+ employee.getFirstName() + " " + employee.getLastName() + " "+ employee.getCity());
 		}
 		*/
+		
+		
+		//Mimarilerde core katmanı shared , entity domain , business application şeklinde olabilir.
 		
 
 	}
