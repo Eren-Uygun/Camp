@@ -1,0 +1,44 @@
+package reCapWorkshop.dataAccess.concretes;
+
+import java.util.List;
+
+import reCapWorkshop.core.utilities.results.DataResult;
+import reCapWorkshop.core.utilities.results.Result;
+import reCapWorkshop.dataAccess.abstracts.ColorRepository;
+import reCapWorkshop.entities.concretes.Color;
+
+public class JpaColorDao implements ColorRepository {
+	
+	private List<Color> colors;
+
+	@Override
+	public Result add(Color entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result update(Color entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result delete(Color entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<Color> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<Color>> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

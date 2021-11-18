@@ -1,0 +1,12 @@
+package reCapWorkshop.entities.concretes;
+
+public class Car {
+	
+	private int carId;
+	private int colorId;
+	private int brandId;
+	private int year;
+	private double dailyPrice;
+	private String description;
+
+}

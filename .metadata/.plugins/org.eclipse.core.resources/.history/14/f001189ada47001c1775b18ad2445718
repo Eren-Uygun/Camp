@@ -1,0 +1,6 @@
+package reCapWorkshop.dataAccess.abstracts;
+
+public interface DaoRepository<T> {
+	
+
+}

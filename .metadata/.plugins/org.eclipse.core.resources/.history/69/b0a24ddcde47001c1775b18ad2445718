@@ -1,0 +1,5 @@
+package reCapWorkshop.dataAccess.concretes;
+
+public class JpaColorDao {
+
+}

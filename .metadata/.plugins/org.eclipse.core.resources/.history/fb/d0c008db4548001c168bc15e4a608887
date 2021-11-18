@@ -1,0 +1,8 @@
+package com.etiya.rentACar.entities;
+
+public class Brand {
+	
+	private int id;
+	privata String brandName;
+
+}

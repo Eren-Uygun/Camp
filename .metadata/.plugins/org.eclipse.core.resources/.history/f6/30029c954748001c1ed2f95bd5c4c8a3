@@ -1,0 +1,18 @@
+package com.etiya.rentACar.ws;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.etiya.rentACar.entities.Brand;
+
+@RestController
+@RequestMapping("/api/brands")
+public class BrandsController {
+	
+	public List<Brand> getBrands(){
+		
+	}
+
+}

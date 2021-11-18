@@ -1,0 +1,13 @@
+package reCapWorkshop;
+
+import reCapWorkshop.entities.concretes.Color;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Color color = new Color(1,"Kırmızı");
+
+	}
+	
+}

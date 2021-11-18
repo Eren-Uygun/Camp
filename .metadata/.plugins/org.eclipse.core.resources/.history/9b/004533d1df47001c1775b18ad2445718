@@ -1,0 +1,11 @@
+package reCapWorkshop.business.abstracts;
+
+import reCapWorkshop.core.utilities.results.Result;
+
+public interface BaseRepository<T> {
+	
+	Result add(T entity);
+	Result update(T entity);
+	Result delete(T entity);
+
+}

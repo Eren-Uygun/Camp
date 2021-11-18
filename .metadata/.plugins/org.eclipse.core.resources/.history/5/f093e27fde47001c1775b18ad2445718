@@ -1,0 +1,56 @@
+package reCapWorkshop.dataAccess.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import reCapWorkshop.core.utilities.results.DataResult;
+import reCapWorkshop.core.utilities.results.Result;
+import reCapWorkshop.core.utilities.results.SuccessResult;
+import reCapWorkshop.dataAccess.abstracts.CarRepository;
+import reCapWorkshop.entities.concretes.Car;
+
+public class JpaCarDao implements CarRepository {
+	
+	private List<Car> cars;
+
+	public JpaCarDao() {
+		cars = new ArrayList<Car>();
+	}
+
+	@Override
+	public Result add(Car entity) {
+		cars.add(entity);
+		return new SuccessResult("Araba eklendi.");
+	}
+
+	@Override
+	public Result update(Car entity) {
+		cars.set(entity.getCarId(), entity);
+		return new SuccessResult("Araba bilgis güncellendi.");
+	}
+
+	@Override
+	public Result delete(Car entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<Car> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<Car>> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+
+}

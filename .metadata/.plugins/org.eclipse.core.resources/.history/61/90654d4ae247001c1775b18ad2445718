@@ -1,0 +1,5 @@
+package reCapWorkshop.business.concretes;
+
+public class ColorManager {
+
+}
