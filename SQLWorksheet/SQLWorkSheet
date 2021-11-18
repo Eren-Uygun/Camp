@@ -1,0 +1,31 @@
+Select * from products;
+
+Select * from products where unit_price > 20;
+
+Select * from products where unit_price between 18 and 25 Order by unit_price Desc
+
+Select * from categories order by category_name asc
+
+Select * from suppliers
+
+Select DISTINCT * from suppliers
+
+Select COUNT(*) from categories,products,suppliers	
+
+Select * from products p INNER join categories c On p.category_id = c.category_id where p.unit_price BETWEEN 18 and 20
+
+Select * from order_details od Right Join products p On p.product_id = od.product_id
+
+Select * from employees e Left join orders o On e.employee_id = o.employee_id
+
+Select * from products Where product_name LIKE '%a';
+
+Select * from products where product_name LIKE 'C%';
+
+Select * from products Group by product_id Order by product_id desc
+
+Select product_name,unit_price from products where unit_price Not between 10 And 20
+
+Select AVG(unit_price) from products
+
+Select Sum(unit_price) from products
