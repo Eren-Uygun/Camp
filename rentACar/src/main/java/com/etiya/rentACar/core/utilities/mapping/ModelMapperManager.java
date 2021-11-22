@@ -25,7 +25,7 @@ public class ModelMapperManager implements ModelMapperService {
 
 	@Override
 	public ModelMapper forRequest() {
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT).setFullTypeMatchingRequired(false);
 		return modelMapper;
 	}
 

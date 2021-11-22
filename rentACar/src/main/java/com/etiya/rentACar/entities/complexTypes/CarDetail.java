@@ -13,7 +13,7 @@ public class CarDetail {
 
 	private String brandName;
 	
-	private String ColorName;
+	private String colorName;
 	
 	private int modelYear;
 

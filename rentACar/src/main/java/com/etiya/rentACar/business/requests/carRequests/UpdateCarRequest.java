@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateCarRequest {
 	
-	private int id;
+	private int carId;
 	private int brandId;
 	private int colorId;
 	private int modelYear;

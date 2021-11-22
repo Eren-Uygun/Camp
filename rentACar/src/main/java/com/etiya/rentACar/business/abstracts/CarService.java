@@ -9,11 +9,13 @@ import com.etiya.rentACar.business.requests.carRequests.DeleteCarRequest;
 import com.etiya.rentACar.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.rentACar.core.utilities.results.DataResult;
 import com.etiya.rentACar.core.utilities.results.Result;
+import com.etiya.rentACar.entities.Car;
 import com.etiya.rentACar.entities.complexTypes.CarDetail;
 
 public interface CarService {
 	
 	DataResult<List<CarSearchListDto>> getCars();
+	DataResult<List<Car>> getCarss();
 	DataResult<List<CarDetail>> getCarDetails();
 	Result add(CreateCarRequest createCarRequest);
 	Result update(UpdateCarRequest updateCarRequest);

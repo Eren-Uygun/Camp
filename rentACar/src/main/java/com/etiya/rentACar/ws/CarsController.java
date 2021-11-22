@@ -19,6 +19,7 @@ import com.etiya.rentACar.business.requests.carRequests.DeleteCarRequest;
 import com.etiya.rentACar.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.rentACar.core.utilities.results.DataResult;
 import com.etiya.rentACar.core.utilities.results.Result;
+import com.etiya.rentACar.entities.Car;
 import com.etiya.rentACar.entities.complexTypes.CarDetail;
 
 @RestController
@@ -54,6 +55,13 @@ public class CarsController {
 
 		return carService.getCars();
 	}
+	
+	@GetMapping(path = "/getCarss")
+	public DataResult<List<Car>> getCarss() {
+
+		return carService.getCarss();
+	}
+	
 	
 	@GetMapping(path = "/getCarDetails")
 	public DataResult<List<CarDetail>> getCarDetails(){

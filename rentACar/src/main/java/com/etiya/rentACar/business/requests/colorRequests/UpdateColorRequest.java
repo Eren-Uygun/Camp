@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateColorRequest {
 	
-	private int id;
+	private int colorId;
 	private int colorName;
 
 }
