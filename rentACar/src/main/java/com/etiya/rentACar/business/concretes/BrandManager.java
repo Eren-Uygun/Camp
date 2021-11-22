@@ -75,13 +75,28 @@ public class BrandManager implements BrandService {
 	}
 
 
-
+/*
 	@Override
-	public DataResult<List<BrandSearchListDto>> getBrandsByBrandName(String brandName) {
-		List<BrandSearchListDto> result = this.brandDao.getBrandsByBrandNameContains(brandName).stream()
-				.map(brand->modelMapperService.forDto().map(brandName, BrandSearchListDto.class)).collect(Collectors.toList());
+	public DataResult<List<BrandSearchListDto>> getBrandsWithCar(String brandName) {
 		
-		return new SuccessDataResult<List<BrandSearchListDto>>(result);
+		List<BrandSearchListDto> result = this.brandDao.getBrandsByBrandNameContains(brandName).stream()
+				.map(brand->modelMapperService.forDto().map(brand, BrandSearchListDto.class)).collect(Collectors.toList());
+		
+		
+		var result = this.brandDao.getBrandsByBrandNameContains(brandName);
+		return new SuccessDataResult(result);
 	}
 
+*/
+
+	/*
+	@Override
+	public DataResult<List<BrandSearchListDto>> getBrandsByBrandName(String brandName) {
+		
+		List<BrandSearchListDto> result = this.brandDao(brandName).stream()
+				.map(brand->modelMapperService.forDto().map(brand, BrandSearchListDto.class)).collect(Collectors.toList());
+				
+		return null; //SuccessDataResult<List<BrandSearchListDto>>(result);
+	}
+*/
 }

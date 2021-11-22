@@ -62,9 +62,16 @@ public class BrandsController {
 		
 	}
 	
-	@GetMapping(name = "/getBrandsByName")
+	/*
+	@GetMapping(path = "/getBrandsByName")
 	public DataResult<List<BrandSearchListDto>> getByBrandName(@RequestParam("brandName") String brandName){
 		return this.brandService.getBrandsByBrandName(brandName);
 	}
-
+	
+	@GetMapping(path = "/GetBrandsAndCarDetails")
+	public DataResult<List<BrandSearchListDto>> GetBrandsAndCarDetails(String brandName){
+		return this.brandService.getBrandsWithCar(brandName);
+	}
+*/
+	
 }

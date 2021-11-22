@@ -15,13 +15,13 @@ public class GamerManager implements GamerService {
 
 	@Override
 	public void update(Gamer gamer) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void delete(Gamer gamer) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 

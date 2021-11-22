@@ -16,6 +16,9 @@ public interface BrandService {
 	Result add(CreateBrandRequest createBrandRequest);
 	Result update(UpdateBrandRequest updateBrandRequest);
 	Result delete(DeleteBrandRequest deleteBrandRequest);
+	/*
 	DataResult<List<BrandSearchListDto>> getBrandsByBrandName(String brandName);
+	DataResult<List<BrandSearchListDto>> getBrandsWithCar(String brandName);
+	*/
 
 }
