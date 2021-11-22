@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etiya.rentACar.business.abstracts.BrandService;
@@ -59,6 +60,11 @@ public class BrandsController {
 		*/
 		return brandService.getBrands();
 		
+	}
+	
+	@GetMapping(name = "/getBrandsByName")
+	public DataResult<List<BrandSearchListDto>> getByBrandName(@RequestParam("brandName") String brandName){
+		return this.brandService.getBrandsByBrandName(brandName);
 	}
 
 }

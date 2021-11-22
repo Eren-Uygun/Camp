@@ -70,5 +70,6 @@ public class ColorManager implements ColorService {
 		return new SuccessResult("Renk silindi.");
 
 	}
+	
 
 }

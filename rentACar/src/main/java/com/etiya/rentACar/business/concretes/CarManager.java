@@ -3,6 +3,7 @@ package com.etiya.rentACar.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,7 @@ public class CarManager implements CarService {
 
 		
 		Car result = modelMapperService.forRequest().map(createCarRequest, Car.class);
+		
 		var brandItem = brandDao.getById(createCarRequest.getBrandId());
 		var colorItem = colorDao.getById(createCarRequest.getColorId());
 		result.setBrand(brandItem);
@@ -99,5 +101,6 @@ public class CarManager implements CarService {
 		// TODO Auto-generated method stub
 		return new SuccessDataResult<List<Car>>(this.carDao.findAll());
 	}
+
 
 }
