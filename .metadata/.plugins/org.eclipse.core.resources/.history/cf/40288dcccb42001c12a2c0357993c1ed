@@ -1,9 +1,0 @@
-package classes;
-
-public class EmployeeService {
-	//Service manager controller repository görüyorsanız operasyon tutucu class veya interfacedir.
-	public void add(Employee employee) {
-		
-	}
-
-}

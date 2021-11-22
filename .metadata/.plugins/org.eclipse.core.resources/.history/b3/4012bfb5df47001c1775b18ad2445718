@@ -1,5 +1,0 @@
-package reCapWorkshop.business.abstracts;
-
-public interface BaseRepository {
-
-}

@@ -1,7 +1,0 @@
-package entities;
-
-public class Brand {
-	private int brandId;
-	private String brandName;
-
-}

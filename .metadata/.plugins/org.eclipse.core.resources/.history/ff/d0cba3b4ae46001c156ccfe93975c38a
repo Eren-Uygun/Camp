@@ -1,7 +1,0 @@
-package northwind.dataAccess.concretes;
-
-import northwind.dataAccess.abstracts.CategoryRepository;
-
-public class CategoryDao implements CategoryRepository {
-
-}

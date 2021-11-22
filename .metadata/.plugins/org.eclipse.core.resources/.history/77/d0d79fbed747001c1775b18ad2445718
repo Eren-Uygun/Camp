@@ -1,8 +1,0 @@
-package reCapWorkshop.entities.concretes;
-
-public class Brand {
-	
-	private int id;
-	privte String brandName;
-
-}

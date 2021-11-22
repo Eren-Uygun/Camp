@@ -1,8 +1,0 @@
-package D5A1;
-
-public class User {
-	private int id;
-	private String firstName;
-	private String lastName;
-
-}

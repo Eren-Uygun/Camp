@@ -1,7 +1,0 @@
-package NtierD5A1.business.concretes;
-
-import NtierD5A1.business.abstracts.UserService;
-
-public class UserManager implements UserService {
-
-}

@@ -1,5 +1,0 @@
-package northwind.business.concretes;
-
-public class EmployeeManager {
-
-}

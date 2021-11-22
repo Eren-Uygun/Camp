@@ -1,5 +1,0 @@
-package reCapWorkshop.dataAccess.concretes;
-
-public class JpaBrandDao extends BrandRepository<Brand> {
-
-}

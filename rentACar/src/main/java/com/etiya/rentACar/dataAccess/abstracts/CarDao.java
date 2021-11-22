@@ -22,7 +22,8 @@ public interface CarDao extends JpaRepository<Car,Integer> {
 			"From Car c Inner Join c.color co Inner Join c.brand b ")
 	List<CarDetail> getCarsWithBrandAndColor();*/
 	
-	@Query("select b.brandName,c.modelYear,c.dailyPrice,c.description from Car c Inner Join c.brand b")
+	//Çalışmıyor ?????
+	@Query("Select c From Car c where c.brand.brandName like '%?1'")
 	List<Car> getCarsByBrand(String brandName);
 	
 	

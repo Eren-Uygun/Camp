@@ -1,6 +1,0 @@
-package interfaces;
-
-//DataAccess Object
-public interface CustomerDao {
-
-}

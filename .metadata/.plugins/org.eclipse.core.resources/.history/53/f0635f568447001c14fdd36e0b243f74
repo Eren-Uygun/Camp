@@ -1,5 +1,0 @@
-package dataAccess.abstracts;
-
-public class CarDao implements CarRepository {
-
-}

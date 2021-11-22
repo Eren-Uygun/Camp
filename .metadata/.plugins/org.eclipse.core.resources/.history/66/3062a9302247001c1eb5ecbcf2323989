@@ -1,5 +1,0 @@
-package NtierD5A1.business.abstracts;
-
-public interface UserService {
-
-}

@@ -1,5 +1,0 @@
-package workshopInterface;
-
-public interface LoggerService {
-
-}

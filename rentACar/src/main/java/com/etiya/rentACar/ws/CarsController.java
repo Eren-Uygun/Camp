@@ -69,4 +69,11 @@ public class CarsController {
 		return this.carService.getCarDetails();
 	}
 	
+	@GetMapping(path = "/getCarsByBrandName")
+	public DataResult<List<Car>> getCarsByBrandName(String brandName){
+		return this.carService.getCarsByBrandName(brandName);
+	}
+	
+	
+	
 }

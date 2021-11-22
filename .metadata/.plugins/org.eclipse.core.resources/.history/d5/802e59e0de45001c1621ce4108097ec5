@@ -1,7 +1,0 @@
-package interfaces;
-
-//DataAccess Object
-//DataAccess bölümünde Veri tabanıyla yapılacak işlerin implementasyonu ve imzaları tutulur.
-public interface CustomerDao {
-
-}

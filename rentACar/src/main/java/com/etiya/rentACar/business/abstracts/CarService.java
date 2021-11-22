@@ -20,5 +20,6 @@ public interface CarService {
 	Result add(CreateCarRequest createCarRequest);
 	Result update(UpdateCarRequest updateCarRequest);
 	Result delete(DeleteCarRequest deleteCarRequest);
+	DataResult<List<Car>> getCarsByBrandName(String brandName);
 
 }

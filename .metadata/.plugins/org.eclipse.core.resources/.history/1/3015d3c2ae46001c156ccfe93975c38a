@@ -1,7 +1,0 @@
-package northwind.dataAccess.concretes;
-
-import northwind.dataAccess.abstracts.EmployeeRepository;
-
-public class EmployeeDao implements EmployeeRepository {
-
-}

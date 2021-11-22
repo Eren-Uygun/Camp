@@ -1,5 +1,0 @@
-package northwind.dataAccess.abstracts;
-
-public interface CategoryRepository {
-
-}

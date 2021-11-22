@@ -1,9 +1,0 @@
-package D4A3;
-
-public class Gamer {
-	private int id;
-	private String firstName;
-	private String lastName;
-	private String nationalIdentityNumber;
-
-}

@@ -1,7 +1,0 @@
-package dataAccess.concretes;
-
-import dataAccess.abstracts.CarRepository;
-
-public class CarDao implements CarRepository {
-
-}

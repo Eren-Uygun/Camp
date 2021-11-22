@@ -102,5 +102,11 @@ public class CarManager implements CarService {
 		return new SuccessDataResult<List<Car>>(this.carDao.findAll());
 	}
 
+	@Override
+	public DataResult<List<Car>> getCarsByBrandName(String brandName) {
+		var result =  this.carDao.getCarsByBrand(brandName);
+		return new SuccessDataResult<List<Car>>(result);
+	}
+
 
 }

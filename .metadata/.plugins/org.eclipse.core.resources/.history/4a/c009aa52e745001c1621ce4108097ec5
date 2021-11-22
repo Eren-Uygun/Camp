@@ -1,6 +1,0 @@
-package workshopInterface;
-
-public interface LoggerService {
-	void log();
-
-}

@@ -1,7 +1,0 @@
-package northwind.dataAccess.abstracts;
-
-public interface ProductRepository {
-	
-	//Repository Veri tabanına erişim için yaptığımız çalışmaları koyduğumuz sınıfdır.
-
-}
