@@ -16,6 +16,8 @@ import com.etiya.rentACar.business.dtos.BrandSearchListDto;
 import com.etiya.rentACar.business.requests.brandRequests.CreateBrandRequest;
 import com.etiya.rentACar.business.requests.brandRequests.DeleteBrandRequest;
 import com.etiya.rentACar.business.requests.brandRequests.UpdateBrandRequest;
+import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.Result;
 
 @RestController
 @RequestMapping("/api/brands")
@@ -31,23 +33,23 @@ public class BrandsController {
 	}
 
 	@PostMapping(path = "/add")
-	public void add(@RequestBody CreateBrandRequest createBrandRequest) {
-		this.brandService.add(createBrandRequest);
+	public Result add(@RequestBody CreateBrandRequest createBrandRequest) {
+		return this.brandService.add(createBrandRequest);
 	}
 	
 	@PutMapping(path = "/update")
-	public void update(@RequestBody UpdateBrandRequest updateBrandRequest) {
-	this.brandService.update(updateBrandRequest);	
+	public Result update(@RequestBody UpdateBrandRequest updateBrandRequest) {
+	return this.brandService.update(updateBrandRequest);	
 	}
 	
 	@DeleteMapping(path = "/delete")
-	public void delete(@RequestBody DeleteBrandRequest brandRequest) {
-		this.brandService.delete(brandRequest);
+	public Result delete(@RequestBody DeleteBrandRequest brandRequest) {
+		return this.brandService.delete(brandRequest);
 	}
 
 
 	@GetMapping(path = "/getBrands")
-	public List<BrandSearchListDto> getBrands(){
+	public DataResult<List<BrandSearchListDto>> getBrands(){
 		/*
 		List<Brand> brands = new ArrayList<Brand>();
 		brands.add(new Brand(1,"Nissan"));

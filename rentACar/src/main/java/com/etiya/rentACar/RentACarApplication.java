@@ -35,3 +35,15 @@ public class RentACarApplication {
 //RentACar için
 //Swagger Desteği,Dto,Request desteği(Model Mapper)
 //Brand,car,color -> GetAll,Add,Update,Delete
+//Tüm Operasyonlar REsult sitemli olacak.
+
+/*//http://localhost:8080/api/products/check
+//Car,Brand,Color Join--> CarId, BrandName,ColorName, DailyPrice , ModelYear, Description
+//Tüm Crud operasyonları çalışsın
+//Tüm operasyonlar Result destekli olacak
+//GetByBrandName-->Car,Brand,Color Join--> CarId, BrandName,ColorName, DailyPrice , ModelYear, Description
+*/
+
+//Car,Brand,Color Join --> CardId,BrandName,ColorName,DailyPrice,ModelYear,Description
+
+//GetByBrandName gibi sorgular yazarak branddeki araçları getireceğiz.

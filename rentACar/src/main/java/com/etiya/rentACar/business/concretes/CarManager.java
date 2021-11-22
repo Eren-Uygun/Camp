@@ -13,8 +13,13 @@ import com.etiya.rentACar.business.requests.carRequests.CreateCarRequest;
 import com.etiya.rentACar.business.requests.carRequests.DeleteCarRequest;
 import com.etiya.rentACar.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.rentACar.core.utilities.mapping.ModelMapperService;
+import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.Result;
+import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
+import com.etiya.rentACar.core.utilities.results.SuccessResult;
 import com.etiya.rentACar.dataAccess.abstracts.CarDao;
 import com.etiya.rentACar.entities.Car;
+import com.etiya.rentACar.entities.complexTypes.CarDetail;
 
 @Service
 public class CarManager implements CarService {
@@ -30,36 +35,45 @@ public class CarManager implements CarService {
 	}
 
 	@Override
-	public List<CarSearchListDto> getCars() {
+	public DataResult<List<CarSearchListDto>> getCars() {
 
 		List<Car> result = this.carDao.findAll();
 		List<CarSearchListDto> response = result.stream()
 				.map(Car -> modelMapperService.forDto().map(Car, CarSearchListDto.class)).collect(Collectors.toList());
 
-		return response;
+		return new SuccessDataResult<List<CarSearchListDto>>(response);
 
 	}
 
 	@Override
-	public void add(CreateCarRequest createCarRequest) {
+	public Result add(CreateCarRequest createCarRequest) {
 
 		Car result = modelMapperService.forRequest().map(createCarRequest, Car.class);
 		this.carDao.save(result);
+		return new SuccessResult("Araç eklendi.");
 
 	}
 
 	@Override
-	public void update(UpdateCarRequest updateCarRequest) {
+	public Result update(UpdateCarRequest updateCarRequest) {
 		Car result = modelMapperService.forRequest().map(updateCarRequest, Car.class);
 		this.carDao.save(result);
+		return new SuccessResult("Araç güncellendi.");
 
 	}
 
 	@Override
-	public void delete(DeleteCarRequest deleteCarRequest) {
+	public Result delete(DeleteCarRequest deleteCarRequest) {
 		Car result = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
 		this.carDao.delete(result);
+		return new SuccessResult("Araç silindi.");
 
+	}
+
+	@Override
+	public DataResult<List<CarDetail>> getCarDetails() {
+		// TODO Auto-generated method stub
+		return new SuccessDataResult<List<CarDetail>>(this.carDao.getCarsWithBrandAndColor());
 	}
 
 }

@@ -11,7 +11,7 @@ public class CreateCarRequest {
 	
 	private int brandId;
 	private int colorId;
-	private int year;
+	private int modelYear;
 	private double dailyPrice;
 	private String description;
 	

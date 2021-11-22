@@ -21,6 +21,8 @@ public class ProductSearchListDto {
 	
 	
 	private int id;
+
+	private int categoryId;
 	
 	private String productName;
 		

@@ -17,6 +17,9 @@ import com.etiya.rentACar.business.dtos.CarSearchListDto;
 import com.etiya.rentACar.business.requests.carRequests.CreateCarRequest;
 import com.etiya.rentACar.business.requests.carRequests.DeleteCarRequest;
 import com.etiya.rentACar.business.requests.carRequests.UpdateCarRequest;
+import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.Result;
+import com.etiya.rentACar.entities.complexTypes.CarDetail;
 
 @RestController
 @RequestMapping("/api/cars")
@@ -31,25 +34,30 @@ public class CarsController {
 	}
 
 	@PostMapping(path  = "/add")
-	public void add(@RequestBody CreateCarRequest carRequest) {
-		this.carService.add(carRequest);
+	public Result add(@RequestBody CreateCarRequest carRequest) {
+		return this.carService.add(carRequest);
 
 	}
 
 	@PutMapping(path = "/update")
-	public void update(@RequestBody UpdateCarRequest updateCarRequest) {
-		this.carService.update(updateCarRequest);
+	public Result update(@RequestBody UpdateCarRequest updateCarRequest) {
+		return this.carService.update(updateCarRequest);
 	}
 
 	@DeleteMapping(path = "/delete")
-	public void delete(@RequestBody DeleteCarRequest deleteCarRequest) {
-		this.carService.delete(deleteCarRequest);
+	public Result delete(@RequestBody DeleteCarRequest deleteCarRequest) {
+		return this.carService.delete(deleteCarRequest);
 	}
 
 	@GetMapping(path = "/getCars")
-	public List<CarSearchListDto> getCars() {
+	public DataResult<List<CarSearchListDto>> getCars() {
 
 		return carService.getCars();
+	}
+	
+	@GetMapping(path = "/getCarDetails")
+	public DataResult<List<CarDetail>> getCarDetails(){
+		return this.carService.getCarDetails();
 	}
 
 }

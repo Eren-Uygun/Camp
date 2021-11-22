@@ -39,7 +39,13 @@ public class NorthwindSpringApplication {
 
 //LSP:Sırf nesneler birbirine benziyor diye aynı özelliklere sahip olacak değildir.
 
+//Veri tabanı ilişkileri
 
+/*
+ * Örneğin Bir kategorinin ürünleri vardır. 1'e Çok ilişki
+ * 
+ * 
+ */
 
 
 

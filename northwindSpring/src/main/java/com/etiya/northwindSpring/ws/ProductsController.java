@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etiya.northwindSpring.business.Dtos.ProductSearchListDto;
@@ -18,6 +19,7 @@ import com.etiya.northwindSpring.business.requests.DeleteProductRequest;
 import com.etiya.northwindSpring.business.requests.UpdateProductRequest;
 import com.etiya.northwindSpring.core.utils.results.DataResult;
 import com.etiya.northwindSpring.core.utils.results.Result;
+import com.etiya.northwindSpring.entities.complexTypes.ProductDetail;
 
 @RestController
 @RequestMapping("/api/products")
@@ -59,6 +61,22 @@ public class ProductsController {
 		return productService.delete(deleteProductRequest);
 		
 	}
+	
+	@GetMapping(path = "/getProductsByName")
+	public DataResult<List<ProductSearchListDto>> getProductByName(@RequestParam("productName")  String productName){
+		
+		//List<Product> products = new ArrayList<Product>();
+		//Bu bölüm kullanılan spring versiyonuna göre hata verebilir.
+		return this.productService.getByProductName(productName);
+	}
+	
+	
+	//Bu bölümde zaten complex bi yapıdan çektiğimiz için maplemeye gerek yok.
+	@GetMapping(path = "/getProductWithCategoryDetails")
+	public DataResult<List<ProductDetail>> getProductWithCategoryDetails(){
+		return this.productService.getProductWithCategoryDetails();
+	}
+	
 	
 	
 	

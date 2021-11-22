@@ -21,7 +21,7 @@ public class CarSearchListDto {
 	
 	private int colorId;
 	
-	private int year;
+	private int modelYear;
 
 	private double dailyPrice;
 	

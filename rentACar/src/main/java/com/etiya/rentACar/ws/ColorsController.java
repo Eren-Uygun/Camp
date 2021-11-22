@@ -17,6 +17,8 @@ import com.etiya.rentACar.business.dtos.ColorSearchListDto;
 import com.etiya.rentACar.business.requests.colorRequests.CreateColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.DeleteColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.UpdateColorRequest;
+import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.Result;
 import com.etiya.rentACar.entities.Color;
 
 @RestController
@@ -35,7 +37,7 @@ public class ColorsController {
 
 
 	@GetMapping( path = "/getColors")
-	public List<ColorSearchListDto> getColors(){
+	public DataResult<List<ColorSearchListDto>> getColors(){
 		
 		
 		return colorService.getColors();
@@ -43,17 +45,17 @@ public class ColorsController {
 	}
 	
 	@PostMapping(path = "/add")
-	public void add(@RequestBody CreateColorRequest createColorRequest) {
-		this.colorService.add(createColorRequest);
+	public Result add(@RequestBody CreateColorRequest createColorRequest) {
+		return this.colorService.add(createColorRequest);
 	}
 	
 	@PutMapping(path = "/update")
-	public void update(@RequestBody UpdateColorRequest updateColorRequest) {
-		this.colorService.update(updateColorRequest);
+	public Result update(@RequestBody UpdateColorRequest updateColorRequest) {
+		return this.colorService.update(updateColorRequest);
 	}
 	@DeleteMapping(path = "/delete")
-	public void delete(@RequestBody DeleteColorRequest deleteColorRequest) {
-		this.colorService.delete(deleteColorRequest);
+	public Result delete(@RequestBody DeleteColorRequest deleteColorRequest) {
+		return this.colorService.delete(deleteColorRequest);
 	}
 
 }

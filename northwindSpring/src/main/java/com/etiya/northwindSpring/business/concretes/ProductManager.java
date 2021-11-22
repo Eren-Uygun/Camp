@@ -1,10 +1,13 @@
 package com.etiya.northwindSpring.business.concretes;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.etiya.northwindSpring.business.Dtos.ProductSearchListDto;
 import com.etiya.northwindSpring.business.abstracts.ProductService;
@@ -18,6 +21,7 @@ import com.etiya.northwindSpring.core.utils.results.SuccessDataResult;
 import com.etiya.northwindSpring.core.utils.results.SuccessResult;
 import com.etiya.northwindSpring.dataAccess.abstracts.ProductDao;
 import com.etiya.northwindSpring.entities.Product;
+import com.etiya.northwindSpring.entities.complexTypes.ProductDetail;
 
 @Service
 public class ProductManager implements ProductService {
@@ -81,10 +85,30 @@ public class ProductManager implements ProductService {
 		//Product product = modelMapperService.forRequest().map(deleteProductRequest, Product.class);
 		//Product product = this.productDao.getById(deleteProductRequest.getId());
 		//this.productDao.delete(product);
-		this.productDao.getById(deleteProductRequest.getId());
+		this.productDao.deleteById(deleteProductRequest.getId());
 		
 		return new SuccessResult("Product Deleted");
 		
+	}
+
+	@Override
+	public DataResult<List<ProductSearchListDto>> getByProductName(String productName) {
+		/*
+		List<Product> products = this.productDao.getByProductNameContains(productName);
+		List<ProductSearchListDto> productList = products.stream().map(product-> modelMapperService.forDto().map(products, ProductSearchListDto.class)).collect(Collectors.toList());
+		return new SuccessDataResult<List<ProductSearchListDto>>(productList);
+		*/
+		
+		List<ProductSearchListDto> result = this.productDao.getByProductNameContains(productName).stream()
+				.map(product->modelMapperService.forDto()
+				.map(product, ProductSearchListDto.class)).collect(Collectors.toList());
+		return new SuccessDataResult<List<ProductSearchListDto>>(result);
+	}
+
+	@Override
+	public DataResult<List<ProductDetail>> getProductWithCategoryDetails() {
+		var result = this.productDao.getProductWithCategoryDetails();
+		return new SuccessDataResult<List<ProductDetail>>(result);
 	}
 
 }

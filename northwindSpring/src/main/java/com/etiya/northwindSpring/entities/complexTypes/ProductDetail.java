@@ -1,19 +1,23 @@
-package com.etiya.northwindSpring.business.requests;
+package com.etiya.northwindSpring.entities.complexTypes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Bu entity product ve category'nin joinidir. O yüzden complex types olarak geçer.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateProductRequest {
+public class ProductDetail {
 	
 	private int id;
+	
 	private String productName;
-	private int categoryId;
+	
+	private String categoryName;
+		
 	private double unitPrice;
+		
 	private int unitsInStock;
-	private String quantityPerUnit;
 
 }

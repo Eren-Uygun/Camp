@@ -2,9 +2,12 @@ package com.etiya.northwindSpring.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -28,9 +31,11 @@ public class Product {
 	
 	@Column(name = "product_name")
 	private String productName;
-	
+
+	/* Relation belirttiğimiz için bu alana gerek kalmadı.
 	@Column(name = "category_id")
 	private int categoryId;
+	*/
 	
 	@Column(name="unit_price")
 	private double unitPrice;
@@ -40,6 +45,12 @@ public class Product {
 	
 	@Column(name = "quantity_per_unit")
 	private String quantityPerUnit;
+	
+	
+	
+	@ManyToOne() //Ürünlerin bir kategorisi vardır bu db'ye göre.
+	@JoinColumn(name = "category_id") //Hangi alana göre join edeyim.
+	private Category category;
 
 
 

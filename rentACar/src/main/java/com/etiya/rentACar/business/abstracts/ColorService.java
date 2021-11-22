@@ -7,12 +7,14 @@ import com.etiya.rentACar.business.requests.brandRequests.DeleteBrandRequest;
 import com.etiya.rentACar.business.requests.colorRequests.CreateColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.DeleteColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.UpdateColorRequest;
+import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.Result;
 
 public interface ColorService {
 	
-	List<ColorSearchListDto> getColors();
-	void add(CreateColorRequest createColorRequest);
-	void update(UpdateColorRequest updateColorRequest);
-	void delete(DeleteColorRequest deleteColorRequest);
+	DataResult<List<ColorSearchListDto>> getColors();
+	Result add(CreateColorRequest createColorRequest);
+	Result update(UpdateColorRequest updateColorRequest);
+	Result delete(DeleteColorRequest deleteColorRequest);
 
 }
