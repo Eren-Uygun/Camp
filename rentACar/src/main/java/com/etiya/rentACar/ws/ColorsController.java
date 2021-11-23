@@ -20,6 +20,7 @@ import com.etiya.rentACar.business.requests.colorRequests.UpdateColorRequest;
 import com.etiya.rentACar.core.utilities.results.DataResult;
 import com.etiya.rentACar.core.utilities.results.Result;
 import com.etiya.rentACar.entities.Color;
+import com.etiya.rentACar.entities.complexTypes.ColorWithBrandAndCar;
 
 @RestController
 @RequestMapping("/api/colors")
@@ -56,6 +57,11 @@ public class ColorsController {
 	@DeleteMapping(path = "/delete")
 	public Result delete(@RequestBody DeleteColorRequest deleteColorRequest) {
 		return this.colorService.delete(deleteColorRequest);
+	}
+	
+	@GetMapping(path = "/getColorsWithBrandsAndCars")
+	public DataResult<List<ColorWithBrandAndCar>> getColorsWithBrandsAndCars(){
+		return this.colorService.getColorsWithExistsBrandsAndCars();
 	}
 
 }

@@ -22,6 +22,7 @@ import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
 import com.etiya.rentACar.core.utilities.results.SuccessResult;
 import com.etiya.rentACar.dataAccess.abstracts.ColorDao;
 import com.etiya.rentACar.entities.Color;
+import com.etiya.rentACar.entities.complexTypes.ColorWithBrandAndCar;
 
 @Service
 public class ColorManager implements ColorService {
@@ -69,6 +70,12 @@ public class ColorManager implements ColorService {
 		this.colorDao.delete(color);
 		return new SuccessResult("Renk silindi.");
 
+	}
+
+	@Override
+	public DataResult<List<ColorWithBrandAndCar>> getColorsWithExistsBrandsAndCars() {
+		var result = this.colorDao.getColorsWithExistsBrandsAndCars();
+		return new SuccessDataResult<List<ColorWithBrandAndCar>>(result);
 	}
 	
 

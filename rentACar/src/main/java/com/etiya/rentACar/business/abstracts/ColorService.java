@@ -9,6 +9,7 @@ import com.etiya.rentACar.business.requests.colorRequests.DeleteColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.UpdateColorRequest;
 import com.etiya.rentACar.core.utilities.results.DataResult;
 import com.etiya.rentACar.core.utilities.results.Result;
+import com.etiya.rentACar.entities.complexTypes.ColorWithBrandAndCar;
 
 public interface ColorService {
 	
@@ -16,5 +17,6 @@ public interface ColorService {
 	Result add(CreateColorRequest createColorRequest);
 	Result update(UpdateColorRequest updateColorRequest);
 	Result delete(DeleteColorRequest deleteColorRequest);
+	DataResult<List<ColorWithBrandAndCar>> getColorsWithExistsBrandsAndCars();
 
 }

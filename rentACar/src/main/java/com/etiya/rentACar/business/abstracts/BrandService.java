@@ -8,6 +8,7 @@ import com.etiya.rentACar.business.requests.brandRequests.DeleteBrandRequest;
 import com.etiya.rentACar.business.requests.brandRequests.UpdateBrandRequest;
 import com.etiya.rentACar.core.utilities.results.DataResult;
 import com.etiya.rentACar.core.utilities.results.Result;
+import com.etiya.rentACar.entities.complexTypes.CarBrandDetail;
 
 public interface BrandService {
 	
@@ -16,9 +17,6 @@ public interface BrandService {
 	Result add(CreateBrandRequest createBrandRequest);
 	Result update(UpdateBrandRequest updateBrandRequest);
 	Result delete(DeleteBrandRequest deleteBrandRequest);
-	/*
-	DataResult<List<BrandSearchListDto>> getBrandsByBrandName(String brandName);
-	DataResult<List<BrandSearchListDto>> getBrandsWithCar(String brandName);
-	*/
+	DataResult<List<CarBrandDetail>> getBrandsWithExistsCar();
 
 }

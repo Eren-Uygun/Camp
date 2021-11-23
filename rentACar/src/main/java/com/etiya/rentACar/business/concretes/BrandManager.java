@@ -17,6 +17,7 @@ import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
 import com.etiya.rentACar.core.utilities.results.SuccessResult;
 import com.etiya.rentACar.dataAccess.abstracts.BrandDao;
 import com.etiya.rentACar.entities.Brand;
+import com.etiya.rentACar.entities.complexTypes.CarBrandDetail;
 
 @Service
 public class BrandManager implements BrandService {
@@ -72,6 +73,14 @@ public class BrandManager implements BrandService {
 		this.brandDao.delete(brand);
 		return new SuccessResult("Marka silindi.");
 		
+	}
+
+
+
+	@Override
+	public DataResult<List<CarBrandDetail>> getBrandsWithExistsCar() {
+		var result = this.brandDao.getBrandsWithCarBrandDetail();
+		return new SuccessDataResult<List<CarBrandDetail>>(result);
 	}
 
 

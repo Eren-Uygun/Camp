@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.etiya.rentACar.entities.Brand;
+import com.etiya.rentACar.entities.complexTypes.CarBrandDetail;
 
 public interface BrandDao extends JpaRepository<Brand,Integer> {
 	
@@ -22,6 +23,11 @@ public interface BrandDao extends JpaRepository<Brand,Integer> {
 	
 	
 	*/
+	
+	@Query("select new com.etiya.rentACar.entities.complexTypes.CarBrandDetail "+
+	"(b.brandName,c.carId,c.modelYear) "+
+			"from Brand b Inner Join b.cars c")
+	List<CarBrandDetail> getBrandsWithCarBrandDetail();	
 	
 
 }

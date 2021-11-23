@@ -19,6 +19,7 @@ import com.etiya.rentACar.business.requests.brandRequests.DeleteBrandRequest;
 import com.etiya.rentACar.business.requests.brandRequests.UpdateBrandRequest;
 import com.etiya.rentACar.core.utilities.results.DataResult;
 import com.etiya.rentACar.core.utilities.results.Result;
+import com.etiya.rentACar.entities.complexTypes.CarBrandDetail;
 
 @RestController
 @RequestMapping("/api/brands")
@@ -67,11 +68,11 @@ public class BrandsController {
 	public DataResult<List<BrandSearchListDto>> getByBrandName(@RequestParam("brandName") String brandName){
 		return this.brandService.getBrandsByBrandName(brandName);
 	}
-	
-	@GetMapping(path = "/GetBrandsAndCarDetails")
-	public DataResult<List<BrandSearchListDto>> GetBrandsAndCarDetails(String brandName){
-		return this.brandService.getBrandsWithCar(brandName);
+	*/
+	@GetMapping(path = "/getBrandsAndCarDetails")
+	public DataResult<List<CarBrandDetail>> GetBrandsAndCarDetails(){
+		return this.brandService.getBrandsWithExistsCar();
 	}
-*/
+
 	
 }

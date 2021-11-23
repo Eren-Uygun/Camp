@@ -23,7 +23,7 @@ public interface CarDao extends JpaRepository<Car,Integer> {
 	List<CarDetail> getCarsWithBrandAndColor();*/
 	
 	//Çalışmıyor ?????
-	@Query("Select c From Car c where c.brand.brandName like '%?1'")
+	@Query(value = "Select c From Car c where c.brand.brandName like '%?1'",nativeQuery = true)
 	List<Car> getCarsByBrand(String brandName);
 	
 	
