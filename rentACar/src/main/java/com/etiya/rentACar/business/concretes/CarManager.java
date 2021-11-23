@@ -2,8 +2,6 @@ package com.etiya.rentACar.business.concretes;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.modelmapper.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,12 +57,12 @@ public class CarManager implements CarService {
 
 		
 		Car result = modelMapperService.forRequest().map(createCarRequest, Car.class);
-		
+		/*
 		var brandItem = brandDao.getById(createCarRequest.getBrandId());
 		var colorItem = colorDao.getById(createCarRequest.getColorId());
 		result.setBrand(brandItem);
-		result.setColor(colorItem);
-	
+		result.setColor(colorItem);	
+		*/
 		this.carDao.save(result);
 		return new SuccessResult("Araç eklendi.");
 
@@ -73,10 +71,12 @@ public class CarManager implements CarService {
 	@Override
 	public Result update(UpdateCarRequest updateCarRequest) {
 		Car result = modelMapperService.forRequest().map(updateCarRequest, Car.class);
+		/*
 		var brandItem = brandDao.getById(updateCarRequest.getBrandId());
 		var colorItem = colorDao.getById(updateCarRequest.getColorId());
 		result.setBrand(brandItem);
 		result.setColor(colorItem);
+		*/
 		this.carDao.save(result);
 		return new SuccessResult("Araç güncellendi.");
 

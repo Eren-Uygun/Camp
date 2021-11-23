@@ -24,14 +24,14 @@ public class ModelMapperManager implements ModelMapperService {
 	@Override
 	public ModelMapper forDto() {
 		//Loose gevşek demek yani tüm alanları map etmene gerek yok
-		this.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+		this.modelMapper.getConfiguration().setAmbiguityIgnored(true).setMatchingStrategy(MatchingStrategies.LOOSE);
 		return modelMapper;
 	}
 
 	@Override
 	public ModelMapper forRequest() {
 		//Strict tüm alanarın map etmesi gereklidir.
-		this.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		this.modelMapper.getConfiguration().setAmbiguityIgnored(true).setMatchingStrategy(MatchingStrategies.STANDARD);
 		return modelMapper;
 	}
 
