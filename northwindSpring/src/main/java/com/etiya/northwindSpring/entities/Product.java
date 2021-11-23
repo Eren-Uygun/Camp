@@ -27,7 +27,7 @@ public class Product {
 	@Id //P.key için anotasyon
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Otomatik olarak üretilir.
 	@Column(name = "product_id")
-	private int id;
+	private int productId;
 	
 	@Column(name = "product_name")
 	private String productName;

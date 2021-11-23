@@ -2,6 +2,8 @@ package com.etiya.rentACar.ws;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,18 +38,18 @@ public class CarsController {
 	}
 
 	@PostMapping(path  = "/add")
-	public Result add(@RequestBody CreateCarRequest carRequest) {
+	public Result add(@RequestBody @Valid CreateCarRequest carRequest) {
 		return this.carService.add(carRequest);
 
 	}
 
 	@PutMapping(path = "/update")
-	public Result update(@RequestBody UpdateCarRequest updateCarRequest) {
+	public Result update(@RequestBody @Valid UpdateCarRequest updateCarRequest) {
 		return this.carService.update(updateCarRequest);
 	}
 
 	@DeleteMapping(path = "/delete")
-	public Result delete(@RequestBody DeleteCarRequest deleteCarRequest) {
+	public Result delete(@RequestBody @Valid DeleteCarRequest deleteCarRequest) {
 		return this.carService.delete(deleteCarRequest);
 	}
 

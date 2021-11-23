@@ -85,7 +85,7 @@ public class ProductManager implements ProductService {
 		//Product product = modelMapperService.forRequest().map(deleteProductRequest, Product.class);
 		//Product product = this.productDao.getById(deleteProductRequest.getId());
 		//this.productDao.delete(product);
-		this.productDao.deleteById(deleteProductRequest.getId());
+		this.productDao.deleteById(deleteProductRequest.getProductId());
 		
 		return new SuccessResult("Product Deleted");
 		

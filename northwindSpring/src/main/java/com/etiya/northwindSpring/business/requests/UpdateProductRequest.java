@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateProductRequest {
 	
-	private int id;
+	private int productId;
 	private String productName;
 	private int categoryId;
 	private double unitPrice;

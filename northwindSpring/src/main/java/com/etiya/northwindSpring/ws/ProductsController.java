@@ -2,6 +2,9 @@ package com.etiya.northwindSpring.ws;
 
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,7 @@ import com.etiya.northwindSpring.business.requests.UpdateProductRequest;
 import com.etiya.northwindSpring.core.utils.results.DataResult;
 import com.etiya.northwindSpring.core.utils.results.Result;
 import com.etiya.northwindSpring.entities.complexTypes.ProductDetail;
+
 
 @RestController
 @RequestMapping("/api/products")
@@ -45,19 +49,19 @@ public class ProductsController {
 	*/
 	
 	@PostMapping(path = "/add")
-	public Result add(@RequestBody CreateProductRequest createProductRequest) {
+	public Result add(@RequestBody @Valid CreateProductRequest createProductRequest) {
 		return productService.add(createProductRequest);
 		
 	}
 	
 	@PutMapping(path = "/update")
-	public Result update(@RequestBody UpdateProductRequest updateProductRequest) {
+	public Result update(@RequestBody @Valid UpdateProductRequest updateProductRequest) {
 		return productService.update(updateProductRequest);
 		
 	}
 	
 	@DeleteMapping(path = "/delete")
-	public Result save(@RequestBody DeleteProductRequest deleteProductRequest) {
+	public Result save(@RequestBody @Valid DeleteProductRequest deleteProductRequest) {
 		return productService.delete(deleteProductRequest);
 		
 	}

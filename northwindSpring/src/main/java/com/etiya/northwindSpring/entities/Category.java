@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,13 +25,13 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "category_id")
-	private int id;
+	private int categoryId;
 	
 	@Column(name = "category_name")
 	private String categoryName;
 	
 	//Bir kategorinin altında birden fazla ürün olabilir. One To Many
-	@OneToMany(mappedBy = "category")//Karşı tarafda category adlı bir alan var ben onla ilişkiliyim.
+	@OneToMany(mappedBy = "category",fetch = FetchType.LAZY)//Karşı tarafda category adlı bir alan var ben onla ilişkiliyim.
 	private List<Product> products;
 	
 

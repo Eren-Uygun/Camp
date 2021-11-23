@@ -3,6 +3,8 @@ package com.etiya.rentACar.ws;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,16 +48,16 @@ public class ColorsController {
 	}
 	
 	@PostMapping(path = "/add")
-	public Result add(@RequestBody CreateColorRequest createColorRequest) {
+	public Result add(@RequestBody @Valid CreateColorRequest createColorRequest) {
 		return this.colorService.add(createColorRequest);
 	}
 	
 	@PutMapping(path = "/update")
-	public Result update(@RequestBody UpdateColorRequest updateColorRequest) {
+	public Result update(@RequestBody @Valid UpdateColorRequest updateColorRequest) {
 		return this.colorService.update(updateColorRequest);
 	}
 	@DeleteMapping(path = "/delete")
-	public Result delete(@RequestBody DeleteColorRequest deleteColorRequest) {
+	public Result delete(@RequestBody @Valid DeleteColorRequest deleteColorRequest) {
 		return this.colorService.delete(deleteColorRequest);
 	}
 	

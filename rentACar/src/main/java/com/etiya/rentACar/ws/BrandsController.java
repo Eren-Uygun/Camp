@@ -2,6 +2,8 @@ package com.etiya.rentACar.ws;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,17 +37,17 @@ public class BrandsController {
 	}
 
 	@PostMapping(path = "/add")
-	public Result add(@RequestBody CreateBrandRequest createBrandRequest) {
+	public Result add(@RequestBody @Valid CreateBrandRequest createBrandRequest) {
 		return this.brandService.add(createBrandRequest);
 	}
 	
 	@PutMapping(path = "/update")
-	public Result update(@RequestBody UpdateBrandRequest updateBrandRequest) {
+	public Result update(@RequestBody @Valid UpdateBrandRequest updateBrandRequest) {
 	return this.brandService.update(updateBrandRequest);	
 	}
 	
 	@DeleteMapping(path = "/delete")
-	public Result delete(@RequestBody DeleteBrandRequest brandRequest) {
+	public Result delete(@RequestBody @Valid DeleteBrandRequest brandRequest) {
 		return this.brandService.delete(brandRequest);
 	}
 
