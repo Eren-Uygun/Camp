@@ -27,20 +27,15 @@ public class CarManager implements CarService {
 
 	private CarDao carDao;
 	private ModelMapperService modelMapperService;
-	private BrandDao brandDao;
-	private ColorDao colorDao;
-
-	
 
 	@Autowired
-	public CarManager(CarDao carDao, ModelMapperService modelMapperService, BrandDao brandDao, ColorDao colorDao) {
+	public CarManager(CarDao carDao, ModelMapperService modelMapperService) {
 		super();
 		this.carDao = carDao;
 		this.modelMapperService = modelMapperService;
-		this.brandDao = brandDao;
-		this.colorDao = colorDao;
 	}
 
+	
 	@Override
 	public DataResult<List<CarSearchListDto>> getCars() {
 

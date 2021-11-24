@@ -82,6 +82,9 @@ public class BrandManager implements BrandService {
 		var result = this.brandDao.getBrandsWithCarBrandDetail();
 		return new SuccessDataResult<List<CarBrandDetail>>(result);
 	}
+	
+	
+	
 
 
 /*

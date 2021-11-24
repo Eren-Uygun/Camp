@@ -16,6 +16,7 @@ import com.etiya.rentACar.core.utilities.mapping.ModelMapperService;
 import com.etiya.rentACar.core.utilities.results.DataResult;
 import com.etiya.rentACar.core.utilities.results.Result;
 import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
+import com.etiya.rentACar.core.utilities.results.SuccessResult;
 import com.etiya.rentACar.dataAccess.abstracts.IndividualCustomerDao;
 import com.etiya.rentACar.entities.IndividualCustomer;
 
@@ -45,19 +46,22 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 	@Override
 	public Result add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
 		
-		return null;
+		IndividualCustomer individualCustomer = modelMapperService.forRequest().map(createIndividualCustomerRequest, IndividualCustomer.class);
+		this.individualCustomerDao.save(individualCustomer);		
+		return new SuccessResult("Bireysel müşteri sisteme eklendi.");
 	}
 
 	@Override
 	public Result update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		IndividualCustomer individualCustomer = modelMapperService.forRequest().map(updateIndividualCustomerRequest, IndividualCustomer.class);
+		this.individualCustomerDao.save(individualCustomer);		
+		return new SuccessResult("Bireysel müşteri bilgileri güncellendi.");
 	}
 
 	@Override
 	public Result delete(DeleteIndividualCustomerRequest deleteIndividualCustomerRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		this.individualCustomerDao.delete(this.individualCustomerDao.getById(deleteIndividualCustomerRequest.getId()));
+		return new SuccessResult("Bireysel müşteri bilgileri silindi.");
 	}
 
 }

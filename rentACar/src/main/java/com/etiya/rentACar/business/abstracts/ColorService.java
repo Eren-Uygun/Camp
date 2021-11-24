@@ -3,7 +3,6 @@ package com.etiya.rentACar.business.abstracts;
 import java.util.List;
 
 import com.etiya.rentACar.business.dtos.ColorSearchListDto;
-import com.etiya.rentACar.business.requests.brandRequests.DeleteBrandRequest;
 import com.etiya.rentACar.business.requests.colorRequests.CreateColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.DeleteColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.UpdateColorRequest;
