@@ -14,8 +14,10 @@ import com.etiya.northwindSpring.business.abstracts.ProductService;
 import com.etiya.northwindSpring.business.requests.CreateProductRequest;
 import com.etiya.northwindSpring.business.requests.DeleteProductRequest;
 import com.etiya.northwindSpring.business.requests.UpdateProductRequest;
+import com.etiya.northwindSpring.core.utils.business.BusinessRules;
 import com.etiya.northwindSpring.core.utils.mapping.ModelMapperService;
 import com.etiya.northwindSpring.core.utils.results.DataResult;
+import com.etiya.northwindSpring.core.utils.results.ErrorResult;
 import com.etiya.northwindSpring.core.utils.results.Result;
 import com.etiya.northwindSpring.core.utils.results.SuccessDataResult;
 import com.etiya.northwindSpring.core.utils.results.SuccessResult;
@@ -25,11 +27,10 @@ import com.etiya.northwindSpring.entities.complexTypes.ProductDetail;
 
 @Service
 public class ProductManager implements ProductService {
-	
+
 	private ProductDao productDao;
 	private ModelMapperService modelMapperService;
-	
-	
+
 	@Autowired
 	public ProductManager(ProductDao productDao, ModelMapperService modelMapperService) {
 		this.productDao = productDao;
@@ -38,70 +39,89 @@ public class ProductManager implements ProductService {
 
 	@Override
 	public DataResult<List<ProductSearchListDto>> getAll() {
-		//List<Product> products = new ArrayList<Product>();
-		//products.add(new Product(1,"elma",1,10,2,"dsf"));
-		//return this.productDao.findAll();
-		
-		//Stream foreach gibi dolaşır.
-		//List<ProductSearchListDto> response = new ArrayList<ProductSearchListDto>();
+		// List<Product> products = new ArrayList<Product>();
+		// products.add(new Product(1,"elma",1,10,2,"dsf"));
+		// return this.productDao.findAll();
+
+		// Stream foreach gibi dolaşır.
+		// List<ProductSearchListDto> response = new ArrayList<ProductSearchListDto>();
 		List<Product> result = this.productDao.findAll();
-		
-		//Her bir product'u yeni bir ProductSearchListDto listesine çevirir.
-		//Class'daki isimleri kontrol eder aynı ise eşleştirir.
-		
-		List<ProductSearchListDto> response = result.stream().map(product->modelMapperService.forDto().map(product, ProductSearchListDto.class /*c#*/)).collect(Collectors.toList());
-		
+
+		// Her bir product'u yeni bir ProductSearchListDto listesine çevirir.
+		// Class'daki isimleri kontrol eder aynı ise eşleştirir.
+
+		List<ProductSearchListDto> response = result.stream()
+				.map(product -> modelMapperService.forDto().map(product, ProductSearchListDto.class /* c# */))
+				.collect(Collectors.toList());
+
 		/*
-		for (Product product : result) {
-			response.add(new ProductSearchListDto(product.getId(),product.getProductName(), product.getUnitPrice(),product.getUnitsInStock()));
-			
-		}
-		*/
+		 * for (Product product : result) { response.add(new
+		 * ProductSearchListDto(product.getId(),product.getProductName(),
+		 * product.getUnitPrice(),product.getUnitsInStock()));
+		 * 
+		 * }
+		 */
 		return new SuccessDataResult<List<ProductSearchListDto>>(response);
-		
+
 	}
 
 	@Override
 	public Result add(CreateProductRequest createProductRequest) {
+
+		/*
+		if (checkProductNameDuplicated(createProductRequest.getProductName()).isSuccess()) {
+			// Bu bölüm iş motoru yazılarak gereksz kod yazımından kurtarır.
+			
+		}*/
+		//BusinessRules'in içine istediğimiz kadar metot geçebiliriz.
+		Result result =  BusinessRules.run(checkProductNameDuplicated(createProductRequest.getProductName()));
+		if (result != null) {
+			return result;
+		}
 		
 		Product product = modelMapperService.forRequest().map(createProductRequest, Product.class);
+		
 		this.productDao.save(product);
-		
+
 		return new SuccessResult("Product Added");
-		
+
 	}
 
 	@Override
 	public Result update(UpdateProductRequest updateProductRequest) {
 		Product product = modelMapperService.forRequest().map(updateProductRequest, Product.class);
 		this.productDao.save(product);
-		
+
 		return new SuccessResult("Product Updated");
-		
+
 	}
 
 	@Override
 	public Result delete(DeleteProductRequest deleteProductRequest) {
-		//Product product = modelMapperService.forRequest().map(deleteProductRequest, Product.class);
-		//Product product = this.productDao.getById(deleteProductRequest.getId());
-		//this.productDao.delete(product);
+		// Product product = modelMapperService.forRequest().map(deleteProductRequest,
+		// Product.class);
+		// Product product = this.productDao.getById(deleteProductRequest.getId());
+		// this.productDao.delete(product);
 		this.productDao.deleteById(deleteProductRequest.getProductId());
-		
+
 		return new SuccessResult("Product Deleted");
-		
+
 	}
 
 	@Override
 	public DataResult<List<ProductSearchListDto>> getByProductName(String productName) {
 		/*
-		List<Product> products = this.productDao.getByProductNameContains(productName);
-		List<ProductSearchListDto> productList = products.stream().map(product-> modelMapperService.forDto().map(products, ProductSearchListDto.class)).collect(Collectors.toList());
-		return new SuccessDataResult<List<ProductSearchListDto>>(productList);
-		*/
-		
+		 * List<Product> products =
+		 * this.productDao.getByProductNameContains(productName);
+		 * List<ProductSearchListDto> productList = products.stream().map(product->
+		 * modelMapperService.forDto().map(products,
+		 * ProductSearchListDto.class)).collect(Collectors.toList()); return new
+		 * SuccessDataResult<List<ProductSearchListDto>>(productList);
+		 */
+
 		List<ProductSearchListDto> result = this.productDao.getByProductNameContains(productName).stream()
-				.map(product->modelMapperService.forDto()
-				.map(product, ProductSearchListDto.class)).collect(Collectors.toList());
+				.map(product -> modelMapperService.forDto().map(product, ProductSearchListDto.class))
+				.collect(Collectors.toList());
 		return new SuccessDataResult<List<ProductSearchListDto>>(result);
 	}
 
@@ -109,6 +129,16 @@ public class ProductManager implements ProductService {
 	public DataResult<List<ProductDetail>> getProductWithCategoryDetails() {
 		var result = this.productDao.getProductWithCategoryDetails();
 		return new SuccessDataResult<List<ProductDetail>>(result);
+	}
+
+	//Küçük büyük harf duyarlılığı
+	private Result checkProductNameDuplicated(String ProductName) {
+		Product product = this.productDao.getByProductName(ProductName);
+		if (product != null) {
+			return new ErrorResult("Bu ürün daha önce eklenmiştir.");
+		}
+		return new SuccessResult("Ürün eklendi.");
+
 	}
 
 }
@@ -119,3 +149,5 @@ public class ProductManager implements ProductService {
 
 //Dto'ların yeri business ve entities olabilir.
 //Clean architecture ve sqrs tarafında business'de olması gerekiyor.
+
+// İş kodları en alt ve private olucak şekilde yazılmalıdır.

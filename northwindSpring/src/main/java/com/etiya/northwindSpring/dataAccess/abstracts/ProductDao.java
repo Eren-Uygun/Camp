@@ -15,6 +15,8 @@ public interface ProductDao extends JpaRepository<Product,Integer> {
 	
 	List<Product> getByProductNameContains(String productName);
 	
+	Product getByProductName(String productName);
+	
 	@Query("Select new com.etiya.northwindSpring.entities.complexTypes.ProductDetail "+
 	"(p.id,p.productName,c.categoryName,p.unitPrice,p.unitsInStock) "+
 			"From Category c Inner Join c.products p")
