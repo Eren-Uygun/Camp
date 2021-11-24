@@ -14,6 +14,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -23,10 +24,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
+@PrimaryKeyJoinColumn(name = "user_id")
 @Entity
 @Table(name = "individual_customers")
-public class IndividualCustomer {
+public class IndividualCustomer extends User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,9 +43,12 @@ public class IndividualCustomer {
 	@Column(name = "birth_date")
 	private LocalDate birthDate;
 	
+	/*
 	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "user_id",referencedColumnName = "id")
 	private User user;
+	*/
+	
 	
 	@OneToMany(mappedBy = "individualCustomer")
 	private List<Rental> rentals;

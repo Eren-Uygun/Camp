@@ -18,5 +18,8 @@ public interface ColorDao extends JpaRepository<Color, Integer> {
 			"From Color co Inner Join co.cars c")
 	List<ColorWithBrandAndCar> getColorsWithExistsBrandsAndCars();
 	
+	Color getByColorName(String colorName);
+	
+	
 
 }

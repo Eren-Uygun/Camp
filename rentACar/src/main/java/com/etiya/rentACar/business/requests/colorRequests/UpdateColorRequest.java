@@ -21,6 +21,6 @@ public class UpdateColorRequest {
 	@NotNull
 	@NotBlank
 	@Size(min = 2,max = 25)
-	private int colorName;
+	private String colorName;
 
 }

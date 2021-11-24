@@ -11,8 +11,10 @@ import com.etiya.rentACar.business.dtos.ColorSearchListDto;
 import com.etiya.rentACar.business.requests.colorRequests.CreateColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.DeleteColorRequest;
 import com.etiya.rentACar.business.requests.colorRequests.UpdateColorRequest;
+import com.etiya.rentACar.core.utilities.business.BusinessRules;
 import com.etiya.rentACar.core.utilities.mapping.ModelMapperService;
 import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.ErrorResult;
 import com.etiya.rentACar.core.utilities.results.Result;
 import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
 import com.etiya.rentACar.core.utilities.results.SuccessResult;
@@ -46,6 +48,11 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result add(CreateColorRequest createColorRequest) {
+		var result = BusinessRules.run(checkExistsColorName(createColorRequest.getColorName()));
+		if (result != null) {
+			return result;
+			
+		}
 		Color color = modelMapperService.forRequest().map(createColorRequest, Color.class);
 		this.colorDao.save(color);
 		return new SuccessResult("Renk eklendi.");
@@ -54,6 +61,10 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result update(UpdateColorRequest updateColorRequest) {
+		var result = BusinessRules.run(checkColorByExistColorId(updateColorRequest.getColorId()),checkExistsColorName(updateColorRequest.getColorName()));
+		if (result != null) {
+			return result;
+		}
 		Color color = modelMapperService.forRequest().map(updateColorRequest, Color.class);
 		this.colorDao.save(color);
 		return new SuccessResult("Renk güncellendi.");
@@ -62,6 +73,10 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result delete(DeleteColorRequest deleteColorRequest) {
+		var result = BusinessRules.run(checkColorByExistColorId(deleteColorRequest.getColorId()));
+		if (result != null) {
+			return result;
+		}
 		Color color = modelMapperService.forRequest().map(deleteColorRequest, Color.class);
 		this.colorDao.delete(color);
 		return new SuccessResult("Renk silindi.");
@@ -73,6 +88,25 @@ public class ColorManager implements ColorService {
 		var result = this.colorDao.getColorsWithExistsBrandsAndCars();
 		return new SuccessDataResult<List<ColorWithBrandAndCar>>(result);
 	}
-	
+
+	private Result checkExistsColorName(String colorName) {
+
+		var result = this.colorDao.getByColorName(colorName);
+		if (result != null) {
+			return new ErrorResult("Bu renk adı sistemde mevcut");
+		} else {
+			return new SuccessResult("Renk sisteme kaydedildi.");
+		}
+
+	}
+
+	private Result checkColorByExistColorId(int id) {
+		var result = this.colorDao.existsById(id);
+		if (!result) {
+			return new ErrorResult("İlgili id sistemde mevcut değil");
+		}
+		return new SuccessResult("İlgili id sistemde bulundu.");
+
+	}
 
 }

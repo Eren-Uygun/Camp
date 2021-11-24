@@ -24,10 +24,13 @@ public interface BrandDao extends JpaRepository<Brand,Integer> {
 	
 	*/
 	
+	Brand getByBrandName(String brandName);
+	
 	@Query("select new com.etiya.rentACar.entities.complexTypes.CarBrandDetail "+
 	"(b.brandName,c.carId,c.modelYear) "+
 			"from Brand b Inner Join b.cars c")
 	List<CarBrandDetail> getBrandsWithCarBrandDetail();	
+
 	
 
 }

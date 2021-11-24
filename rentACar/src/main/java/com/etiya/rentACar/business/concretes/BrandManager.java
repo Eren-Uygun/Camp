@@ -10,8 +10,10 @@ import com.etiya.rentACar.business.dtos.BrandSearchListDto;
 import com.etiya.rentACar.business.requests.brandRequests.CreateBrandRequest;
 import com.etiya.rentACar.business.requests.brandRequests.DeleteBrandRequest;
 import com.etiya.rentACar.business.requests.brandRequests.UpdateBrandRequest;
+import com.etiya.rentACar.core.utilities.business.BusinessRules;
 import com.etiya.rentACar.core.utilities.mapping.ModelMapperService;
 import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.ErrorResult;
 import com.etiya.rentACar.core.utilities.results.Result;
 import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
 import com.etiya.rentACar.core.utilities.results.SuccessResult;
@@ -48,7 +50,14 @@ public class BrandManager implements BrandService {
 
 	@Override
 	public Result add(CreateBrandRequest createBrandRequest) {
+		
+		
+		Result businessResult =BusinessRules.run(checkBrandNameDuplicated(createBrandRequest.getBrandName()));
+		if (businessResult != null) {
+			return businessResult;
+		}
 		Brand brand = modelMapperService.forRequest().map(createBrandRequest, Brand.class);
+		
 		this.brandDao.save(brand);
 		
 		return new SuccessResult("Marka eklendi.");
@@ -59,6 +68,11 @@ public class BrandManager implements BrandService {
 
 	@Override
 	public Result update(UpdateBrandRequest updateBrandRequest) {
+		Result businessResult = BusinessRules.run(checkBrandNameDuplicated(updateBrandRequest.getBrandName()),checkBrandforIdExist(updateBrandRequest.getBrandId()));
+		if (businessResult != null) {
+			return businessResult;
+		}
+		
 		Brand brand = modelMapperService.forRequest().map(updateBrandRequest, Brand.class);
 		this.brandDao.save(brand);
 		return new SuccessResult("Marka güncellendi.");
@@ -69,6 +83,12 @@ public class BrandManager implements BrandService {
 
 	@Override
 	public Result delete(DeleteBrandRequest deleteBrandRequest) {
+		
+		var result = BusinessRules.run(checkBrandforIdExist(deleteBrandRequest.getBrandId()));
+		if (result != null) {
+			return result;
+			
+		}
 		Brand brand = modelMapperService.forRequest().map(deleteBrandRequest, Brand.class);
 		this.brandDao.delete(brand);
 		return new SuccessResult("Marka silindi.");
@@ -84,7 +104,22 @@ public class BrandManager implements BrandService {
 	}
 	
 	
+	private Result checkBrandNameDuplicated(String brandName) {
+		var result = this.brandDao.getByBrandName(brandName);
+		if (result != null) {
+			return new ErrorResult("Marka adı sistemde mevcut");
+		}
+		return new SuccessResult("Marka sisteme eklendi.");
+	}
 	
+	private Result checkBrandforIdExist(int id) {
+		var result = this.brandDao.existsById(id);
+		if (!result) {
+			return new ErrorResult("Marka bulunamadı.");
+		}
+		return new SuccessResult("Marka bulundu. ");
+	}
+
 
 
 /*

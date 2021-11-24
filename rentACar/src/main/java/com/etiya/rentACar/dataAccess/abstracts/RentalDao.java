@@ -6,6 +6,6 @@ import com.etiya.rentACar.entities.Rental;
 
 public interface RentalDao extends JpaRepository<Rental, Integer> {
 	
-	
+	Rental getRentalByIndividualCustomer_Id(int id);
 
 }

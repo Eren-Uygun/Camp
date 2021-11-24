@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
@@ -31,9 +34,9 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	
+	/*
 	@OneToOne(mappedBy = "user")
 	//@JoinColumn(name = "individual_customer_id",referencedColumnName = "id")
 	private IndividualCustomer individualCustomer;
-
+*/
 }
