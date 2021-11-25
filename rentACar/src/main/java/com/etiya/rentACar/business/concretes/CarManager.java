@@ -77,7 +77,7 @@ public class CarManager implements CarService {
 	@Override
 	public Result update(UpdateCarRequest updateCarRequest) {
 		var result = BusinessRules
-				.run(checkExistsBrandId(updateCarRequest.getBrandId()),checkExistsColorId(updateCarRequest.getColorId()),checkexistsCarId(updateCarRequest.getCarId()));
+				.run(checkExistsBrandId(updateCarRequest.getBrandId()),checkExistsColorId(updateCarRequest.getColorId()),checkexistsCarId(updateCarRequest.getId()));
 		if (result != null) {
 			return result;
 		}
@@ -95,7 +95,7 @@ public class CarManager implements CarService {
 
 	@Override
 	public Result delete(DeleteCarRequest deleteCarRequest) {
-		var result = BusinessRules.run(checkexistsCarId(deleteCarRequest.getCarId()));
+		var result = BusinessRules.run(checkexistsCarId(deleteCarRequest.getId()));
 		if (result != null) {
 			return result;
 		}

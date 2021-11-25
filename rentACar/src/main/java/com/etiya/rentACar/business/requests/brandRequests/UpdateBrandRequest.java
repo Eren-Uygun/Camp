@@ -16,7 +16,7 @@ public class UpdateBrandRequest {
 	
 	@NotNull
 	@Min(1)
-	private int brandId;
+	private int id;
 	
 	@NotNull
 	@NotBlank

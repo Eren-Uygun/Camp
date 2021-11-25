@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.servlet.annotation.HandlesTypes;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -31,7 +33,7 @@ public class Car {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "car_id")
-	private int carId;
+	private int id;
 	
 	/*
 	@Column(name = "brand_id")
@@ -59,6 +61,10 @@ public class Car {
 	
 	@OneToMany(mappedBy = "car")
 	private List<Rental> rentals;
+	
+	@OneToMany(mappedBy = "car")
+	@Size(min = 0,max = 5)
+	private List<CarImage> carImages;
 	
 
 }

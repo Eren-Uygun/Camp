@@ -14,6 +14,6 @@ public class DeleteColorRequest {
 	
 	@NotNull
 	@Min(1)
-	private int colorId;
+	private int id;
 
 }

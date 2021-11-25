@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.etiya.rentACar.core.utilities.results.ErrorDataResult;
 
@@ -59,6 +60,16 @@ public class RentACarApplication {
 		
 	}
 	
+	// Araca resim yüklecektir
+	/**
+	 * bir aracın birden fazla resmi olabilir.
+	 * Resim Crud
+	 * Apiden REsim yükleme
+	 * default resimi göndereceğiz.
+	 * Bir arabanın en fazla 5 resmi olabilir.
+	 * apiye image ekleme ve img gönderme.
+	 * listelenirkende image dönecek
+	 */
 	
 	
 	

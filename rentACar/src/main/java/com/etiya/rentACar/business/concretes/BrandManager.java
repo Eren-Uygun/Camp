@@ -68,7 +68,7 @@ public class BrandManager implements BrandService {
 
 	@Override
 	public Result update(UpdateBrandRequest updateBrandRequest) {
-		Result businessResult = BusinessRules.run(checkBrandNameDuplicated(updateBrandRequest.getBrandName()),checkBrandforIdExist(updateBrandRequest.getBrandId()));
+		Result businessResult = BusinessRules.run(checkBrandNameDuplicated(updateBrandRequest.getBrandName()),checkBrandforIdExist(updateBrandRequest.getId()));
 		if (businessResult != null) {
 			return businessResult;
 		}
@@ -84,7 +84,7 @@ public class BrandManager implements BrandService {
 	@Override
 	public Result delete(DeleteBrandRequest deleteBrandRequest) {
 		
-		var result = BusinessRules.run(checkBrandforIdExist(deleteBrandRequest.getBrandId()));
+		var result = BusinessRules.run(checkBrandforIdExist(deleteBrandRequest.getId()));
 		if (result != null) {
 			return result;
 			

@@ -1,14 +1,14 @@
 package com.etiya.rentACar.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,26 +18,24 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name = "car_images")
+public class CarImage {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "email")
-	private String email;
+	@Column(name = "image_path")
+	private String imagePath;
 	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "image_date")
+	private LocalDate imageDate;
 	
-	/*
-	@OneToOne(mappedBy = "user")
-	//@JoinColumn(name = "individual_customer_id",referencedColumnName = "id")
-	private IndividualCustomer individualCustomer;
-*/
+	@ManyToOne()
+	@JoinColumn(name = "car_Id")
+	private Car car;
 	
+
 }

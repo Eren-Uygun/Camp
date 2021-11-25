@@ -14,7 +14,7 @@ public interface ColorDao extends JpaRepository<Color, Integer> {
 	
 	
 	@Query("select new com.etiya.rentACar.entities.complexTypes.ColorWithBrandAndCar "+
-	"(co.colorName,c.carId,c.modelYear)"+
+	"(co.colorName,c.id,c.modelYear)"+
 			"From Color co Inner Join co.cars c")
 	List<ColorWithBrandAndCar> getColorsWithExistsBrandsAndCars();
 	

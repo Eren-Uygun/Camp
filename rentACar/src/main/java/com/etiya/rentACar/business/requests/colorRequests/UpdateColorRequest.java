@@ -16,7 +16,7 @@ public class UpdateColorRequest {
 	
 	@NotNull
 	@Min(1)
-	private int colorId;
+	private int id;
 	
 	@NotNull
 	@NotBlank

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.Null;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,8 +56,7 @@ public class RentalManager implements RentalService {
 	@Override
 	public Result add(CreateRentalRequest createRentalRequest) {
 		var result = BusinessRules.run(checkCarIsExists(createRentalRequest.getCarId()),
-				checkIndividualCustomerIsExists(createRentalRequest.getIndividualCustomerId()),
-				checkRentalByIndividualCustomerId(createRentalRequest.getIndividualCustomerId()));
+				checkIndividualCustomerIsExists(createRentalRequest.getIndividualCustomerId()),checkRentalReturnDateByIndividualCustomerId(createRentalRequest.getIndividualCustomerId()));
 		if (result != null) {
 			return result;
 		}
@@ -68,7 +69,7 @@ public class RentalManager implements RentalService {
 	public Result update(UpdateRentalRequest updateRentalRequest) {
 		Result result = BusinessRules.run(checkCarIsExists(updateRentalRequest.getCarId()),
 				checkIndividualCustomerIsExists(updateRentalRequest.getIndividualCustomerId()),
-				checkRentalIdExists(updateRentalRequest.getId()));
+				checkRentalIdIsExists(updateRentalRequest.getId()));
 		if (result != null) {
 			return result;
 		}
@@ -99,16 +100,16 @@ public class RentalManager implements RentalService {
 			return new SuccessResult("Müşteri bulundu.");
 		}
 	}
-
-	private Result checkRentalByIndividualCustomerId(int id) {
-		var result = this.rentalDao.getRentalByIndividualCustomer_Id(id);
-		if (result.getReturnDate() == null) {
+//Engin hoca geldiğinde sorulacak.
+	private Result checkRentalReturnDateByIndividualCustomerId(int id) {
+		Rental result = this.rentalDao.getRentalByIndividualCustomer_Id(id);
+		if (result != null) {
 			return new ErrorResult("Kiraladığınız aracı teslim etmeden yeni araç kiralayamassınız.");
 		}
 		return new SuccessResult("Araç kiralaması yapıldı.");
 	}
 	
-	private Result checkRentalIdExists(int id) {
+	private Result checkRentalIdIsExists(int id) {
 		var result = this.rentalDao.existsById(id);
 		if (!result) {
 			return new ErrorResult("Kiralama bilgileri bulunamadı.");

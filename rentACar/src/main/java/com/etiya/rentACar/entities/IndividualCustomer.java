@@ -29,10 +29,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "individual_customers")
 public class IndividualCustomer extends User {
 	
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
+	*/
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -44,8 +46,9 @@ public class IndividualCustomer extends User {
 	private LocalDate birthDate;
 	
 	/*
+	
 	@OneToOne(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "user_id",referencedColumnName = "id")
+	//@JoinColumn(name = "user_id",referencedColumnName = "id")
 	private User user;
 	*/
 	

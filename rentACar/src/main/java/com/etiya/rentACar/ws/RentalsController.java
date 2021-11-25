@@ -45,14 +45,14 @@ public class RentalsController {
 		
 	}
 	
-	@PutMapping(params = "/update")
+	@PutMapping(path = "/update")
 	public Result update(@RequestBody @Valid UpdateRentalRequest updateRentalRequest) {
-		return this.update(updateRentalRequest);
+		return this.rentalService.update(updateRentalRequest);
 	}
 	
-	@DeleteMapping(params = "/delete")
+	@DeleteMapping(path = "/delete")
 	public Result delete(@RequestBody @Valid DeleteRentalRequest deleteRentalRequest) {
-		return this.delete(deleteRentalRequest);
+		return this.rentalService.delete(deleteRentalRequest);
 	}
 	
 	

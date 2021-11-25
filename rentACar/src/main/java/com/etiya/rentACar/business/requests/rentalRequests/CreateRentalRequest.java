@@ -29,7 +29,7 @@ public class CreateRentalRequest {
 	private int carId;
 	@PastOrPresent
 	private LocalDate rentDate;
-	@FutureOrPresent
+	
 	private LocalDate returnDate;
 
 }

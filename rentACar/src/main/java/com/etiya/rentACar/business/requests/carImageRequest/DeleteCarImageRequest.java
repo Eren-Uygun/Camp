@@ -1,4 +1,4 @@
-package com.etiya.rentACar.business.requests.carRequests;
+package com.etiya.rentACar.business.requests.carImageRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteCarRequest {
+public class DeleteCarImageRequest {
 	
 	private int id;
 

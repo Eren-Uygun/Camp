@@ -61,7 +61,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result update(UpdateColorRequest updateColorRequest) {
-		var result = BusinessRules.run(checkColorByExistColorId(updateColorRequest.getColorId()),checkExistsColorName(updateColorRequest.getColorName()));
+		var result = BusinessRules.run(checkColorByExistColorId(updateColorRequest.getId()),checkExistsColorName(updateColorRequest.getColorName()));
 		if (result != null) {
 			return result;
 		}
@@ -73,7 +73,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result delete(DeleteColorRequest deleteColorRequest) {
-		var result = BusinessRules.run(checkColorByExistColorId(deleteColorRequest.getColorId()));
+		var result = BusinessRules.run(checkColorByExistColorId(deleteColorRequest.getId()));
 		if (result != null) {
 			return result;
 		}

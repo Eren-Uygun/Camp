@@ -59,12 +59,6 @@ public class CarsController {
 		return carService.getCars();
 	}
 	
-	@GetMapping(path = "/getCarss")
-	public DataResult<List<Car>> getCarss() {
-
-		return carService.getCarss();
-	}
-	
 	
 	@GetMapping(path = "/getCarDetails")
 	public DataResult<List<CarDetail>> getCarDetails(){
