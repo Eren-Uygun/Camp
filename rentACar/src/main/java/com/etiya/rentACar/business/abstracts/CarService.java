@@ -14,11 +14,11 @@ import com.etiya.rentACar.entities.complexTypes.CarDetail;
 public interface CarService {
 	
 	DataResult<List<CarSearchListDto>> getCars();
-	DataResult<List<Car>> getCarss();
 	DataResult<List<CarDetail>> getCarDetails();
 	Result add(CreateCarRequest createCarRequest);
 	Result update(UpdateCarRequest updateCarRequest);
 	Result delete(DeleteCarRequest deleteCarRequest);
 	DataResult<List<Car>> getCarsByBrandName(String brandName);
+	DataResult<CarSearchListDto> getCar(int carId);
 
 }

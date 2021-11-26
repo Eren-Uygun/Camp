@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.etiya.rentACar.business.abstracts.CarImageService;
+import com.etiya.rentACar.business.abstracts.CarService;
 import com.etiya.rentACar.business.dtos.CarImageSearchListDto;
+import com.etiya.rentACar.business.dtos.CarImagesDto;
+import com.etiya.rentACar.business.dtos.CarSearchListDto;
 import com.etiya.rentACar.business.requests.carImageRequest.CreateCarImageRequest;
 import com.etiya.rentACar.business.requests.carImageRequest.DeleteCarImageRequest;
 import com.etiya.rentACar.business.requests.carImageRequest.UpdateCarImageRequest;
@@ -31,14 +34,20 @@ import com.etiya.rentACar.entities.CarImage;
 @Service
 public class CarImageManager implements CarImageService {
 
+	
+	
 	private CarImageDao carImageDao;
 	private ModelMapperService modelMapperService;
+	private CarService carService;
+
+	
 
 	@Autowired
-	public CarImageManager(CarImageDao carImageDao, ModelMapperService modelMapperService) {
+	public CarImageManager(CarImageDao carImageDao, ModelMapperService modelMapperService, CarService carService) {
 		super();
 		this.carImageDao = carImageDao;
 		this.modelMapperService = modelMapperService;
+		this.carService = carService;
 	}
 
 	@Override
@@ -54,10 +63,12 @@ public class CarImageManager implements CarImageService {
 
 	@Override
 	public Result add(CreateCarImageRequest createCarImageRequest) throws IOException {
-		var result = BusinessRules.run(checkCountCarImages(createCarImageRequest.getCarId()),
-				checkCountCarImages(createCarImageRequest.getCarId()),
+
+		//İş kurallarında null hatası alıyorum ? Neden ?????
+		Result result = BusinessRules.run(
+				checkCountCarImages(createCarImageRequest.getCarId()),checkIsCarExists(createCarImageRequest.getCarId()),
 				checkImageTypeIsOk(createCarImageRequest.getMultipartFile()));
-		if (result != null) {
+		if (result != null) { //Is success geldiği zaman null hatası ????
 			return result;
 		}
 		CarImage carImage = modelMapperService.forRequest().map(createCarImageRequest, CarImage.class);
@@ -69,10 +80,12 @@ public class CarImageManager implements CarImageService {
 
 	@Override
 	public Result update(UpdateCarImageRequest updateCarImageRequest) throws IOException {
-		var result = BusinessRules.run(checkImageIsNull(updateCarImageRequest.getMultipartFile()),checkIsCarExists(updateCarImageRequest.getCarId()));
+		
+		Result result = BusinessRules.run(checkIsCarExists(updateCarImageRequest.getCarId()));
 		if (!result.isSuccess()) {
 			return result;
 		}
+
 		CarImage carImage = modelMapperService.forRequest().map(updateCarImageRequest, CarImage.class);
 		carImage.setImageDate(LocalDate.now());
 		carImage.setImagePath(generateImage(updateCarImageRequest.getMultipartFile()).toString());
@@ -82,15 +95,17 @@ public class CarImageManager implements CarImageService {
 
 	@Override
 	public Result delete(DeleteCarImageRequest deleteCarImageRequest) {
-		CarImage carImage = this.carImageDao.getById(deleteCarImageRequest.getId());
-		this.carImageDao.delete(carImage);
+		Result result = BusinessRules.run(checkIsCarImageExists(deleteCarImageRequest.getId()));
+		if (!result.isSuccess()) {
+			return result;
+		}
+		this.carImageDao.delete(this.carImageDao.getById(deleteCarImageRequest.getId()));
 		return new SuccessResult("Resim silindi.");
 	}
 
 	private File generateImage(MultipartFile file) throws IOException {
 
 		String imagePathGuid = java.util.UUID.randomUUID().toString();
-
 		File imageFile = new File(
 				"C:\\Users\\eren.uygun\\eclipse-workspace\\rentACar\\src\\main\\resources\\static\\images\\"
 						+ imagePathGuid + "."
@@ -105,36 +120,35 @@ public class CarImageManager implements CarImageService {
 	}
 
 	@Override
-	public DataResult<List<CarImageSearchListDto>> getCarImagesByCarId(int id) {
-		return new SuccessDataResult<List<CarImageSearchListDto>>(this.checkIfCarImageIsEmpty(id));
+	public DataResult<List<CarImagesDto>> getCarImagesByCarId(int id) {
+		return new SuccessDataResult<List<CarImagesDto>>(this.checkIfCarImageIsEmpty(id));
 	}
 
-	private Result checkCountCarImages(int id) {
-		var result = this.carImageDao.countCarImageByCarId(id);
-		if (result >= 5) {
-			return new SuccessResult("Bir araç için en fazla 5 adet resim eklenebilir.");
+	private Result checkCountCarImages(int carId) {
+		if (this.carImageDao.countCarImagesByCar_Id(carId) <= 5) {
+			return new SuccessResult();
 		}
-		return new SuccessResult("Resim eklendi.");
+		return new ErrorResult("Bir araç için en fazla 5 adet resim eklenebilir.");
 
 	}
 
-	private List<CarImageSearchListDto> checkIfCarImageIsEmpty(int id) {
-		var result = this.carImageDao.getCarImagesByCarId(id);
-		if (result.isEmpty()) {
-			CarImageSearchListDto carImageSearchListDto = new CarImageSearchListDto();
-			carImageSearchListDto.setImagePath(
+	private List<CarImagesDto> checkIfCarImageIsEmpty(int id) {
+
+		if (this.carImageDao.getByCar_Id(id).isEmpty()) {
+			CarImagesDto carImageDao = new CarImagesDto();
+			carImageDao.setImagePath(
 					"C:\\Users\\eren.uygun\\eclipse-workspace\\rentACar\\src\\main\\resources\\static\\images\\default.png");
-			List<CarImageSearchListDto> tempArray = new ArrayList<CarImageSearchListDto>();
-			tempArray.add(carImageSearchListDto);
+			List<CarImagesDto> tempArray = new ArrayList<>();
+			tempArray.add(carImageDao);
 			return tempArray;
 		}
 
-		List<CarImage> carImages = this.carImageDao.findAll();
+		List<CarImage> carImages = this.carImageDao.getByCar_Id(id);//BU bölüme kazara getAll yazılır ise hepsini getiriyor.
 
-		List<CarImageSearchListDto> response = carImages.stream()
-				.map(carImage -> modelMapperService.forDto().map(carImages, CarImageSearchListDto.class))
+		List<CarImagesDto> response = carImages.stream()
+				.map(carImage -> modelMapperService.forDto().map(carImage, CarImagesDto.class))
 				.collect(Collectors.toList());
-		return new ArrayList<CarImageSearchListDto>(response);
+		return new ArrayList<CarImagesDto>(response);
 	}
 
 	private Result checkImageIsNull(MultipartFile file) {
@@ -158,15 +172,20 @@ public class CarImageManager implements CarImageService {
 		}
 		return new SuccessResult();
 	}
-	
-	private Result checkIsCarExists(int carId) {
-	
-		var result = this.carImageDao.getCarImagesByCarId(carId);
-		if (result == null) {
-			return new ErrorResult("Araca ait resim bulunamadı.");
-		}
-		return new SuccessResult("Resim bulundu.");
-	}
-	
 
+	private Result checkIsCarImageExists(int id) {
+		var result = this.carImageDao.existsById(id);
+		if (!result) {
+			return new ErrorResult("Resim bulunamadı");
+		}
+		return new SuccessResult();
+	}
+
+	private Result checkIsCarExists(int carId) {
+		Result result = this.carService.getCar(carId);
+		if (!result.isSuccess()) {
+			return new ErrorResult("Araç bulunamadı.");
+		}
+		return new SuccessResult();
+	}
 }

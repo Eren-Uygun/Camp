@@ -1,6 +1,7 @@
 package com.etiya.rentACar.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import com.etiya.rentACar.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.rentACar.core.utilities.business.BusinessRules;
 import com.etiya.rentACar.core.utilities.mapping.ModelMapperService;
 import com.etiya.rentACar.core.utilities.results.DataResult;
+import com.etiya.rentACar.core.utilities.results.ErrorDataResult;
 import com.etiya.rentACar.core.utilities.results.ErrorResult;
 import com.etiya.rentACar.core.utilities.results.Result;
 import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
@@ -23,11 +25,15 @@ import com.etiya.rentACar.dataAccess.abstracts.CarDao;
 import com.etiya.rentACar.dataAccess.abstracts.ColorDao;
 import com.etiya.rentACar.entities.Car;
 import com.etiya.rentACar.entities.complexTypes.CarDetail;
+import com.fasterxml.jackson.annotation.OptBoolean;
 
 @Service
 public class CarManager implements CarService {
 
 	private CarDao carDao;
+	// Brand ve color dao'lar burada getirilemez.
+	//Car Managerde sadece CarDao getirilebilir.
+	//Brand ve color Service getirilerek çözülebilir.
 	private BrandDao brandDao;
 	private ColorDao colorDao;
 	private ModelMapperService modelMapperService;
@@ -100,8 +106,8 @@ public class CarManager implements CarService {
 			return result;
 		}
 		
-		Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
-		this.carDao.delete(car);
+		
+		this.carDao.delete(this.carDao.getById(deleteCarRequest.getId()));
 		return new SuccessResult("Araç silindi.");
 
 	}
@@ -110,12 +116,6 @@ public class CarManager implements CarService {
 	public DataResult<List<CarDetail>> getCarDetails() {
 		// TODO Auto-generated method stub
 		return new SuccessDataResult<List<CarDetail>>(this.carDao.getCarsWithBrandAndColor());
-	}
-
-	@Override
-	public DataResult<List<Car>> getCarss() {
-		// TODO Auto-generated method stub
-		return new SuccessDataResult<List<Car>>(this.carDao.findAll());
 	}
 
 	@Override
@@ -150,6 +150,16 @@ public class CarManager implements CarService {
 			return new ErrorResult("Araç bulunamadı.");
 		}
 		return new SuccessResult("Araç bulundu.");
+	}
+
+	@Override
+	public DataResult<CarSearchListDto> getCar(int carId) {
+		Car car = this.carDao.findById(carId).get();
+		if (car != null) {
+			CarSearchListDto carSearchListDto = modelMapperService.forDto().map(car, CarSearchListDto.class);
+			return new SuccessDataResult<CarSearchListDto>(carSearchListDto);
+		}
+		return null;
 	}
 
 

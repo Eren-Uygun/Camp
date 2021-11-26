@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateCarImageRequest {
 	
+	@JsonIgnore
 	private int id;
+	
 	private int carId;
 	@JsonIgnore
 	private String imagePath;

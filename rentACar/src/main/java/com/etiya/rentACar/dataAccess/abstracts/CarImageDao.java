@@ -8,10 +8,10 @@ import com.etiya.rentACar.entities.CarImage;
 
 public interface CarImageDao extends JpaRepository<CarImage, Integer> {
 
-	List<CarImage> getCarImagesByCarId(int id);
-	
-	CarImage getCarImageByCarId(int Id);
+	List<CarImage> getByCar_Id(int id);
 
-	int countCarImageByCarId(int id);
+	int countCarImagesByCar_Id(int id);
+	
+	
 
 }

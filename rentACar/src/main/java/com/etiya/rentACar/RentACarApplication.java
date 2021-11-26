@@ -1,7 +1,9 @@
 package com.etiya.rentACar;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.etiya.rentACar.core.utilities.results.ErrorDataResult;
+import com.etiya.rentACar.core.utilities.results.ErrorResult;
 
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -60,6 +63,20 @@ public class RentACarApplication {
 		
 	}
 	
+	@ExceptionHandler(NoSuchElementException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ErrorResult handleValidationException(NoSuchElementException noSuchElementException){
+		
+		ErrorResult errorResult = new ErrorResult("Kayıt bulunamadı.");
+		
+		return errorResult;
+		
+		
+		
+	}
+	
+	
+	
 	// Araca resim yüklecektir
 	/**
 	 * bir aracın birden fazla resmi olabilir.
@@ -73,13 +90,15 @@ public class RentACarApplication {
 	
 	
 	
+	//Max normalizasyonlu bir tabloda kaç kolon olabilir. => 2
 	
 	
 	
 	
 	
 	
-	
+	//Login / register user serviceden true yada false dönecek.
+	//Findex puanını sorgulayacak sahte servis eklenecek.
 	
 	
 	
