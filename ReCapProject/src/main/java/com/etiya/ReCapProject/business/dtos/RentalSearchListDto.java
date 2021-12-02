@@ -11,14 +11,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RentalSearchListDto {
-	
-	private int id;
 
-	private LocalDate rentDate;
-	
-	private LocalDate returnDate;
-	
-	private int carId;
+    private int id;
 
-	private int customerId;
+    private LocalDate rentDate;
+
+    private LocalDate returnDate;
+
+    private int carId;
+
+    private int customerId;
+
+    private int returnedCityId;
+
+    private int rentedCityId;
 }

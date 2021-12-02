@@ -19,7 +19,6 @@ import com.etiya.ReCapProject.business.dtos.CorporateCustomerSearchListDto;
 import com.etiya.ReCapProject.business.requests.corporateCustomerRequests.CreateCorporateCustomerRequest;
 import com.etiya.ReCapProject.business.requests.corporateCustomerRequests.DeleteCorporateCustomerRequest;
 import com.etiya.ReCapProject.business.requests.corporateCustomerRequests.UpdateCorporateCustomerRequest;
-import com.etiya.ReCapProject.business.requests.individualRequests.UpdateIndividualCustomerRequest;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 

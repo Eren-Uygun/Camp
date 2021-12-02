@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePos;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -51,6 +52,11 @@ public class ReCapProjectApplication {
 	@Bean
 	public FindexCalculator getFindexCalculator() {
 		return new FindexCalculator();
+	}
+
+	@Bean
+	public FakePos getFakePos(){
+		return new FakePos();
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)

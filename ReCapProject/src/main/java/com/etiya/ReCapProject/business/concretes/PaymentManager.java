@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.PaymentService;
 import com.etiya.ReCapProject.business.constants.Messages;
-import com.etiya.ReCapProject.business.dtos.CarSearchListDto;
 import com.etiya.ReCapProject.business.dtos.PaymentSearchListDto;
 import com.etiya.ReCapProject.business.requests.paymentRequests.CreatePaymentRequest;
 import com.etiya.ReCapProject.business.requests.paymentRequests.DeletePaymentRequest;
@@ -19,7 +18,6 @@ import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.PaymentDao;
-import com.etiya.ReCapProject.entities.concretes.Car;
 import com.etiya.ReCapProject.entities.concretes.Payment;
 
 @Service

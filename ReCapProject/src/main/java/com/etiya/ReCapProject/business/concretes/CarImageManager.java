@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +23,6 @@ import com.etiya.ReCapProject.business.requests.carImageRequests.UpdateCarImageR
 import com.etiya.ReCapProject.core.utilities.business.BusinessRules;
 import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
-import com.etiya.ReCapProject.core.utilities.results.ErrorDataResult;
 import com.etiya.ReCapProject.core.utilities.results.ErrorResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;

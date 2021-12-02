@@ -9,7 +9,6 @@ import com.etiya.ReCapProject.business.requests.invoiceRequests.DeleteInvoiceReq
 import com.etiya.ReCapProject.business.requests.invoiceRequests.UpdateInvoiceRequest;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
-import com.etiya.ReCapProject.entities.concretes.Invoice;
 
 public interface InvoiceService {
 	DataResult<List<InvoiceSearchListDto>> getAll();

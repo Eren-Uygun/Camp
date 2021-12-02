@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarDetail {
-	
-	private int id;
-	private String brandName;
-	private String colorName;
-	private double dailyPrice;
-	private String description;
+
+    private int id;
+    private String brandName;
+    private String colorName;
+    private double dailyPrice;
+    private String description;
+    private String cityName;
 }

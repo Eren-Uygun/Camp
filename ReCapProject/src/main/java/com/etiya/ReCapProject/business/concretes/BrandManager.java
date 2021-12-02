@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.BrandService;
 import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.BrandSearchListDto;
-import com.etiya.ReCapProject.business.dtos.CarSearchListDto;
 import com.etiya.ReCapProject.business.requests.brandRequests.CreateBrandRequest;
 import com.etiya.ReCapProject.business.requests.brandRequests.DeleteBrandRequest;
 import com.etiya.ReCapProject.business.requests.brandRequests.UpdateBrandRequest;
@@ -24,7 +21,6 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.BrandDao;
 import com.etiya.ReCapProject.entities.concretes.Brand;
-import com.etiya.ReCapProject.entities.concretes.Car;
 
 @Service
 //@ConfigurationProperties

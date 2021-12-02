@@ -18,8 +18,6 @@ import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.CreditCardDao;
 import com.etiya.ReCapProject.entities.concretes.CreditCard;
 
-import ch.qos.logback.core.boolex.Matcher;
-
 @Service
 public class CreditCardManager implements CreditCardService {
 	private CreditCardDao creditCardDao;

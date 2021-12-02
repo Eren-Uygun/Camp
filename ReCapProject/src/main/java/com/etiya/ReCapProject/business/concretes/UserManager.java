@@ -12,7 +12,6 @@ import com.etiya.ReCapProject.core.utilities.results.ErrorResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.UserDao;
-import com.etiya.ReCapProject.entities.concretes.User;
 
 @Service
 public class UserManager implements UserService {

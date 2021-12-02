@@ -17,6 +17,17 @@ public class Messages {
 	public static final String CARGET = "Car found";
 	public static final String CARNOTFOUND="CAR NOT FOUND.";
 
+	public static final String CITYADD = "City Added";
+	public static final String CITYUPDATE = "City Updated";
+	public static final String CITYDELETE = "City Deleted";
+	public static final String CITYLIST = "Cities Listed";
+	public static final String CITYNOTFOUND = "CITY NOT FOUND.";
+	public static final String CITYFOUND = "City Found";
+	public static final String CITYBYID = "City is brought by CityId";
+	public static final String CITYALREADYEXISTS = "City already exists.";
+
+
+
 	public static final String COLORADD = "Color added.";
 	public static final String COLORUPDATE = "Color updated.";
 	public static final String COLORDELETE = "Color deleted.";
@@ -98,7 +109,17 @@ public class Messages {
 	
 	
 	public static String USERNOTFOUND = "USER NOT FOUND.";
-	public static final String USERLIST = "Users listed.";	
+	public static final String USERLIST = "Users listed.";
+
+	public static final String DAMAGEADD = "Damage cost added.";
+	public static final String DAMAGEDELETE = "Damage cost deleted.";
+	public static final String DAMAGEUPDATE = "Damage cost is updated";
+	public static final String DAMAGELIST = "Damages are listed";
+
+	public static final String ADDITIONALSERVICEADD = "Additional service added.";
+	public static final String ADDITIONALSERVICEUPDATE = "Additional service updated.";
+	public static final String ADDITIONALSERVICEDELETE = "Additional service deleted.";
+	public static final String ADDITIONALSERVICELIST = "Additional services listed.";
 	
 	 
 	

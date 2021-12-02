@@ -19,19 +19,29 @@ import lombok.NonNull;
 @NoArgsConstructor
 public class UpdateRentalRequest {
 
-	@NotNull
-	private int id;
+    @NotNull
+    private int id;
 
-	@JsonIgnore
-	private LocalDate rentDate;
+    @JsonIgnore
+    private LocalDate rentDate;
 
-	@FutureOrPresent
-	private LocalDate returnDate;
+    @FutureOrPresent
+    private LocalDate returnDate;
 
-	@NotNull
-	private int carId;
-	
-	@NotNull
-	private int customerId;
+    @NotNull
+    private int carId;
+
+    @NotNull
+    private int customerId;
+
+    private int returnCityId;
+
+    @JsonIgnore
+    private int rentedCityId;
+
+    private int rentedKilometer;
+
+    private int returnedKilometer;
+
 
 }

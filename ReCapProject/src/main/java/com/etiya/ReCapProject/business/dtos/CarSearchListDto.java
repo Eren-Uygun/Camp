@@ -14,4 +14,6 @@ public class CarSearchListDto {
   private double dailyPrice;
   private String description;
   private int findexScore;
+  private int cityId;
+  private int kilometer;
 }

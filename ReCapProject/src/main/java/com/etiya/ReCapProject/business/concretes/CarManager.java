@@ -1,11 +1,10 @@
 package com.etiya.ReCapProject.business.concretes;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.business.abstracts.CityService;
+import com.etiya.ReCapProject.entities.concretes.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,154 +33,211 @@ import com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail;
 @Service
 public class CarManager implements CarService {
 
-	private CarDao carDao;
-	private ModelMapperService modelMapperService;
-	private ColorService colorService;
-	private BrandService brandService;
+    private CarDao carDao;
+    private ModelMapperService modelMapperService;
+    private ColorService colorService;
+    private BrandService brandService;
+    private CityService cityService;
 
-	@Autowired
-	public CarManager(CarDao carDao, ModelMapperService modelMapperService, ColorService colorService,
-			BrandService brandService) {
-		super();
-		this.carDao = carDao;
-		this.modelMapperService = modelMapperService;
-		this.colorService = colorService;
-		this.brandService = brandService;
-	}
+    @Autowired
+    public CarManager(CarDao carDao, ModelMapperService modelMapperService, ColorService colorService,
+                      BrandService brandService, CityService cityService) {
+        super();
+        this.carDao = carDao;
+        this.modelMapperService = modelMapperService;
+        this.colorService = colorService;
+        this.brandService = brandService;
+        this.cityService = cityService;
+    }
 
-	@Override
-	public DataResult<List<CarSearchListDto>> getAll() {
-		List<Car> result = this.carDao.findAll();
-		List<CarSearchListDto> response = result.stream()
-				.map(car -> modelMapperService.forDto().map(car, CarSearchListDto.class)).collect(Collectors.toList());
-		return new SuccessDataResult<List<CarSearchListDto>>(response, Messages.CARLIST);
-	}
+    @Override
+    public DataResult<List<CarSearchListDto>> getAll() {
+        List<Car> result = this.carDao.findAll();
+        List<CarSearchListDto> response = result.stream()
+                .map(car -> modelMapperService.forDto().map(car, CarSearchListDto.class)).collect(Collectors.toList());
+        return new SuccessDataResult<List<CarSearchListDto>>(response, Messages.CARLIST);
+    }
 
-	@Override
-	public Result add(CreateCarRequest createCarRequest) {
-		Result result = BusinessRules.run(isColorIdExists(createCarRequest.getColorId()),
-				isBrandIdExists(createCarRequest.getBrandId()));
-		if (result != null) {
-			return result;
-		}
-		Car car = modelMapperService.forRequest().map(createCarRequest, Car.class);
-		this.carDao.save(car);
-		return new SuccessResult(Messages.CARADD);
-	}
+    @Override
+    public Result add(CreateCarRequest createCarRequest) {
+        Result result = BusinessRules.run(isColorIdExists(createCarRequest.getColorId()),
+                isBrandIdExists(createCarRequest.getBrandId()));
+        if (result != null) {
+            return result;
+        }
 
-	@Override
-	public Result update(UpdateCarRequest updateCarRequest) {
-		Result result = BusinessRules.run(isCarIdExists(updateCarRequest.getId())
-				,isBrandIdExists(updateCarRequest.getBrandId())
-				,isColorIdExists(updateCarRequest.getColorId()));
-		if (result != null) {
-			return result;
-		}
-		Car car = modelMapperService.forRequest().map(updateCarRequest, Car.class);
-		this.carDao.save(car);
-		return new SuccessResult(Messages.CARUPDATE);
-	}
+        Car car = modelMapperService.forRequest().map(createCarRequest, Car.class);
+        this.carDao.save(car);
+        return new SuccessResult(Messages.CARADD);
+    }
 
-	@Override
-	public Result delete(DeleteCarRequest deleteCarRequest) {
-		Result result = BusinessRules.run(isCarIdExists(deleteCarRequest.getId()));
-		if (result != null) {
-			return result;
-		}
-		Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
-		this.carDao.delete(car);
-		return new SuccessResult(Messages.CARDELETE);
-	}
+    @Override
+    public Result update(UpdateCarRequest updateCarRequest) {
+        Result result = BusinessRules.run(isCarIdExists(updateCarRequest.getId())
+                , isBrandIdExists(updateCarRequest.getBrandId())
+                , isColorIdExists(updateCarRequest.getColorId()));
+        if (result != null) {
+            return result;
+        }
+        Car car = modelMapperService.forRequest().map(updateCarRequest, Car.class);
+        this.carDao.save(car);
+        return new SuccessResult(Messages.CARUPDATE);
+    }
 
-	@Override
-	public DataResult<CarSearchListDto> getById(int carId) {
-		
-		var carResult = this.carDao.existsById(carId);
-		if (!carResult) {
-			return new ErrorDataResult(Messages.CARNOTFOUND);
-		}
-		var car = this.carDao.getById(carId);
-		try {
-			if (car == null) {
-				return new ErrorDataResult<CarSearchListDto>(Messages.CARNOTFOUND,null);
-			}
-		} catch (Exception e) {
-			return new ErrorDataResult<CarSearchListDto>(null);
-		}
-		CarSearchListDto response = modelMapperService.forDto().map(car, CarSearchListDto.class);
-		return new SuccessDataResult<CarSearchListDto>(response, "Id'ye göre araba getirildi.");
-	}
+    @Override
+    public Result delete(DeleteCarRequest deleteCarRequest) {
+        Result result = BusinessRules.run(isCarIdExists(deleteCarRequest.getId()));
+        if (result != null) {
+            return result;
+        }
+        Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
+        this.carDao.delete(car);
+        return new SuccessResult(Messages.CARDELETE);
+    }
 
-	@Override
-	public DataResult<List<CarDetail>> getCarWithBrandAndColorDetails() {
+    @Override
+    public DataResult<CarSearchListDto> getById(int carId) {
 
-		return new SuccessDataResult<List<CarDetail>>(this.carDao.CarWithBrandAndColorDetails());
-	}
+        var carResult = this.carDao.existsById(carId);
+        if (!carResult) {
+            return new ErrorDataResult(Messages.CARNOTFOUND);
+        }
+        var car = this.carDao.getById(carId);
+        try {
+            if (car == null) {
+                return new ErrorDataResult<CarSearchListDto>(Messages.CARNOTFOUND, null);
+            }
+        } catch (Exception e) {
+            return new ErrorDataResult<CarSearchListDto>(null);
+        }
+        CarSearchListDto response = modelMapperService.forDto().map(car, CarSearchListDto.class);
+        return new SuccessDataResult<CarSearchListDto>(response, "Id'ye göre araba getirildi.");
+    }
 
-	@Override
-	public DataResult<List<CarBrandDetail>> getByBrandId(int brandId) {
-		Result existResult = brandService.existsBrandId(brandId);
-		if (!existResult.isSuccess()) {
-			return new ErrorDataResult(Messages.BRANDNOTFOUND);
-		}
-		List<Car> cars = this.carDao.getByBrand_Id(brandId);
-		List<CarBrandDetail> result = cars.stream()
-				.map(car -> modelMapperService.forDto().map(car, CarBrandDetail.class)).collect(Collectors.toList());
-		return new SuccessDataResult<List<CarBrandDetail>>(result);
-	}
+    @Override
+    public DataResult<List<CarDetail>> getCarWithBrandAndColorDetails() {
 
-	@Override
-	public DataResult<List<CarColorDetail>> getByColorId(int colorId) {
-		Result existColor = colorService.isCheckColorExists(colorId);
-		if (!existColor.isSuccess()) {
-			return new ErrorDataResult(Messages.COLORNOTFOUND);
-		}
-		List<Car> cars = this.carDao.getByColor_Id(colorId);
-		if (cars == null) {
-			return new ErrorDataResult<List<CarColorDetail>>(Messages.COLORNOTFOUND, null);
-		}
-		List<CarColorDetail> result = cars.stream()
-				.map(car -> modelMapperService.forDto().map(car, CarColorDetail.class)).collect(Collectors.toList());
-		return new SuccessDataResult<List<CarColorDetail>>(result);
+        return new SuccessDataResult<List<CarDetail>>(this.carDao.CarWithBrandAndColorDetails());
+    }
 
-	}
-	
-	private Result isCarIdExists(int carId) {
-		var result = this.carDao.existsById(carId);
-		if (!result) {
-			return new ErrorResult(Messages.CARNOTFOUND);
-		}
-		return new SuccessResult();
-		
-	}
-	
+    @Override
+    public DataResult<List<CarBrandDetail>> getByBrandId(int brandId) {
+        Result existResult = brandService.existsBrandId(brandId);
+        if (!existResult.isSuccess()) {
+            return new ErrorDataResult(Messages.BRANDNOTFOUND);
+        }
+        List<Car> cars = this.carDao.getByBrand_Id(brandId);
+        List<CarBrandDetail> result = cars.stream()
+                .map(car -> modelMapperService.forDto().map(car, CarBrandDetail.class)).collect(Collectors.toList());
+        return new SuccessDataResult<List<CarBrandDetail>>(result);
+    }
 
-	private Result isBrandIdExists(int brandId) {
-		var result = this.brandService.existsBrandId(brandId);
-		if (!result.isSuccess()) {
-			return new ErrorResult(Messages.BRANDNOTFOUND);
-		}
-		return new SuccessResult();
-	}
+    @Override
+    public DataResult<List<CarColorDetail>> getByColorId(int colorId) {
+        Result existColor = colorService.isCheckColorExists(colorId);
+        if (!existColor.isSuccess()) {
+            return new ErrorDataResult(Messages.COLORNOTFOUND);
+        }
+        List<Car> cars = this.carDao.getByColor_Id(colorId);
+        if (cars == null) {
+            return new ErrorDataResult<List<CarColorDetail>>(Messages.COLORNOTFOUND, null);
+        }
+        List<CarColorDetail> result = cars.stream()
+                .map(car -> modelMapperService.forDto().map(car, CarColorDetail.class)).collect(Collectors.toList());
+        return new SuccessDataResult<List<CarColorDetail>>(result);
 
-	private Result isColorIdExists(int colorId) {
-		var result = this.colorService.isCheckColorExists(colorId);
-		if (!result.isSuccess()) {
-			return new ErrorResult(Messages.COLORNOTFOUND);
-		}
-		return new SuccessResult();
-	}
-	@Override
-	public DataResult<List<CarSearchListDto>> getAvailableCars() {
-		var result=this.carDao.getAllWithoutMaintenanceOfCar();
-		return new SuccessDataResult<List<CarSearchListDto>>(result);
-	}
-	@Override
-	public Result isCarExists(int carId) {
-		var car = this.carDao.existsById(carId);
-		if (!car) {
-			return new ErrorResult(Messages.CARNOTFOUND);
-		}
-		return new SuccessResult();
-	}
+    }
+
+    private Result isCarIdExists(int carId) {
+        var result = this.carDao.existsById(carId);
+        if (!result) {
+            return new ErrorResult(Messages.CARNOTFOUND);
+        }
+        return new SuccessResult();
+
+    }
+
+
+    private Result isBrandIdExists(int brandId) {
+        var result = this.brandService.existsBrandId(brandId);
+        if (!result.isSuccess()) {
+            return new ErrorResult(Messages.BRANDNOTFOUND);
+        }
+        return new SuccessResult();
+    }
+
+    private Result isColorIdExists(int colorId) {
+        var result = this.colorService.isCheckColorExists(colorId);
+        if (!result.isSuccess()) {
+            return new ErrorResult(Messages.COLORNOTFOUND);
+        }
+        return new SuccessResult();
+    }
+
+    @Override
+    public DataResult<List<CarSearchListDto>> getAvailableCars() {
+        var result = this.carDao.getAllWithoutMaintenanceOfCar();
+        return new SuccessDataResult<List<CarSearchListDto>>(result);
+    }
+
+    @Override
+    public DataResult<List<CarDetail>> getByCityId(int cityId) {
+
+        var statusResult = BusinessRules.run(isCityIdExist(cityId));
+        if (statusResult != null) {
+            return new ErrorDataResult(statusResult);
+        }
+        List<Car> cars = this.carDao.getByCity_Id(cityId);
+        List<CarDetail> result = cars.stream()
+                .map(car -> modelMapperService.forDto().map(car, CarDetail.class)).collect(Collectors.toList());
+        return new SuccessDataResult<List<CarDetail>>(result);
+    }
+
+    @Override
+    public Result isCarExists(int carId) {
+        var car = this.carDao.existsById(carId);
+        if (!car) {
+            return new ErrorResult(Messages.CARNOTFOUND);
+        }
+        return new SuccessResult();
+    }
+
+    private Result isCityIdExist(int cityId) {
+        var result = this.cityService.isCityIdExist(cityId);
+        if (!result.isSuccess()) {
+            return new ErrorResult(Messages.CITYNOTFOUND);
+        }
+        return new SuccessResult();
+
+    }
+
+    public Result updateCity(int cityId, int carId){
+        var result = this.carDao.getById(carId);
+       UpdateCarRequest updateCarRequest=modelMapperService.forRequest().map(result,UpdateCarRequest.class);
+       updateCarRequest.setId(result.getId());
+       updateCarRequest.setCityId(cityId);
+       Car car=modelMapperService.forRequest().map(updateCarRequest,Car.class);
+       this.carDao.save(car);
+
+
+        /*
+        var cityResult = this.cityService.getById(cityId);
+        result.getCity().setId(cityResult.getData().getId());
+        this.carDao.save(result);
+        */
+        return new SuccessResult("Şehir güncellendi.");
+    }
+
+    @Override
+    public Result updateKilometer(int kilometer,int carId) {
+        var result = this.carDao.getById(carId);
+        UpdateCarRequest updateCarRequest=modelMapperService.forRequest().map(result,UpdateCarRequest.class);
+        updateCarRequest.setId(result.getId());
+        updateCarRequest.setKilometer(kilometer);
+        Car car=modelMapperService.forRequest().map(updateCarRequest,Car.class);
+        this.carDao.save(car);
+        return new SuccessResult();
+    }
+
+
 }

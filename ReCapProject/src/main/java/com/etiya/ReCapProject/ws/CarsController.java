@@ -20,12 +20,9 @@ import com.etiya.ReCapProject.business.requests.carRequests.DeleteCarRequest;
 import com.etiya.ReCapProject.business.requests.carRequests.UpdateCarRequest;
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
-import com.etiya.ReCapProject.entities.concretes.Car;
 import com.etiya.ReCapProject.entities.concretes.complexTypes.CarBrandDetail;
 import com.etiya.ReCapProject.entities.concretes.complexTypes.CarColorDetail;
 import com.etiya.ReCapProject.entities.concretes.complexTypes.CarDetail;
-
-import lombok.val;
 
 @RestController
 @RequestMapping("/api/cars")

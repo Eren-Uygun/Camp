@@ -3,14 +3,11 @@ package com.etiya.ReCapProject.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.colorchooser.ColorSelectionModel;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.ColorService;
 import com.etiya.ReCapProject.business.constants.Messages;
-import com.etiya.ReCapProject.business.dtos.CarSearchListDto;
 import com.etiya.ReCapProject.business.dtos.ColorSearchListDto;
 import com.etiya.ReCapProject.business.requests.colorRequests.CreateColorRequest;
 import com.etiya.ReCapProject.business.requests.colorRequests.DeleteColorRequest;
@@ -23,7 +20,6 @@ import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.results.SuccessDataResult;
 import com.etiya.ReCapProject.core.utilities.results.SuccessResult;
 import com.etiya.ReCapProject.dataAccess.abstracts.ColorDao;
-import com.etiya.ReCapProject.entities.concretes.Car;
 import com.etiya.ReCapProject.entities.concretes.Color;
 
 @Service

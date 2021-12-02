@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
 
+import javax.persistence.UniqueConstraint;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,20 +19,27 @@ public class CreateInvoiceRequest {
 	@JsonIgnore
 	private int id;
 
-
 	private String invoiceNumber;
 	
 	@JsonIgnore
 	private LocalDate createDate;
-	
+
+	@JsonIgnore
 	private LocalDate rentDate;
-	
+
+	@JsonIgnore
 	private int totalRentDay;
-	
+
+	@JsonIgnore
 	private LocalDate returnDate;
-	
+
+	@JsonIgnore
 	private double totalAmount;
-	
+
+	@JsonIgnore
 	private int customerId;
+
+	private int rentalId;
+
 
 }
