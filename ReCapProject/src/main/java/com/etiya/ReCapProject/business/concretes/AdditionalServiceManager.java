@@ -1,10 +1,8 @@
 package com.etiya.ReCapProject.business.concretes;
 
 import com.etiya.ReCapProject.business.abstracts.AdditionalServiceService;
-import com.etiya.ReCapProject.business.abstracts.RentalService;
 import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.business.dtos.AdditionalServiceSearchListDto;
-import com.etiya.ReCapProject.business.dtos.CarDamageSearchListDto;
 import com.etiya.ReCapProject.business.requests.additionalServiceRequests.CreateAdditionalServiceRequest;
 import com.etiya.ReCapProject.business.requests.additionalServiceRequests.DeleteAdditionalServiceRequest;
 import com.etiya.ReCapProject.business.requests.additionalServiceRequests.UpdateAdditionalServiceRequest;
@@ -13,7 +11,6 @@ import com.etiya.ReCapProject.core.utilities.mapping.ModelMapperService;
 import com.etiya.ReCapProject.core.utilities.results.*;
 import com.etiya.ReCapProject.dataAccess.abstracts.AdditionalServiceDao;
 import com.etiya.ReCapProject.entities.concretes.AdditionalService;
-import com.etiya.ReCapProject.entities.concretes.CarDamage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

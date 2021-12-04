@@ -28,5 +28,7 @@ public class UpdateInvoiceRequest {
 	
 	private int customerId;
 
+	private int rentalId;
+
 
 }

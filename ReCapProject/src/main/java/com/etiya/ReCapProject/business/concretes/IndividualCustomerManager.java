@@ -91,13 +91,15 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 		IndividualCustomerSearchListDto customerSearchListDto = modelMapperService.forDto().map(individualCustomer,IndividualCustomerSearchListDto.class);
 			return new SuccessDataResult<IndividualCustomerSearchListDto>(customerSearchListDto,Messages.CUSTOMERGET);
 	}
-	
+
+
+
 	private Result checkIsIndividualCustomerEmailExists(String email){
 		var result = this.userService.isUserEmailExists(email);
-		if(result.isSuccess()){
+		if(!result.isSuccess()){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
-		return new SuccessResult();		
+		return new SuccessResult();
 	}
 	
 	private Result checkIsIndividualCustomerExists(int id){

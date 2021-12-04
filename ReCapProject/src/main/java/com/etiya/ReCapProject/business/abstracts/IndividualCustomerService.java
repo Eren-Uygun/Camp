@@ -19,4 +19,5 @@ public interface IndividualCustomerService {
 	Result update(UpdateIndividualCustomerRequest updateIndividualRequest);
 
 	DataResult<IndividualCustomerSearchListDto> getByIndividualCustomerId(int individualCustomerId);
+
 }

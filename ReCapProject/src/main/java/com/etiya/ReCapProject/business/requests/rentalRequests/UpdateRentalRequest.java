@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 
+import com.etiya.ReCapProject.business.requests.paymentRequests.CreatePaymentRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -39,9 +40,11 @@ public class UpdateRentalRequest {
     @JsonIgnore
     private int rentedCityId;
 
+    @JsonIgnore
     private int rentedKilometer;
 
     private int returnedKilometer;
+    private CreatePaymentRequest createPaymentRequest;
 
 
 }

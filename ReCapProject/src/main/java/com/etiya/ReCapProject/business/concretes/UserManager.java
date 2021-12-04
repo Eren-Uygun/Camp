@@ -65,7 +65,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public Result isUserEmailExists(String email) {
-		var existsResult = this.userDao.existsByEmail(email);
+		var existsResult = this.userDao.existsUserByEmail(email);
 		if (existsResult){
 			return new ErrorResult(Messages.EMAILERROR);
 		}

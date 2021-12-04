@@ -1,8 +1,6 @@
 package com.etiya.ReCapProject.business.requests.paymentRequests;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
@@ -15,13 +13,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreatePaymentRequest {
 
+	private double price;
+
 	@NotNull
-	@Min(0)
-	private double amount;
-	
+	private String expirationDate;
+
 	@NotNull
-	@CreditCardNumber
-	private int creditCardId;
+	@NotBlank
+	private String cardNumber;
+	@NotNull
+	@NotBlank
+	private String cardName;
+	@NotNull
+	@NotBlank
+	@Size(min = 3,max=3)
+	private String cvv;
 	
 
 }

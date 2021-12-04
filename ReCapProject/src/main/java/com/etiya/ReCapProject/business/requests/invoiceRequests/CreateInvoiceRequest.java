@@ -19,6 +19,7 @@ public class CreateInvoiceRequest {
 	@JsonIgnore
 	private int id;
 
+	@JsonIgnore
 	private String invoiceNumber;
 	
 	@JsonIgnore
