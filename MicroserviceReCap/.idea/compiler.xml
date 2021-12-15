@@ -11,20 +11,26 @@
         <module name="RentACarApiInvoice" />
         <module name="RentACarApiRental" />
         <module name="ApiGateway" />
+        <module name="RentACarApiUser" />
+        <module name="RentACarApiDiscoveryService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ApiGateway" target="11" />
+      <module name="RentACarApiDiscoveryService" target="11" />
       <module name="RentACarApiInvoice" target="11" />
       <module name="RentACarApiRental" target="11" />
+      <module name="RentACarApiUser" target="11" />
       <module name="RentACarDiscoveryService" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ApiGateway" options="-parameters" />
+      <module name="RentACarApiDiscoveryService" options="-parameters" />
       <module name="RentACarApiInvoice" options="-parameters" />
       <module name="RentACarApiRental" options="-parameters" />
+      <module name="RentACarApiUser" options="-parameters" />
       <module name="RentACarDiscoveryService" options="-parameters" />
     </option>
   </component>

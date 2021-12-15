@@ -29,3 +29,9 @@ eureka:
     hostname: localhost
 gateway:
    ip : "localhost"
+token:
+  expiration: 864000000
+  secret: MySuperSecretKeyMySuperSecretKeyMySuperSecretKey
+login:
+  url:
+    path: "/users/login"

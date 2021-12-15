@@ -2,12 +2,15 @@ package com.appsdeveloperblog.rentacar.users.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.http.HttpStatus;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -58,7 +61,16 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		
 		String userName = ((User)authResult.getPrincipal()).getUsername();
 		UserDto userDetails = this.userService.getUserDetailsByEmail(userName);
-		System.out.println("Merhaba Dünya");
+		//System.out.println("Merhaba Dünya");
+
+		String token = Jwts.builder().setSubject(userDetails.getId()+"")
+				.setExpiration(new Date(System.currentTimeMillis()+Long.parseLong(this.environment.getProperty("token.expiration"))))
+				.signWith(SignatureAlgorithm.HS512,this.environment.getProperty("token.secret"))
+				.compact();
+
+		response.addHeader("token",token);
+		response.addHeader("userId",userDetails.getId()+"");
+
 	
 	}
 	

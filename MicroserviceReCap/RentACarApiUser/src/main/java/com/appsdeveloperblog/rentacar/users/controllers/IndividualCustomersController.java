@@ -33,7 +33,7 @@ public class IndividualCustomersController {
 		this.individualCustomerService = individualCustomerService;
 	}
 
-	@GetMapping("getAll")
+	@GetMapping("/getAll")
 	public DataResult<List<IndividualCustomerSearchListDto>> getAll() {
 		return this.individualCustomerService.getAll();
 	}

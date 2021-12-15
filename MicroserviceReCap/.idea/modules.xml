@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ApiGateway/ApiGateway.iml" filepath="$PROJECT_DIR$/ApiGateway/ApiGateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MicroserviceReCap.iml" filepath="$PROJECT_DIR$/.idea/MicroserviceReCap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RentACarApiDiscoveryService/RentACarApiDiscoveryService.iml" filepath="$PROJECT_DIR$/RentACarApiDiscoveryService/RentACarApiDiscoveryService.iml" />
       <module fileurl="file://$PROJECT_DIR$/RentACarApiInvoice/RentACarApiInvoice.iml" filepath="$PROJECT_DIR$/RentACarApiInvoice/RentACarApiInvoice.iml" />
       <module fileurl="file://$PROJECT_DIR$/RentACarApiRental/RentACarApiRental.iml" filepath="$PROJECT_DIR$/RentACarApiRental/RentACarApiRental.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RentACarApiUser/RentACarApiUser.iml" filepath="$PROJECT_DIR$/RentACarApiUser/RentACarApiUser.iml" />
       <module fileurl="file://$PROJECT_DIR$/RentACarDiscoveryService/RentACarDiscoveryService.iml" filepath="$PROJECT_DIR$/RentACarDiscoveryService/RentACarDiscoveryService.iml" />
     </modules>
   </component>

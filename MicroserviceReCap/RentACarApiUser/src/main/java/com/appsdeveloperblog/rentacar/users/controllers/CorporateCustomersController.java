@@ -43,9 +43,9 @@ public class CorporateCustomersController {
 		return this.corporateCustomerService.update(updateCorporateCustomerRequest);
 	}
 	@DeleteMapping("/delete")
-	public Result delete(@RequestParam("customerId") int customerId){
-		DeleteCorporateCustomerRequest deleteCorporateCustomerRequest=new DeleteCorporateCustomerRequest();
-		deleteCorporateCustomerRequest.setCustomerId(customerId);
+	public Result delete(@RequestBody @Valid DeleteCorporateCustomerRequest deleteCorporateCustomerRequest){
+		//DeleteCorporateCustomerRequest deleteCorporateCustomerRequest=new DeleteCorporateCustomerRequest();
+		//deleteCorporateCustomerRequest.setCustomerId(customerId);
 		return this.corporateCustomerService.delete(deleteCorporateCustomerRequest);
 	}
 	
