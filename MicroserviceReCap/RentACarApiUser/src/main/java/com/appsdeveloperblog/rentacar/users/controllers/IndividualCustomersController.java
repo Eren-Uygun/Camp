@@ -1,18 +1,5 @@
 package com.appsdeveloperblog.rentacar.users.controllers;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.appsdeveloperblog.rentacar.users.business.abstracts.IndividualCustomerService;
 import com.appsdeveloperblog.rentacar.users.business.dtos.IndividualCustomerSearchListDto;
 import com.appsdeveloperblog.rentacar.users.business.requests.individualRequests.CreateIndividualCustomerRequest;
@@ -20,6 +7,11 @@ import com.appsdeveloperblog.rentacar.users.business.requests.individualRequests
 import com.appsdeveloperblog.rentacar.users.business.requests.individualRequests.UpdateIndividualCustomerRequest;
 import com.appsdeveloperblog.rentacar.users.core.utils.results.DataResult;
 import com.appsdeveloperblog.rentacar.users.core.utils.results.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/individualCustomers")

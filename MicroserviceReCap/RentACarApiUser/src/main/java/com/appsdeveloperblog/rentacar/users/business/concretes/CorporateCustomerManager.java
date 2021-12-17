@@ -1,12 +1,5 @@
 package com.appsdeveloperblog.rentacar.users.business.concretes;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.appsdeveloperblog.rentacar.users.business.abstracts.CorporateCustomerService;
 import com.appsdeveloperblog.rentacar.users.business.dtos.CorporateCustomerSearchListDto;
 import com.appsdeveloperblog.rentacar.users.business.requests.corporateCustomerRequests.CreateCorporateCustomerRequest;
@@ -19,6 +12,12 @@ import com.appsdeveloperblog.rentacar.users.core.utils.results.SuccessDataResult
 import com.appsdeveloperblog.rentacar.users.core.utils.results.SuccessResult;
 import com.appsdeveloperblog.rentacar.users.dataAccess.CorporateCustomerDao;
 import com.appsdeveloperblog.rentacar.users.entities.CorporateCustomer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CorporateCustomerManager implements CorporateCustomerService {

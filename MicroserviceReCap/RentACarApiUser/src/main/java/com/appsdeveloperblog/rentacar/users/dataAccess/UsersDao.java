@@ -1,8 +1,7 @@
 package com.appsdeveloperblog.rentacar.users.dataAccess;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.appsdeveloperblog.rentacar.users.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsersDao extends JpaRepository<User,Integer> {
 	

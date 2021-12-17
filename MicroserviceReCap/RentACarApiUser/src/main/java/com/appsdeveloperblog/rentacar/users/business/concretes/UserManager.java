@@ -1,22 +1,20 @@
 package com.appsdeveloperblog.rentacar.users.business.concretes;
 
-import java.util.ArrayList;
-
+import com.appsdeveloperblog.rentacar.users.business.abstracts.UserService;
+import com.appsdeveloperblog.rentacar.users.business.dtos.UserDtos.UserDto;
+import com.appsdeveloperblog.rentacar.users.business.requests.UserRequests.LoginUserRequest;
+import com.appsdeveloperblog.rentacar.users.core.utils.results.ErrorResult;
+import com.appsdeveloperblog.rentacar.users.core.utils.results.Result;
+import com.appsdeveloperblog.rentacar.users.core.utils.results.SuccessResult;
+import com.appsdeveloperblog.rentacar.users.dataAccess.UsersDao;
+import com.appsdeveloperblog.rentacar.users.entities.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.appsdeveloperblog.rentacar.users.business.abstracts.UserService;
-import com.appsdeveloperblog.rentacar.users.business.dtos.UserDtos.UserDto;
-import com.appsdeveloperblog.rentacar.users.business.requests.UserRequests.LoginUserRequest;
-import com.appsdeveloperblog.rentacar.users.core.utils.mapping.ModelMapperService;
-import com.appsdeveloperblog.rentacar.users.core.utils.results.ErrorResult;
-import com.appsdeveloperblog.rentacar.users.core.utils.results.Result;
-import com.appsdeveloperblog.rentacar.users.core.utils.results.SuccessResult;
-import com.appsdeveloperblog.rentacar.users.dataAccess.UsersDao;
-import com.appsdeveloperblog.rentacar.users.entities.User;
+import java.util.ArrayList;
 
 @Service
 public class UserManager implements UserService {

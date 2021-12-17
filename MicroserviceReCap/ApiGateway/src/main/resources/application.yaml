@@ -67,6 +67,14 @@ spring:
           filters:
             - RewritePath=/users-ws/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
+            
+        - id: rentals-ws-operations
+          uri: lb://rentals-ws
+          predicates:
+            - Path=/rentals-ws/rentalscqrs
+            - Method=POST
+          filters:
+            - RewritePath=/rentals-ws/(?<segment>.*), /$\{segment}
 
 
 

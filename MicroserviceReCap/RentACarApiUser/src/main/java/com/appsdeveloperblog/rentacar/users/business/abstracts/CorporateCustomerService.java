@@ -1,13 +1,13 @@
 package com.appsdeveloperblog.rentacar.users.business.abstracts;
 
-import java.util.List;
-
 import com.appsdeveloperblog.rentacar.users.business.dtos.CorporateCustomerSearchListDto;
 import com.appsdeveloperblog.rentacar.users.business.requests.corporateCustomerRequests.CreateCorporateCustomerRequest;
 import com.appsdeveloperblog.rentacar.users.business.requests.corporateCustomerRequests.DeleteCorporateCustomerRequest;
 import com.appsdeveloperblog.rentacar.users.business.requests.corporateCustomerRequests.UpdateCorporateCustomerRequest;
 import com.appsdeveloperblog.rentacar.users.core.utils.results.DataResult;
 import com.appsdeveloperblog.rentacar.users.core.utils.results.Result;
+
+import java.util.List;
 
 public interface CorporateCustomerService {
 	

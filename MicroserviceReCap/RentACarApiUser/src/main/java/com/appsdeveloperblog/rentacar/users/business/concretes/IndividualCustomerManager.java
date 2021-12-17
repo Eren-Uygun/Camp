@@ -1,12 +1,5 @@
 package com.appsdeveloperblog.rentacar.users.business.concretes;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.appsdeveloperblog.rentacar.users.business.abstracts.IndividualCustomerService;
 import com.appsdeveloperblog.rentacar.users.business.dtos.IndividualCustomerSearchListDto;
 import com.appsdeveloperblog.rentacar.users.business.requests.individualRequests.CreateIndividualCustomerRequest;
@@ -19,6 +12,12 @@ import com.appsdeveloperblog.rentacar.users.core.utils.results.SuccessDataResult
 import com.appsdeveloperblog.rentacar.users.core.utils.results.SuccessResult;
 import com.appsdeveloperblog.rentacar.users.dataAccess.IndividualCustomerDao;
 import com.appsdeveloperblog.rentacar.users.entities.IndividualCustomer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class IndividualCustomerManager implements IndividualCustomerService {

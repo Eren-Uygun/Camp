@@ -1,15 +1,6 @@
 package com.appsdeveloperblog.rentacar.api.rental.business.concretes;
 
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.appsdeveloperblog.rentacar.api.rental.business.abstracts.CarService;
-import com.appsdeveloperblog.rentacar.api.rental.business.dtos.brandDto.BrandSearchListDto;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.carDto.CarSearchListDto;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.carDto.CreateCarDto;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.carDto.DeleteCarDto;
@@ -21,6 +12,11 @@ import com.appsdeveloperblog.rentacar.api.rental.core.results.SuccessDataResult;
 import com.appsdeveloperblog.rentacar.api.rental.core.results.SuccessResult;
 import com.appsdeveloperblog.rentacar.api.rental.dataAccess.CarRepository;
 import com.appsdeveloperblog.rentacar.api.rental.entities.Car;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CarManager implements CarService {

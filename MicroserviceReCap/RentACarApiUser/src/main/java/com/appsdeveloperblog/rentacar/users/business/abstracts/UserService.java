@@ -1,10 +1,9 @@
 package com.appsdeveloperblog.rentacar.users.business.abstracts;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import com.appsdeveloperblog.rentacar.users.business.dtos.UserDtos.UserDto;
 import com.appsdeveloperblog.rentacar.users.business.requests.UserRequests.LoginUserRequest;
 import com.appsdeveloperblog.rentacar.users.core.utils.results.Result;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
 	

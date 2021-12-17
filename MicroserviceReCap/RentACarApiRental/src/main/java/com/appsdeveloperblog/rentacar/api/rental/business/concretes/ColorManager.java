@@ -1,15 +1,6 @@
 package com.appsdeveloperblog.rentacar.api.rental.business.concretes;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.appsdeveloperblog.rentacar.api.rental.business.abstracts.ColorService;
-import com.appsdeveloperblog.rentacar.api.rental.business.dtos.brandDto.BrandSearchListDto;
-import com.appsdeveloperblog.rentacar.api.rental.business.dtos.carDto.CarSearchListDto;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.colorDto.ColorSearchListDto;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.colorDto.CreateColorDto;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.colorDto.DeleteColorDto;
@@ -20,9 +11,12 @@ import com.appsdeveloperblog.rentacar.api.rental.core.results.Result;
 import com.appsdeveloperblog.rentacar.api.rental.core.results.SuccessDataResult;
 import com.appsdeveloperblog.rentacar.api.rental.core.results.SuccessResult;
 import com.appsdeveloperblog.rentacar.api.rental.dataAccess.ColorRepository;
-import com.appsdeveloperblog.rentacar.api.rental.entities.Brand;
-import com.appsdeveloperblog.rentacar.api.rental.entities.Car;
 import com.appsdeveloperblog.rentacar.api.rental.entities.Color;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ColorManager implements ColorService {

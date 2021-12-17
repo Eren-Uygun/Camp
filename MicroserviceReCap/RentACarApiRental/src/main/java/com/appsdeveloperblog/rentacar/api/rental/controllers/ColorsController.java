@@ -1,18 +1,5 @@
 package com.appsdeveloperblog.rentacar.api.rental.controllers;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.appsdeveloperblog.rentacar.api.rental.business.abstracts.ColorService;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.colorDto.ColorSearchListDto;
 import com.appsdeveloperblog.rentacar.api.rental.business.dtos.colorDto.CreateColorDto;
@@ -24,6 +11,11 @@ import com.appsdeveloperblog.rentacar.api.rental.core.results.Result;
 import com.appsdeveloperblog.rentacar.api.rental.models.colorModels.CreateColorRequestModel;
 import com.appsdeveloperblog.rentacar.api.rental.models.colorModels.DeleteColorRequestModel;
 import com.appsdeveloperblog.rentacar.api.rental.models.colorModels.UpdateColorRequestModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/colors")
