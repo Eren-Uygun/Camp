@@ -80,7 +80,7 @@ order by total_sale desc
 Select c.category_name,sum(od.unit_price*od.quantity) total_sale from categories c  
 INNER join products p on c.category_id = p.category_id 
 inner join order_details od on od.product_id = p.product_id
-GROUP by c.category_name ORDER by total_sale desc
+GROUP by c.category_name ORDER by total_sale desc fetch first 1 rows only
 
 --Bugüne kadar en çok parayı yılın hangi ayında kazandık
 
