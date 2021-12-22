@@ -37,9 +37,6 @@ public class RentalsCqrsController {
 		String returnValue = this.commandGateway.sendAndWait(command);
 		return returnValue;
 	}
-	
-	
-	
-	
+
 
 }

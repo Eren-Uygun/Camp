@@ -1,0 +1,100 @@
+select c.customer_id,c.company_name from customers c where city = 'London'
+
+select customer_id,company_name from customers where lower(city) = lower('london')
+
+/*Lower(city) yaptığımızda lowercase'e indirir.*/
+
+
+select * from customers where city in('London','Berlin') order by contact_name
+
+select sum(units_in_stock) from products
+
+/*Aggregate'de getirdiğin datanın sadece gruplamaya konu olan data olması gerekiyor., Group by'da gruplandırılmış her kategori için
+Örn depodayız ve 85 tane ürünü önümüze koymuşlar,Bir numaralı kategoride olanları alıyoruz bir yere istifliyoruz.
+GroupBy o işe yarar.
+Alttaki kod'da her kategoriye göre sum çalışır.
+*/
+select category_id,sum(units_in_stock) from products group by category_id
+
+/*Sanal tablolar ile sql yazmak*/
+select product_name from (select product_name,category_id,unit_price from products where category_id < 5) x
+
+select product_id,sum(o.unit_price*o.quantity) from order_details o group by product_id
+
+
+/*Inner join eşleşen tablolardaki dataları birleştir yanyana getirir.*/
+
+select * from products inner join categories ON categories.category_id = products.category_id
+
+select product_id,product_name,category_name from products inner join categories ON categories.category_id = products.category_id
+
+/*Natural Join her tablo kendi indexlerine göre çalışır.Bu joini yazmayın*/
+select * from products p,categories c where p.category_id = c.category_id
+
+select p.product_id,p.product_name,c.category_name from products p inner join categories c ON c.category_id = p.category_id
+where p.supplier_id = 2
+
+
+
+select category_name,count(*) from products p inner join categories c on p.category_id=c.category_id group by c.category_name
+
+--Hangi personel kaçar kere satış yapmıştır.
+select CONCAT(em.first_name,' ',em.last_name) as Employees,count(o.order_id) as Satış_Adedi 
+from employees em inner join orders o on em.employee_id = o.employee_id 
+group by em.first_name,em.last_name
+
+--Hangi üründen bugüne kadar kaçar para kazanılmıştır.
+
+Select p.product_name,sum(od.unit_price*od.quantity) as total_price,sum(p.unit_price*od.quantity) as indirimsiz_fiyat,sum((p.unit_price*od.quantity)-(od.unit_price*od.quantity)) as indirilen_fiyat from products p inner join order_details od ON  p.product_id = od.product_id GROUP by p.product_name
+
+/*Inner join sadece eşleşenleri getirir.*/
+
+--Hangi ürünlerden satış yapamamışız.
+
+--Select p.product_name,p.units_on_order from products p left join order_details od ON od.order_id is null GROUP by p.product_name,p.units_on_order
+
+select * from products p left join order_details od on p.product_id = od.product_id
+where od.order_id is null
+
+--bugüne kadar hiç satış yapamamış personel ve personeller
+
+select * from employees em left join orders o on em.employee_id = o.employee_id
+where o.employee_id is null
+
+select * from employees em inner join orders o on em.employee_id = o.employee_id
+where o.employee_id > 9
+
+--En değerli personeller yaptırdığı gelire göre sıralayınız.
+--Bugüne kadar en çok gelir elde eden kategori
+--Bugüne kadar en çok parayı yılın hangi ayında kazandık
+--Bugüne kadar hangi üründen kaçar para kazandık
+
+--1
+select Concat(em.first_name,' ',em.last_name) as fullname,sum(od.unit_price*od.quantity) as total_sale
+from employees em inner join orders o on o.employee_id = em.employee_id 
+inner join order_details od on od.order_id = o.order_id group by em.first_name,em.last_name
+order by total_sale desc
+
+--Bugüne kadar en çok gelir elde eden kategori
+
+Select c.category_name,sum(od.unit_price*od.quantity) total_sale from categories c  
+INNER join products p on c.category_id = p.category_id 
+inner join order_details od on od.product_id = p.product_id
+GROUP by c.category_name ORDER by total_sale desc
+
+--Bugüne kadar en çok parayı yılın hangi ayında kazandık
+
+select x.ay,x.yil,MAX(x.satis) as satis 
+from (select EXTRACT(Month from o.order_date) as ay,EXTRACT(Year from o.order_date) as yil ,sum(od.unit_price*od.quantity) as satis from orders o inner join order_details od  on o.order_id = od.order_id GROUP by o.order_date order by satis desc) x
+GROUP by x.ay,x.yil 
+ORDER BY satis desc fetch first 1 rows only
+
+select EXTRACT(Month from o.order_date) ay,EXTRACT(Year from o.order_date) yıl,sum(od.unit_price*od.quantity) total_income from  orders o 
+inner join order_details od on o.order_id=od.order_id group by ay,yıl order by total_income desc fetch first 1 rows only
+
+--Bugüne kadar hangi üründen kaçar para kazandık
+
+Select p.product_name,sum(od.unit_price*od.quantity) as total_price from products p inner join order_details od ON  p.product_id = od.product_id GROUP by p.product_name
+
+
+
