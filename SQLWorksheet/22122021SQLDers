@@ -84,7 +84,7 @@ GROUP by c.category_name ORDER by total_sale desc
 
 --Bugüne kadar en çok parayı yılın hangi ayında kazandık
 
-select x.ay,x.yil,MAX(x.satis) as satis 
+select x.ay,x.yil,sum(x.satis) as satis 
 from (select EXTRACT(Month from o.order_date) as ay,EXTRACT(Year from o.order_date) as yil ,sum(od.unit_price*od.quantity) as satis from orders o inner join order_details od  on o.order_id = od.order_id GROUP by o.order_date order by satis desc) x
 GROUP by x.ay,x.yil 
 ORDER BY satis desc fetch first 1 rows only
