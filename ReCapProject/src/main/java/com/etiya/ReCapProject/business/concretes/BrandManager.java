@@ -81,7 +81,7 @@ public class BrandManager implements BrandService{
 		}
 		Brand brand= this.brandDao.findById(brandId).get();
 		BrandSearchListDto brandSearchListDto=modelMapperService.forDto().map(brand, BrandSearchListDto.class);
-		return new SuccessDataResult<BrandSearchListDto>(brandSearchListDto);
+		return new SuccessDataResult<BrandSearchListDto>(brandSearchListDto,Messages.BRANDFOUND);
 		
 	}
 	private Result existsBrandName(String brandName){

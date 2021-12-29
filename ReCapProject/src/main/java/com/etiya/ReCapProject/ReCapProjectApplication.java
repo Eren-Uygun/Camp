@@ -8,7 +8,9 @@ import java.util.NoSuchElementException;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePos;
+import org.hibernate.type.SerializationException;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -71,6 +73,7 @@ public class ReCapProjectApplication {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
     private ErrorResult handleEntityNotFound(EntityNotFoundException ex){
         return new ErrorResult("Data not found!");
     }
@@ -82,5 +85,14 @@ public class ReCapProjectApplication {
 		ErrorResult error = new ErrorResult("Data not found!");
 		return error;
 	}
+
+	@ExceptionHandler(SerializationException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorResult handleSerializationException(SerializationException serializationException){
+		ErrorResult error = new ErrorResult("Format Error");
+		return error;
+	}
+
+
 	
 }

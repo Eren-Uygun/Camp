@@ -54,7 +54,7 @@ public class CarImageManager implements CarImageService {
 		List<CarImageSearchListDto> result = carImages.stream()
 				.map(carImage -> modelMapperService.forDto().map(carImage, CarImageSearchListDto.class))
 				.collect(Collectors.toList());
-		return new SuccessDataResult<List<CarImageSearchListDto>>(result, Messages.CARIMAGELIST);
+		return new SuccessDataResult<List<CarImageSearchListDto>>(result, "Data.listed");
 	}
 
 

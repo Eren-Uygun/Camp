@@ -101,7 +101,10 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId) {
-
+        var result= BusinessRules.run(checkIfCustomerIdExists(customerId));
+        if (result!=null){
+            return new ErrorDataResult(result) ;
+        }
         List<Invoice> invoices = this.invoiceDao.getByCustomer_Id(customerId);
         List<InvoiceSearchListDto> invoiceSearchListDtos = invoices.stream()
                 .map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
@@ -136,7 +139,13 @@ public class InvoiceManager implements InvoiceService {
             return new ErrorResult(Messages.RENTALDATEISNULL);
         }
         return new SuccessResult();
-
+    }
+    private Result checkIfCustomerIdExists(int customerId){
+        var result=this.invoiceDao.existsByCustomerId(customerId);
+        if (!result){
+            return new ErrorResult(Messages.CUSTOMERNOTFOUND); //bu müşteriye ait fatura yok hatası yazılacak
+        }
+        return new SuccessResult();
     }
 
 }

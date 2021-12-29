@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.etiya.ReCapProject.business.abstracts.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.etiya.ReCapProject.business.abstracts.BrandService;
@@ -38,6 +39,7 @@ public class CarManager implements CarService {
     private ColorService colorService;
     private BrandService brandService;
     private CityService cityService;
+    private Environment environment;
 
     @Autowired
     public CarManager(CarDao carDao, ModelMapperService modelMapperService, ColorService colorService,
@@ -70,7 +72,7 @@ public class CarManager implements CarService {
 
         Car car = modelMapperService.forRequest().map(createCarRequest, Car.class);
         this.carDao.save(car);
-        return new SuccessResult(Messages.CARADD);
+        return new SuccessResult("car.add");
     }
 
     @Override
@@ -85,7 +87,7 @@ public class CarManager implements CarService {
         }
         Car car = modelMapperService.forRequest().map(updateCarRequest, Car.class);
         this.carDao.save(car);
-        return new SuccessResult(Messages.CARUPDATE);
+        return new SuccessResult("car.update");
     }
 
     @Override
@@ -96,7 +98,7 @@ public class CarManager implements CarService {
         }
         Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
         this.carDao.delete(car);
-        return new SuccessResult(Messages.CARDELETE);
+        return new SuccessResult("car.delete");
     }
 
     @Override

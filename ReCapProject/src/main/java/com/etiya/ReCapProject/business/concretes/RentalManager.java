@@ -87,6 +87,8 @@ public class RentalManager implements RentalService {
         CreatePaymentRequest createPaymentRequest=new CreatePaymentRequest();
         this.rentalDao.save(rental);
         return new SuccessResult(Messages.RENTALADD);
+
+        //
     }
     @Override
     public Result delete(DeleteRentalRequest deleteRentalRequest) {

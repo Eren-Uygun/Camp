@@ -20,7 +20,7 @@ public interface InvoiceDao extends JpaRepository<Invoice, Integer>{
 
 	//int SumTotalAdditionalService();
 	
-	
+	boolean existsByCustomerId(int customerId);
 	
 
 }
