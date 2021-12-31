@@ -16,7 +16,7 @@ public class ModelMapperManager implements ModelMapperService{
 
 	@Override
 	public ModelMapper forDto() {
-	 	this.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+	 	this.modelMapper.getConfiguration().setAmbiguityIgnored(true).setMatchingStrategy(MatchingStrategies.LOOSE);
 		return modelMapper;
 	}
 

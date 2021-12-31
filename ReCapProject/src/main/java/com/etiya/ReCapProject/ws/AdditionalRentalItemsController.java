@@ -27,13 +27,11 @@ public class AdditionalRentalItemsController {
 
     @GetMapping("getAll")
     public DataResult<List<AdditionalRentalItemSearchListDto>> getAll(){
-        return this.additionalRentalItemService.getAll();
-    }
+        return this.additionalRentalItemService.getAll();    }
 
     @GetMapping("getByRentalId")
     public DataResult<List<AdditionalRentalItemSearchListDto>> getByRentalId(int id){
-        return this.additionalRentalItemService.getByRentalId(id);
-    }
+        return this.additionalRentalItemService.getByRentalId(id);    }
 
 
     @PostMapping("add")

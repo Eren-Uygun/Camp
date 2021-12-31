@@ -16,4 +16,5 @@ public interface CarMaintenanceService {
 	Result update(UpdateCarMaintenanceRequest updateCarMaintenanceRequest);
 	Result delete(DeleteCarMaintenanceRequest deleteCarMaintenanceRequest);
 	DataResult<CarMaintenance> getByCar(int carId);
+	public boolean isCarExistsOnCarMaintenance(int carId);
 }

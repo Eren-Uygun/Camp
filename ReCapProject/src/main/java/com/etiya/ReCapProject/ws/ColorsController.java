@@ -3,13 +3,7 @@ package com.etiya.ReCapProject.ws;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.etiya.ReCapProject.business.abstracts.ColorService;
 import com.etiya.ReCapProject.business.dtos.ColorSearchListDto;
@@ -19,6 +13,7 @@ import com.etiya.ReCapProject.business.requests.colorRequests.UpdateColorRequest
 import com.etiya.ReCapProject.core.utilities.results.DataResult;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 
+import javax.validation.Valid;
 
 
 @RestController
@@ -37,23 +32,23 @@ public class ColorsController {
 		return this.colorService.getAll();
 	}
 	@DeleteMapping("delete")
-	public Result delete(@RequestBody DeleteColorRequest deleteColorRequest) {
+	public Result delete(@RequestBody @Valid DeleteColorRequest deleteColorRequest) {
 		return this.colorService.delete(deleteColorRequest);
 	}
 	
 	@PutMapping("update")
-	public Result update(@RequestBody UpdateColorRequest updateColorRequest){
+	public Result update(@RequestBody @Valid UpdateColorRequest updateColorRequest){
 		return this.colorService.update(updateColorRequest);
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody CreateColorRequest createColorRequest){
+	public Result add(@RequestBody @Valid CreateColorRequest createColorRequest){
 		return this.colorService.add(createColorRequest);
 	}
 	
-	@GetMapping("/getColor")
-	public DataResult<ColorSearchListDto> getColor(int id){
-		return this.colorService.getByColorId(id);
+	@GetMapping("/getById")
+	public DataResult<ColorSearchListDto> getColor(@RequestParam("colorId") int colorId){
+		return this.colorService.getByColorId(colorId);
 	}
 	
 	

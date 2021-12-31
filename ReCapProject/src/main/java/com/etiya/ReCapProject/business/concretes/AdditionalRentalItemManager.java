@@ -53,7 +53,7 @@ public class AdditionalRentalItemManager implements AdditionalRentalItemService 
         }
         AdditionalRentalItem additionalRentalItem=modelMapperService.forRequest().map(createAdditionalRentalItemRequest,AdditionalRentalItem.class);
         this.additionalRentalItemDao.save(additionalRentalItem);
-        return new SuccessResult(Messages.ADDITIONALSERVICEADD);
+        return new SuccessResult(Messages.ADDITIONALRENTALITEMADD);
     }
 
     @Override
@@ -84,13 +84,13 @@ public class AdditionalRentalItemManager implements AdditionalRentalItemService 
     public DataResult<List<AdditionalRentalItemSearchListDto>> getByRentalId(int rentalId) {
         var businessResult = BusinessRules.run(isRentalExists(rentalId));
         if (businessResult!=null){
-            return new ErrorDataResult(businessResult);
+            return new ErrorDataResult(Messages.ADDITIONALRENTALITEMNOTFOUND,null);
         }
         List<AdditionalRentalItem> request = this.additionalRentalItemDao.getByRentalId(rentalId);
         List<AdditionalRentalItemSearchListDto> response = request.stream()
                 .map(additionalRentalItem -> modelMapperService.forDto()
                         .map(additionalRentalItem , AdditionalRentalItemSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<AdditionalRentalItemSearchListDto>>(response);
+        return new SuccessDataResult<List<AdditionalRentalItemSearchListDto>>(response, Messages.ADDITIONALRENTALITEMLIST);
     }
 
 

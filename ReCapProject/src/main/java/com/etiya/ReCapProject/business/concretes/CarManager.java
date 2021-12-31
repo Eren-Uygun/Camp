@@ -72,7 +72,7 @@ public class CarManager implements CarService {
 
         Car car = modelMapperService.forRequest().map(createCarRequest, Car.class);
         this.carDao.save(car);
-        return new SuccessResult("car.add");
+        return new SuccessResult(Messages.CARADD);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class CarManager implements CarService {
         }
         Car car = modelMapperService.forRequest().map(updateCarRequest, Car.class);
         this.carDao.save(car);
-        return new SuccessResult("car.update");
+        return new SuccessResult(Messages.CARUPDATE);
     }
 
     @Override
@@ -96,9 +96,10 @@ public class CarManager implements CarService {
         if (result != null) {
             return result;
         }
+
         Car car = modelMapperService.forRequest().map(deleteCarRequest, Car.class);
         this.carDao.delete(car);
-        return new SuccessResult("car.delete");
+        return new SuccessResult(Messages.CARDELETE);
     }
 
     @Override
@@ -106,7 +107,7 @@ public class CarManager implements CarService {
 
         var carResult = this.carDao.existsById(carId);
         if (!carResult) {
-            return new ErrorDataResult(Messages.CARNOTFOUND);
+            return new ErrorDataResult<CarSearchListDto>(Messages.CARNOTFOUND,null);
         }
         var car = this.carDao.getById(carId);
         try {
@@ -117,32 +118,32 @@ public class CarManager implements CarService {
             return new ErrorDataResult<CarSearchListDto>(null);
         }
         CarSearchListDto response = modelMapperService.forDto().map(car, CarSearchListDto.class);
-        return new SuccessDataResult<CarSearchListDto>(response, "Id'ye göre araba getirildi.");
+        return new SuccessDataResult<CarSearchListDto>(response, Messages.CARFOUND);
     }
 
     @Override
     public DataResult<List<CarDetail>> getCarWithBrandAndColorDetails() {
 
-        return new SuccessDataResult<List<CarDetail>>(this.carDao.CarWithBrandAndColorDetails());
+        return new SuccessDataResult<List<CarDetail>>(this.carDao.CarWithBrandAndColorDetails(),Messages.CARLIST);
     }
 
     @Override
     public DataResult<List<CarBrandDetail>> getByBrandId(int brandId) {
         Result existResult = brandService.existsBrandId(brandId);
         if (!existResult.isSuccess()) {
-            return new ErrorDataResult(Messages.BRANDNOTFOUND);
+            return new ErrorDataResult(Messages.BRANDNOTFOUND,null);
         }
         List<Car> cars = this.carDao.getByBrand_Id(brandId);
         List<CarBrandDetail> result = cars.stream()
                 .map(car -> modelMapperService.forDto().map(car, CarBrandDetail.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<CarBrandDetail>>(result);
+        return new SuccessDataResult<List<CarBrandDetail>>(result,Messages.GETCARBYBRANDID);
     }
 
     @Override
     public DataResult<List<CarColorDetail>> getByColorId(int colorId) {
-        Result existColor = colorService.isCheckColorExists(colorId);
+        Result existColor = colorService.checkIfColorIdExists(colorId);
         if (!existColor.isSuccess()) {
-            return new ErrorDataResult(Messages.COLORNOTFOUND);
+            return new ErrorDataResult(Messages.COLORNOTFOUND,null);
         }
         List<Car> cars = this.carDao.getByColor_Id(colorId);
         if (cars == null) {
@@ -150,7 +151,7 @@ public class CarManager implements CarService {
         }
         List<CarColorDetail> result = cars.stream()
                 .map(car -> modelMapperService.forDto().map(car, CarColorDetail.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<CarColorDetail>>(result);
+        return new SuccessDataResult<List<CarColorDetail>>(result,Messages.GETCARBYCOLORID);
 
     }
 
@@ -173,7 +174,7 @@ public class CarManager implements CarService {
     }
 
     private Result isColorIdExists(int colorId) {
-        var result = this.colorService.isCheckColorExists(colorId);
+        var result = this.colorService.checkIfColorIdExists(colorId);
         if (!result.isSuccess()) {
             return new ErrorResult(Messages.COLORNOTFOUND);
         }
@@ -182,8 +183,8 @@ public class CarManager implements CarService {
 
     @Override
     public DataResult<List<CarSearchListDto>> getAvailableCars() {
-        var result = this.carDao.getAllWithoutMaintenanceOfCar();
-        return new SuccessDataResult<List<CarSearchListDto>>(result);
+        var result = this.carDao.getAllCarsWhichAreNotInMaintenance();
+        return new SuccessDataResult<List<CarSearchListDto>>(result,Messages.CARLIST);
     }
 
     @Override
@@ -191,12 +192,12 @@ public class CarManager implements CarService {
 
         var statusResult = BusinessRules.run(isCityIdExist(cityId));
         if (statusResult != null) {
-            return new ErrorDataResult(statusResult);
+            return new ErrorDataResult<List<CarDetail>>(Messages.CITYNOTFOUND,null);
         }
         List<Car> cars = this.carDao.getByCity_Id(cityId);
         List<CarDetail> result = cars.stream()
                 .map(car -> modelMapperService.forDto().map(car, CarDetail.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<CarDetail>>(result);
+        return new SuccessDataResult<List<CarDetail>>(result,Messages.GETCARBYCITYID);
     }
 
     @Override
@@ -225,7 +226,6 @@ public class CarManager implements CarService {
        Car car=modelMapperService.forRequest().map(updateCarRequest,Car.class);
        this.carDao.save(car);
 
-
         /*
         var cityResult = this.cityService.getById(cityId);
         result.getCity().setId(cityResult.getData().getId());
@@ -251,6 +251,7 @@ public class CarManager implements CarService {
         }
         return new SuccessResult();
     }
+
 
 
 }

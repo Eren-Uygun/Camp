@@ -1,5 +1,6 @@
 package com.etiya.ReCapProject.entities.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,7 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import org.hibernate.annotations.ManyToAny;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,6 +49,10 @@ public class CreditCard {
 	@Column(name = "cvv")
 	private String cvv;
 
+	@NotNull
+	@JsonFormat(pattern = "MM/yy")
+	//@JsonDeserialize(using = LocalDateDeserializer.class)
+	//@JsonSerialize(using = LocalDateSerializer.class)
 	@Column(name = "expirationDate")
 	private String expirationDate;
 	

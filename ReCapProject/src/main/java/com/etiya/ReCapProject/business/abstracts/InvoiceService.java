@@ -16,5 +16,5 @@ public interface InvoiceService {
 	Result delete(DeleteInvoiceRequest deleteInvoiceRequest);
 	Result update(UpdateInvoiceRequest updateInvoiceRequest);
 	DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId);
-	DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate,LocalDate endDate);
+	DataResult<List<InvoiceSearchListDto>> getBySelectedInterval(LocalDate beginDate, LocalDate endDate);
 }

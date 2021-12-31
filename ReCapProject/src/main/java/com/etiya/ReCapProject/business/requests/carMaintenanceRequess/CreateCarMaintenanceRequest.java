@@ -5,6 +5,7 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateCarMaintenanceRequest {
+
+	@JsonIgnore
+	private int id;
 	
 	@NotNull
 	private int car_Id;
@@ -23,8 +27,7 @@ public class CreateCarMaintenanceRequest {
 	@Size(min = 3, max = 50)
 	private String description;
 
-
-	@FutureOrPresent
+	@JsonIgnore
 	private LocalDate returnDate;
 
 }

@@ -5,13 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.etiya.ReCapProject.business.abstracts.IndividualCustomerService;
 import com.etiya.ReCapProject.business.dtos.IndividualCustomerSearchListDto;
@@ -33,7 +27,7 @@ public class IndividualCustomersController {
 		this.individualCustomerService = individualCustomerService;
 	}
 
-	@GetMapping("getAll")
+	@GetMapping("/getAll")
 	public DataResult<List<IndividualCustomerSearchListDto>> getAll() {
 		return this.individualCustomerService.getAll();
 	}
@@ -53,9 +47,9 @@ public class IndividualCustomersController {
 		return this.individualCustomerService.update(updateIndividualCustomerRequest);
 	}
 
-	@GetMapping("/getByIndividualCustomerById")
-	public DataResult<IndividualCustomerSearchListDto> getByIndividualCustomerById(int id) {
-		return this.individualCustomerService.getByIndividualCustomerId(id);
+	@GetMapping("/getById")
+	public DataResult<IndividualCustomerSearchListDto> getByIndividualCustomerById(@RequestParam("individualCustomerId") int individualCustomerId) {
+		return this.individualCustomerService.getByIndividualCustomerId(individualCustomerId);
 	}
 
 }

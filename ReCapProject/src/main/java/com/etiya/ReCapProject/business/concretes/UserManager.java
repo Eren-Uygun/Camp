@@ -32,16 +32,7 @@ public class UserManager implements UserService {
 			return result;
 		}
 		return new SuccessResult(Messages.LOGINSUCCESS);
-		/*
-		User user= this.userDao.getByEmail(loginUserRequest.getEmail());
-		if (user==null) {
-			return new ErrorResult("email sisteme kayıtlı değil");
-		}
-		if (user.getEmail().equals(loginUserRequest.getEmail())&&user.getPassword().equals(loginUserRequest.getPassword())) {
-			return new SuccessResult(Messages.LOGINSUCCESS);
-		}
-		return new ErrorResult("Kullanıcı bilgileri hatalı");
-		*/
+
 	}
 	private Result checkCredentials(String email,String password) {
 		var user =  this.userDao.getByEmail(email);
@@ -64,11 +55,11 @@ public class UserManager implements UserService {
 	}
 
 	@Override
-	public Result isUserEmailExists(String email) {
+	public Boolean isUserEmailExists(String email) {
 		var existsResult = this.userDao.existsUserByEmail(email);
 		if (existsResult){
-			return new ErrorResult(Messages.EMAILERROR);
+			return false;
 		}
-		return new SuccessResult();
+		return true;
 	}
 }

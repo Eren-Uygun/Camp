@@ -42,9 +42,7 @@ public class CorporateCustomersController {
 		return this.corporateCustomerService.update(updateCorporateCustomerRequest);
 	}
 	@DeleteMapping("/delete")
-	public Result delete(@RequestParam("customerId") int customerId){
-		DeleteCorporateCustomerRequest deleteCorporateCustomerRequest=new DeleteCorporateCustomerRequest();
-		deleteCorporateCustomerRequest.setCustomerId(customerId);
+	public Result delete(@RequestBody @Valid DeleteCorporateCustomerRequest deleteCorporateCustomerRequest){
 		return this.corporateCustomerService.delete(deleteCorporateCustomerRequest);
 	}
 	
@@ -54,8 +52,8 @@ public class CorporateCustomersController {
 	}
 	
 	@GetMapping("/getById")
-	public DataResult<CorporateCustomerSearchListDto> getById(@RequestParam("customerId") int id){
-		return this.corporateCustomerService.getById(id);
+	public DataResult<CorporateCustomerSearchListDto> getById(@RequestParam("corporateCustomerId") int corporateCustomerId){
+		return this.corporateCustomerService.getById(corporateCustomerId);
 	}
 	
 	

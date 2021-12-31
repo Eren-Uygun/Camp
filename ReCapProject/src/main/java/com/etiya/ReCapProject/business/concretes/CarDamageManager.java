@@ -38,7 +38,7 @@ public class CarDamageManager implements CarDamageService {
         List<CarDamage> carDamages = this.carDamageDao.findAll();
         List<CarDamageSearchListDto> response = carDamages.stream().map(carDamage -> modelMapperService.forDto().map(carDamage , CarDamageSearchListDto.class))
                 .collect(Collectors.toList());
-        return new SuccessDataResult<List<CarDamageSearchListDto>>(response);
+        return new SuccessDataResult<List<CarDamageSearchListDto>>(response, Messages.DAMAGELIST);
     }
 
     @Override
@@ -79,22 +79,22 @@ public class CarDamageManager implements CarDamageService {
 
         var resultBusiness = BusinessRules.run(checkIsDamageIdExists(id));
         if (resultBusiness != null){
-            return new ErrorDataResult(resultBusiness);
+            return new ErrorDataResult(Messages.DAMAGENOTFOUND,null);
         }
         CarDamage result = this.carDamageDao.getById(id);
         CarDamageSearchListDto response = modelMapperService.forDto().map(result,CarDamageSearchListDto.class);
-        return new SuccessDataResult<CarDamageSearchListDto>(response);
+        return new SuccessDataResult<CarDamageSearchListDto>(response, Messages.DAMAGELIST);
     }
 
     @Override
     public DataResult<List<CarDamageSearchListDto>> getByCarId(int carId) {
         var resultBusiness = BusinessRules.run(checkIsCarExists(carId));
         if (resultBusiness != null){
-            return new ErrorDataResult(resultBusiness);
+            return new ErrorDataResult(Messages.CARNOTFOUND, null);
         }
         List<CarDamage> carDamageList = this.carDamageDao.getByCar_Id(carId);
         List<CarDamageSearchListDto> response = carDamageList.stream().map(carDamage -> modelMapperService.forDto().map(carDamage,CarDamageSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<CarDamageSearchListDto>>(response);
+        return new SuccessDataResult<List<CarDamageSearchListDto>>(response, Messages.DAMAGELIST);
     }
 
     private Result checkIsCarExists(int carId){

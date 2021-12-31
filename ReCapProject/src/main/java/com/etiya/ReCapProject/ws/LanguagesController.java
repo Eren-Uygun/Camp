@@ -30,23 +30,23 @@ public class LanguagesController {
         return this.languageService.getAll();
     }
 
-    @GetMapping("getBylanguage")
-    public DataResult<LanguageSearchListDto>  getLanguage(String languageName){
+    @GetMapping("getByLanguageName")
+    public DataResult<LanguageSearchListDto>  getByLanguageName(String languageName){
         var result=this.languageService.getByLanguageName(languageName);
         return result;
     }
 
     @PostMapping("add")
-    public Result add(CreateLanguageRequest createLanguageRequest){
+    public Result add(@RequestBody CreateLanguageRequest createLanguageRequest){
         return this.languageService.add(createLanguageRequest);
     }
 
     @DeleteMapping("delete")
-    public Result delete(DeleteLanguageRequest deleteLanguageRequest){
+    public Result delete(@RequestBody DeleteLanguageRequest deleteLanguageRequest){
         return this.languageService.delete(deleteLanguageRequest);
     }
     @PutMapping("update")
-    public Result update(UpdateLanguageRequest updateLanguageRequest){
+    public Result update(@RequestBody UpdateLanguageRequest updateLanguageRequest){
         return this.languageService.update(updateLanguageRequest);
     }
 }

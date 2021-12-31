@@ -15,5 +15,5 @@ public interface ColorService {
 	Result delete(DeleteColorRequest deleteColorRequest);
 	Result update(UpdateColorRequest updateColorRequest);
 	DataResult<ColorSearchListDto> getByColorId(int colorId);
-	Result isCheckColorExists(int colorId);
+	Result checkIfColorIdExists(int colorId);
 }

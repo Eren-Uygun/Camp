@@ -34,7 +34,7 @@ public class CarImage {
 	private int id;
 	
 	@Column(name = "image_path")
-	private String imagePath;
+	private byte[] imagePath;
 	
 	@Column(name = "date")
 	private LocalDate date;

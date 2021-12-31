@@ -44,6 +44,7 @@ public class UpdateRentalRequest {
     private int rentedKilometer;
 
     private int returnedKilometer;
+
     private CreatePaymentRequest createPaymentRequest;
 
 

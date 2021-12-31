@@ -42,7 +42,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result add(CreateColorRequest createColorRequest) {
-		Result result = BusinessRules.run(existsColorName(createColorRequest.getColorName()));
+		Result result = BusinessRules.run(checkIfColorNameExists(createColorRequest.getColorName()));
 		if (result != null) {
 			return result;
 		}
@@ -53,7 +53,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result delete(DeleteColorRequest deleteColorRequest) {
-		Result result = BusinessRules.run(isCheckColorExists(deleteColorRequest.getId()));
+		Result result = BusinessRules.run(checkIfColorIdExists(deleteColorRequest.getId()));
 		if (result != null) {
 			return result;
 		}
@@ -64,7 +64,7 @@ public class ColorManager implements ColorService {
 
 	@Override
 	public Result update(UpdateColorRequest updateColorRequest) {
-		Result result = BusinessRules.run(isCheckColorExists(updateColorRequest.getId()));
+		Result result = BusinessRules.run(checkIfColorIdExists(updateColorRequest.getId()), checkIfColorNameExists(updateColorRequest.getColorName()));
 		if (result != null) {
 			return result;
 		}
@@ -77,15 +77,15 @@ public class ColorManager implements ColorService {
 	public DataResult<ColorSearchListDto> getByColorId(int colorId) {
 		var existsResult = this.colorDao.existsById(colorId);
 		if (!existsResult){
-			return new ErrorDataResult(Messages.COLORNOTFOUND);
+			return new ErrorDataResult<ColorSearchListDto>(Messages.COLORNOTFOUND,null);
 		}
 		Color color = this.colorDao.findById(colorId).get();
 		ColorSearchListDto response = modelMapperService.forDto().map(color, ColorSearchListDto.class);
-		return new SuccessDataResult<ColorSearchListDto>(response, Messages.COLORGET);
+		return new SuccessDataResult<ColorSearchListDto>(response, Messages.COLORFOUND);
 	}
 	
 	@Override
-	public Result isCheckColorExists(int colorId) {
+	public Result checkIfColorIdExists(int colorId) {
 		var result = this.colorDao.existsById(colorId);
 		if (!result) {
 			return new ErrorResult(Messages.COLORNOTFOUND);
@@ -93,10 +93,11 @@ public class ColorManager implements ColorService {
 		return new SuccessResult();
 	}
 
-	private Result existsColorName(String colorName) {
+	private Result checkIfColorNameExists(String colorName) {
 		var result = this.colorDao.existsByColorName(colorName);
 		if (result) {
-			return new ErrorResult(Messages.COLORERROR);
+
+			return new ErrorResult(Messages.COLORNAMEERROR);
 		}
 		return new SuccessResult();
 	}

@@ -1,6 +1,9 @@
 package com.etiya.ReCapProject.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.etiya.ReCapProject.business.abstracts.UserService;
@@ -48,7 +51,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	@Override
 	public Result add(CreateIndividualCustomerRequest createIndividualRequest) {
-		var result = BusinessRules.run(checkIsIndividualCustomerEmailExists(createIndividualRequest.getEmail()));
+		var result = BusinessRules.run(checkIfIndividualCustomerEmailExists(createIndividualRequest.getEmail()),checkIfDateIsValid(createIndividualRequest.getBirthdate()));
 		if(result != null){
 			return result;
 		}
@@ -59,7 +62,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	@Override
 	public Result delete(DeleteIndividualCustomerRequest deleteIndividualRequest) {
-		Result result = BusinessRules.run(checkIsIndividualCustomerExists(deleteIndividualRequest.getId()));
+		Result result = BusinessRules.run(checkIfIndividualCustomerExists(deleteIndividualRequest.getId()));
 		if(result != null){
 			return result;
 		}
@@ -70,7 +73,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 	@Override
 	public Result update(UpdateIndividualCustomerRequest updateIndividualRequest) {
-		Result result = BusinessRules.run(checkIsIndividualCustomerExists(updateIndividualRequest.getId()),checkIsIndividualCustomerEmailExists(updateIndividualRequest.getEmail()));
+		Result result = BusinessRules.run(checkIfIndividualCustomerExists(updateIndividualRequest.getId()), checkIfIndividualCustomerEmailExists(updateIndividualRequest.getEmail()),checkIfDateIsValid(updateIndividualRequest.getBirthdate()));
 		if(result != null){
 			return result;
 		}
@@ -84,7 +87,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 		
 		var existsIndividualCustomer = this.individualCustomerDao.existsById(individualCustomerId);
 		if (!existsIndividualCustomer) {
-			return new ErrorDataResult(Messages.CUSTOMERNOTFOUND);
+			return new ErrorDataResult(Messages.CUSTOMERNOTFOUND,null);
 		}
 
 		IndividualCustomer individualCustomer = this.individualCustomerDao.getById(individualCustomerId);
@@ -94,18 +97,28 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
 
 
-	private Result checkIsIndividualCustomerEmailExists(String email){
+	private Result checkIfIndividualCustomerEmailExists(String email){
 		var result = this.userService.isUserEmailExists(email);
-		if(!result.isSuccess()){
+		if(!result){
 			return new ErrorResult(Messages.CUSTOMERISALREADYEXISTS);
 		}
 		return new SuccessResult();
 	}
 	
-	private Result checkIsIndividualCustomerExists(int id){
+	private Result checkIfIndividualCustomerExists(int id){
 		var result = this.individualCustomerDao.existsById(id);
 		if(!result){
 			return new ErrorResult(Messages.CUSTOMERNOTFOUND);
+		}
+		return new SuccessResult();
+	}
+
+	private Result checkIfDateIsValid(LocalDate birthDate){
+		String dateCheckRegex =  "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
+		Pattern pattern = Pattern.compile(dateCheckRegex);
+		Matcher matcher = pattern.matcher(birthDate.toString());
+		if (!matcher.matches()){
+			return new ErrorResult(Messages.DATEFORMATNOTVALID);
 		}
 		return new SuccessResult();
 	}

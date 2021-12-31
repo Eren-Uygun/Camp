@@ -41,7 +41,7 @@ public class InvoiceManager implements InvoiceService {
         List<Invoice> invoices = this.invoiceDao.findAll();
         List<InvoiceSearchListDto> invoiceSearchListDtos = invoices.stream()
                 .map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos);
+        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos,Messages.INVOICELIST);
     }
 
     private String createInvoiceNumber(int rentalId){
@@ -51,7 +51,8 @@ public class InvoiceManager implements InvoiceService {
     }
     @Override
     public Result add(CreateInvoiceRequest createInvoiceRequest) {
-        var result= BusinessRules.run(checkIfRentalIdExists(createInvoiceRequest.getRentalId()),isReturnDateNull(createInvoiceRequest.getRentalId()));
+        var result= BusinessRules.run(checkIfRentalIdExists(createInvoiceRequest.getRentalId()),
+                isReturnDateNull(createInvoiceRequest.getRentalId()));
         if (result!=null){
             return result;
         }
@@ -83,6 +84,12 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public Result delete(DeleteInvoiceRequest deleteInvoiceRequest) {
+        Result result = BusinessRules.run(checkIfInvoiceIdExists(deleteInvoiceRequest.getId()));
+
+        if(result != null){
+            return result;
+        }
+
         Invoice invoice = modelMapperService.forRequest().map(deleteInvoiceRequest, Invoice.class);
         this.invoiceDao.delete(invoice);
         return new SuccessResult(Messages.INVOICEDELETE);
@@ -90,10 +97,14 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public Result update(UpdateInvoiceRequest updateInvoiceRequest) {
-        var result= BusinessRules.run(checkIfRentalIdExists(updateInvoiceRequest.getRentalId()));
+        var result= BusinessRules.run(checkIfRentalIdExists(updateInvoiceRequest.getRentalId()),
+               checkIfInvoiceNumberExists(updateInvoiceRequest.getInvoiceNumber())
+        );
         if (result!=null){
             return result;
         }
+        var tempInvoice=this.invoiceDao.getById(updateInvoiceRequest.getId());
+        updateInvoiceRequest.setCreateDate(tempInvoice.getCreateDate());
         Invoice invoice = modelMapperService.forRequest().map(updateInvoiceRequest, Invoice.class);
         this.invoiceDao.save(invoice);
         return new SuccessResult(Messages.INVOICEUPDATE);
@@ -103,20 +114,20 @@ public class InvoiceManager implements InvoiceService {
     public DataResult<List<InvoiceSearchListDto>> getByCustomerId(int customerId) {
         var result= BusinessRules.run(checkIfCustomerIdExists(customerId));
         if (result!=null){
-            return new ErrorDataResult(result) ;
+            return new ErrorDataResult(Messages.CUSTOMERNOTFOUND, null) ;
         }
         List<Invoice> invoices = this.invoiceDao.getByCustomer_Id(customerId);
         List<InvoiceSearchListDto> invoiceSearchListDtos = invoices.stream()
                 .map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos);
+        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos,Messages.INVOICEBYCUSTOMERLIST);
     }
 
     @Override
-    public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(LocalDate beginDate, LocalDate endDate) {
+    public DataResult<List<InvoiceSearchListDto>> getBySelectedInterval(LocalDate beginDate, LocalDate endDate) {
         List<Invoice> invoices = this.invoiceDao.getByCreateDateBetween(beginDate, endDate);
         List<InvoiceSearchListDto> invoiceSearchListDtos = invoices.stream()
                 .map(invoice -> modelMapperService.forDto().map(invoice, InvoiceSearchListDto.class)).collect(Collectors.toList());
-        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos);
+        return new SuccessDataResult<List<InvoiceSearchListDto>>(invoiceSearchListDtos, Messages.INVOICELIST);
     }
 
     public Result compareCityId(int rentalCityId, int availableCityId) {
@@ -144,6 +155,22 @@ public class InvoiceManager implements InvoiceService {
         var result=this.invoiceDao.existsByCustomerId(customerId);
         if (!result){
             return new ErrorResult(Messages.CUSTOMERNOTFOUND); //bu müşteriye ait fatura yok hatası yazılacak
+        }
+        return new SuccessResult();
+    }
+
+    private Result checkIfInvoiceNumberExists(String invoiceNumber){
+        var result=this.invoiceDao.existsByInvoiceNumber(invoiceNumber);
+        if (result){
+            return new ErrorResult(Messages.INVOICENUMBERAlREADYEXISTS);
+        }
+        return new SuccessResult();
+    }
+
+    private Result checkIfInvoiceIdExists(int invoiceId){
+        var result=this.invoiceDao.existsById(invoiceId);
+        if (!result){
+            return new ErrorResult(Messages.INVOICENOTFOUND);
         }
         return new SuccessResult();
     }

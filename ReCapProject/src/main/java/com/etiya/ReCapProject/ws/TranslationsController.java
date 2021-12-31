@@ -11,6 +11,7 @@ import com.etiya.ReCapProject.core.utilities.results.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,16 +26,16 @@ public class TranslationsController {
     }
 
     @PostMapping("add")
-    public Result add(CreateTranslationRequest createTranslationRequest) {
+    public Result add(@RequestBody @Valid CreateTranslationRequest createTranslationRequest) {
         return this.translationService.add(createTranslationRequest);
     }
     @DeleteMapping("delete")
-    public Result delete(DeleteTranslationRequest deleteTranslationRequest) {
+    public Result delete(@RequestBody @Valid DeleteTranslationRequest deleteTranslationRequest) {
         return this.translationService.delete(deleteTranslationRequest);
     }
 
     @PutMapping("update")
-    public Result update(UpdateTranslationRequest updateTranslationRequest) {
+    public Result update(@RequestBody @Valid UpdateTranslationRequest updateTranslationRequest) {
         return this.translationService.update(updateTranslationRequest);
     }
     @GetMapping("getAll")

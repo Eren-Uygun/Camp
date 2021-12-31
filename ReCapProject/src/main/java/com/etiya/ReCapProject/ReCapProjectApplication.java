@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.etiya.ReCapProject.business.constants.Messages;
 import com.etiya.ReCapProject.core.utilities.results.Result;
 import com.etiya.ReCapProject.core.utilities.services.fakePos.externalFakePos.FakePos;
 import org.hibernate.type.SerializationException;
@@ -15,7 +16,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -68,7 +71,7 @@ public class ReCapProjectApplication {
         for (FieldError fieldError : argumentNotValidException.getBindingResult().getFieldErrors()) {
             validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<Object>("validator errors",validationErrors);
+        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<Object>(Messages.VALIDATIONERROR,validationErrors);
         return errorDataResult;
     }
 
@@ -81,17 +84,29 @@ public class ReCapProjectApplication {
     @ExceptionHandler(NoSuchElementException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleNoSuchElementException(NoSuchElementException exception){
-		
-		ErrorResult error = new ErrorResult("Data not found!");
+		ErrorResult error = new ErrorResult(Messages.DATANOTFOUND);
 		return error;
 	}
+
 
 	@ExceptionHandler(SerializationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleSerializationException(SerializationException serializationException){
-		ErrorResult error = new ErrorResult("Format Error");
+		ErrorResult error = new ErrorResult(Messages.FORMATERROR);
 		return error;
 	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ErrorResult handHttpMessageExceptionError(HttpMessageNotReadableException httpMessageNotReadableException){
+		ErrorResult errorResult = new ErrorResult(Messages.FORMATERROR);
+		return errorResult;
+
+	}
+
+
+
+
+
 
 
 	

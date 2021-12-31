@@ -63,8 +63,8 @@ public class CarsController {
 		return this.carService.getCarWithBrandAndColorDetails();
 	}
 
-	@GetMapping("/getCar")
-	public DataResult<CarSearchListDto> getCar(int id) {
+	@GetMapping("/getById")
+	public DataResult<CarSearchListDto> getById(int id) {
 		return this.carService.getById(id);
 	}
 	@GetMapping("/getCarByBrandId")

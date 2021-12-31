@@ -19,7 +19,7 @@ public class City {
     @Column(name = "city_id")
     private int id;
 
-    @Column(name = "cityName")
+    @Column(name = "cityName",unique = true)
     private String cityName;
 
     @OneToMany(mappedBy = "city")

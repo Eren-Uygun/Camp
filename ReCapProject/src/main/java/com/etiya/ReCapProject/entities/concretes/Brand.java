@@ -26,7 +26,7 @@ public class Brand {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "brand_name")
+	@Column(name = "brand_name",unique = true)
 	private String brandName;
 	
 	@OneToMany(mappedBy = "brand")

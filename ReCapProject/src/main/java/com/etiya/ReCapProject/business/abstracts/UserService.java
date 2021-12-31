@@ -6,6 +6,6 @@ import com.etiya.ReCapProject.core.utilities.results.Result;
 public interface UserService {
 	Result login(LoginUserRequest loginUserRequest);
 	Result isUserExists(int userId);
-	Result isUserEmailExists(String email);
+	Boolean isUserEmailExists(String email);
 
 }

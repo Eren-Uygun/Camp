@@ -21,6 +21,7 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Column(name = "rent_date")
     private LocalDate rentDate;
 
@@ -36,6 +37,7 @@ public class Rental {
     private Customer customer;
 
     @JsonIgnore
+    @Transient
     @OneToOne
     private Invoice invoice;
 
@@ -50,6 +52,7 @@ public class Rental {
 
     @Column(name = "returned_kilometer")
     private int returnedKilometer;
+
 
     @OneToMany(mappedBy = "rental")
     private List<AdditionalRentalItem>additionalRentalItems;

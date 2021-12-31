@@ -65,7 +65,7 @@ public class BrandManager implements BrandService{
 	}
 	@Override
 	public Result update(UpdateBrandRequest updateBrandRequest) {
-		Result result=BusinessRules.run(existsBrandId(updateBrandRequest.getId()));
+		Result result=BusinessRules.run(existsBrandId(updateBrandRequest.getId()),existsBrandName(updateBrandRequest.getBrandName()));
 		if (result!=null) {
 			return result;
 		}
@@ -77,7 +77,7 @@ public class BrandManager implements BrandService{
 	public DataResult<BrandSearchListDto> getByBrandId(int brandId) {
 		boolean existResult = this.brandDao.existsById(brandId);
 		if (!existResult){
-			return new ErrorDataResult(Messages.BRANDNOTFOUND);
+			return new ErrorDataResult<BrandSearchListDto>(Messages.BRANDNOTFOUND,null);
 		}
 		Brand brand= this.brandDao.findById(brandId).get();
 		BrandSearchListDto brandSearchListDto=modelMapperService.forDto().map(brand, BrandSearchListDto.class);

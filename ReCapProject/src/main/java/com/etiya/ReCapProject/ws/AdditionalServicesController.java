@@ -25,7 +25,7 @@ public class AdditionalServicesController {
         this.additionalServiceService = additionalServiceService;
     }
 
-    @GetMapping("getALl")
+    @GetMapping("getAll")
     public DataResult<List<AdditionalServiceSearchListDto>> getAll() {
         return this.additionalServiceService.getAll();
     }

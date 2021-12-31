@@ -74,7 +74,7 @@ public class CityManager implements CityService {
     public DataResult<CitySearchListDto> getById(int id) {
         var existResult = this.cityDao.existsById(id);
         if (!existResult){
-            return new ErrorDataResult(Messages.CITYNOTFOUND);
+            return new ErrorDataResult<CitySearchListDto>(Messages.CITYNOTFOUND, null);
         }
         var result = this.cityDao.getById(id);
         CitySearchListDto response = modelMapperService.forDto().map(result, CitySearchListDto.class);
@@ -94,7 +94,7 @@ public class CityManager implements CityService {
     private Result isCityNameExists(String cityName) {
         var result = this.cityDao.existsByCityName(cityName);
         if (result) {
-            return new ErrorResult(Messages.CITYALREADYEXISTS);
+            return new ErrorResult(Messages.CITYEXISTS);
         }
         return new SuccessResult();
     }

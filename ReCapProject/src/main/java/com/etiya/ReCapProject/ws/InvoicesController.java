@@ -1,15 +1,10 @@
 package com.etiya.ReCapProject.ws;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,11 +59,11 @@ public class InvoicesController {
 		return this.invoiceService.getByCustomerId(customerId);
 	}
 	
-	@GetMapping("getByCreateDateBetweenBeginDateAndEndDate")
-	public DataResult<List<InvoiceSearchListDto>> getByCreateDateBetweenBeginDateAndEndDate(@RequestParam String  beginDate, @RequestParam String endDate) {
+	@GetMapping("getBySelectedInterval")
+	public DataResult<List<InvoiceSearchListDto>> getBySelectedInterval(@RequestParam String  beginDate, @RequestParam String endDate) {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate bDate = LocalDate.parse(beginDate,dateTimeFormatter);
 		LocalDate eDate = LocalDate.parse(endDate,dateTimeFormatter);
-		return this.invoiceService.getByCreateDateBetweenBeginDateAndEndDate(bDate, eDate);
+		return this.invoiceService.getBySelectedInterval(bDate, eDate);
 	}
 }

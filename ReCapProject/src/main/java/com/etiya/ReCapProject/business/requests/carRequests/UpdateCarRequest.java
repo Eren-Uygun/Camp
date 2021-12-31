@@ -35,6 +35,7 @@ public class UpdateCarRequest {
 	private int findexScore;
 
 	@NotNull
+	@Size(min = 1900,max = 2022)
 	private int modelYear;
 
 	@NotNull

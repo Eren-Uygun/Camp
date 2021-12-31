@@ -21,6 +21,6 @@ public interface InvoiceDao extends JpaRepository<Invoice, Integer>{
 	//int SumTotalAdditionalService();
 	
 	boolean existsByCustomerId(int customerId);
-	
+	boolean existsByInvoiceNumber(String invoiceNumber);
 
 }
