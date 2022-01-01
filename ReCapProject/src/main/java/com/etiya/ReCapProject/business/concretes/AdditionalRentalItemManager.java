@@ -120,6 +120,20 @@ public class AdditionalRentalItemManager implements AdditionalRentalItemService 
         return new SuccessResult();
     }
 
+    private Result isRentalOperationFinished(int rentalId){
+        var result = this.rentalService.isRentalExistsById(rentalId);
+        if (!result.isSuccess()){
+            return new ErrorResult(Messages.RENTALNOTFOUND);
+        }
+        var tempRental = this.rentalService.getByRentalId(rentalId).getData();
+        if (tempRental.getReturnDate()!= null)
+        {
+            return new ErrorResult(Messages.RENTALNOTFOUND);
+        }
+        return new SuccessResult();
+
+    }
+
 
 
 
