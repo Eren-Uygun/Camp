@@ -313,7 +313,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             creditCardAlreadyExists.setKey("credit.card.exists");
             this.wordDao.save(creditCardAlreadyExists);
             Word formatNotValid = new Word();
-            formatNotValid.setKey("format.not.valid");
+            formatNotValid.setKey("format.error");
             this.wordDao.save(formatNotValid);
 
 
@@ -611,7 +611,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation formatNotValidEnglishTranslation = new Translation();
             formatNotValidEnglishTranslation.setLanguage(english);
-            var formatNotValidEnglish= this.wordDao.getWordsByKey("format.not.valid");
+            var formatNotValidEnglish= this.wordDao.getWordsByKey("format.error");
             formatNotValidEnglishTranslation.setWord(formatNotValidEnglish);
             formatNotValidEnglishTranslation.setTranslation("Data Input Format Not Valid");
             this.translationDao.save(formatNotValidEnglishTranslation);
@@ -2123,7 +2123,7 @@ public class TranslationDataLoader implements CommandLineRunner {
 
             Translation formatNotValidTurkishTranslation = new Translation();
             formatNotValidTurkishTranslation.setLanguage(turkish);
-            var formatNotValidTurkish = this.wordDao.getWordsByKey("format.not.valid");
+            var formatNotValidTurkish = this.wordDao.getWordsByKey("format.error");
             formatNotValidTurkishTranslation.setWord(formatNotValidTurkish);
             formatNotValidTurkishTranslation.setTranslation("Veri Giriş Formatı Hatalı");
             this.translationDao.save(formatNotValidTurkishTranslation);
