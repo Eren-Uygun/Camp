@@ -1,0 +1,49 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.delete;
+
+import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
+import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateLifecycle;
+import org.axonframework.modelling.command.AggregateRoot;
+import org.axonframework.spring.stereotype.Aggregate;
+import org.springframework.beans.BeanUtils;
+
+import com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.create.AccountTypeCreatedEvent;
+
+@Aggregate
+public class DeleteAccountTypeAggregate {
+
+	@AggregateIdentifier
+	private String accountTypeId;
+
+	public DeleteAccountTypeAggregate() {
+
+	}
+	
+	public DeleteAccountTypeAggregate(String accountTypeId) {
+		super();
+		this.accountTypeId = accountTypeId;
+	}
+
+
+
+
+	@CommandHandler
+	public void AccountTypeDeleteAggregate (DeleteAccountTypeCommand deleteAccountTypeCommand) {
+	AccountTypeDeletedEvent accountTypeDeletedEvent = new AccountTypeDeletedEvent();
+		
+		BeanUtils.copyProperties(deleteAccountTypeCommand, accountTypeDeletedEvent);
+		
+		AggregateLifecycle.apply(accountTypeDeletedEvent);
+
+	}
+	
+	@EventSourcingHandler
+	public void on(AccountTypeDeletedEvent accountTypeDeletedEvent) {
+		
+		this.accountTypeId = accountTypeDeletedEvent.getAccountTypeId();
+		
+		
+	}
+
+}

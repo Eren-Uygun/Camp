@@ -1,0 +1,7 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.restModels;
+
+public class CreateAccountTypeRestModel {
+	
+	private String id;
+
+}

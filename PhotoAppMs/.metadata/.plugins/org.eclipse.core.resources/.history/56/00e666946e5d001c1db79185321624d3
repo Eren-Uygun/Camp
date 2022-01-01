@@ -1,0 +1,28 @@
+package com.appsdeveloperblog.photoapp.api;
+
+import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.stereotype.Component;
+
+@Component //Bu class sistem açıldığınca configuration olarak algılanıyor.
+public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
+
+	
+	//filter bir aop tekniğidir.Sistem ilk bunu çalıştırır.
+	//ÖRneğin user'a gitme önce buraya gel demek.
+	
+	@Override
+	public GatewayFilter apply(Object config) {
+		
+		
+		//Amaç Frondend'den istekgeldiğinde token geçerliyle gateway'den geçer.
+		
+		
+		System.out.println("Filtre active");
+		
+		
+		return null;
+	}
+	
+
+}

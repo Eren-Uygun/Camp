@@ -1,0 +1,68 @@
+package com.appsdeveloperblog.photoapp.api.account.controllers;
+
+import java.util.UUID;
+
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.create.CreateAccountTypeCommand;
+import com.appsdeveloperblog.photoapp.api.account.features.accountTypes.restModels.CreateAccountTypeRestModel;
+
+@RestController
+@RequestMapping("/accounttypes")
+public class AccountTypesController {
+	
+	//Axon'dan gelir ancak CQRS de kendiliğinden var olan yapıdır.
+	//Commandgateway mediator pattern'i kullanır.
+	//Bir operasyonumuz oldugunu varsayalım.Bu operasyonu çalıştırıcak handleri bulmaya yarar.
+	
+	//Create update delete operasyonları -> command | Veri getirme operasyonları -> querry
+	private CommandGateway commandGateway;
+	
+	@Autowired
+	public AccountTypesController(CommandGateway commandGateway) {
+		this.commandGateway = commandGateway;
+	}
+	
+	@PostMapping
+	public String createAccountType(@RequestBody CreateAccountTypeRestModel createAccountTypeRestModel) {
+		
+		
+
+		//Builder pattern ile çalışmak.
+		CreateAccountTypeCommand command = CreateAccountTypeCommand.builder()
+		.price(createAccountTypeRestModel.getPrice())
+		.accountName(createAccountTypeRestModel.getAccountName())
+		.description(createAccountTypeRestModel.getDescription())
+		.accountTypeId(UUID.randomUUID().toString()).build();
+		
+		String returnValue = this.commandGateway.sendAndWait(command); //sendAndWait yaşam döngüsünün bitmesini bekler.
+		//Find Command Handler and run it
+		return returnValue;
+		//Rest modeli command'a çevir
+		//Axon cqrs bus ile yaşam döngüsüne dahil et
+		
+		//Btk akademide c# kursunda 94'den itibaren izleyin.
+		//Birde tasarım kalıpları 36'yı izleyin. hepsini ve örnekler yapılabilir.
+	}
+	@PutMapping
+	public String updateAccountType() {
+		return "Http put handler";
+	}
+	@DeleteMapping
+	public String deleteAccountType() {
+		return "Http delete handler";
+	}
+	@GetMapping
+	public String listAccountTypes() {
+		return "Http get handler";
+	}
+
+}

@@ -1,0 +1,22 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.create;
+
+import lombok.Data;
+
+@Data
+public class AccountTypeCreatedEvent {
+	//Event yazarken önce nesnenin adı ne ona bakılır sonra bu nesne ile ne yapılmış geçmiş zamandaki versiyonu ile yazılır.
+	//Örnek class Adı
+	
+	private final String accountTypeId;
+	private final String accountName; 
+	private final double price;
+	private final String description;
+	
+	
+	
+	
+	
+	
+	
+
+}

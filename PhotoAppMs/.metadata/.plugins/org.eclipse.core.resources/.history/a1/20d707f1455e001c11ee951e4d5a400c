@@ -1,0 +1,11 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.restModels;
+
+import java.math.BigDecimal;
+
+public class CreateAccountTypeRestModel {
+	
+	private String accountName; //Free,Business,Team,Family
+	private double price; //BigDecimal'da olabilir büyük fiyatlar olabileği zaman
+	private String description;
+
+}

@@ -1,0 +1,11 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.create;
+
+import com.appsdeveloperblog.photoapp.api.account.persistance.AccountTypeRepository;
+
+public class AccountTypeEventsHandler {
+	
+	private AccountTypeRepository accountTypeRepository;
+	
+	
+
+}

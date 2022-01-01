@@ -1,0 +1,42 @@
+package com.appsdeveloperblog.photoapp.api.account.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.create.CreateAccountTypeCommand;
+import com.appsdeveloperblog.photoapp.api.account.features.accountTypes.restModels.CreateAccountTypeRestModel;
+
+@RestController
+@RequestMapping("/accounttypes")
+public class AccountTypesController {
+	
+	
+	@PostMapping
+	public String createAccountType(@RequestBody CreateAccountTypeRestModel createAccountTypeRestModel) {
+		return "Http post handler : "+createAccountTypeRestModel.getAccountName();
+		
+
+		
+		//Rest modeli command'a çevir
+		//Axon cqrs bus ile yaşam döngüsüne dahil et
+	}
+	@PutMapping
+	public String updateAccountType() {
+		return "Http put handler";
+	}
+	@DeleteMapping
+	public String deleteAccountType() {
+		return "Http delete handler";
+	}
+	@GetMapping
+	public String listAccountType() {
+		return "Http get handler";
+	}
+
+}

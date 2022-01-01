@@ -1,0 +1,15 @@
+package com.appsdeveloperblog.photoapp.api.account.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "account_types")
+public class AccountType {
+	
+	
+
+}

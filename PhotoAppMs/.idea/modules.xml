@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ApiGateway/ApiGateway.iml" filepath="$PROJECT_DIR$/ApiGateway/ApiGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhotoAppApiAccount/PhotoAppApiAccount.iml" filepath="$PROJECT_DIR$/PhotoAppApiAccount/PhotoAppApiAccount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhotoAppApiUsers/PhotoAppApiUsers.iml" filepath="$PROJECT_DIR$/PhotoAppApiUsers/PhotoAppApiUsers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhotoAppDiscoveryService/PhotoAppDiscoveryService.iml" filepath="$PROJECT_DIR$/PhotoAppDiscoveryService/PhotoAppDiscoveryService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/workspace-spring-tool-suite-4-4.12.1.RELEASE.iml" filepath="$PROJECT_DIR$/.idea/workspace-spring-tool-suite-4-4.12.1.RELEASE.iml" />
+    </modules>
+  </component>
+</project>

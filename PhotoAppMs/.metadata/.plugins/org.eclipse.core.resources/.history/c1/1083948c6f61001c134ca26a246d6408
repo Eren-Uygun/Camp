@@ -1,0 +1,9 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.restModels;
+
+public class UpdateAccountTypeRestModel {
+	
+	private String accountName; 
+	private double price; 
+	private String description;
+
+}

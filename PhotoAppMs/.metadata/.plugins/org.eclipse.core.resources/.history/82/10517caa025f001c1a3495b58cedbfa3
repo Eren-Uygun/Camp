@@ -1,0 +1,42 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.create;
+
+import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.spring.stereotype.Aggregate;
+
+
+//Bunun bir aggregate fonksiyon oldugunu göstermek için bu anotasyonu eklenir.
+
+
+@Aggregate
+public class CreateAccountTypeAggregeate {
+
+	public CreateAccountTypeAggregeate() {
+
+	}
+	
+	//Komut olduğundan emin olmak için commandhandler yerleştirmemiz gereklidir.
+
+	@CommandHandler
+	public CreateAccountTypeAggregeate(CreateAccountTypeCommand createAccountTypeCommand) {
+		
+		if (createAccountTypeCommand.getPrice()<0) {
+			throw new IllegalArgumentException("fiyat 0'dan küçük olamaz.");
+		}
+		
+		//Validation kodu da yazılabilir ama cok tercih edilmemesi gerekir.
+		
+		
+		//business Kodu yazılır.
+
+		
+		//Event fire
+	
+		//Event varken dataların hepsini atmak zorunda değiliz.
+		//Dosyaları çevirmek için modelMapper kullanabiliriz veya builder kullanabiliriz.
+	AccountTypeCreatedEvent accountTypeCreatedEvent = new AccountTypeCreatedEvent();
+	
+	
+	
+	}
+
+}

@@ -1,0 +1,10 @@
+package com.appsdeveloperblog.photoapp.api.account.domain;
+
+import javax.persistence.Entity;
+
+@Entity
+public class AccountType {
+	
+	
+
+}

@@ -1,0 +1,31 @@
+package com.appsdeveloperblog.photoapp.api.account.features.accountTypes.commands.update;
+
+import java.util.UUID;
+
+import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.spring.stereotype.Aggregate;
+
+@Aggregate
+public class UpdateAccountTypeAggregate {
+	
+	private String accountTypeId;
+	private String accountName; 
+	private double price;
+	private String description;
+	
+	@AggregateIdentifier
+	String identifier = UUID.randomUUID().toString();
+
+	public UpdateAccountTypeAggregate() {
+	
+	}
+	
+	public UpdateAccountTypeAggregate(UpdateAccountTypeCommand updateAccountTypeCommand) {
+		AccountTypeUpdatedEvent accountTypeUpdatedEvent = new AccountTypeUpdatedEvent();
+		
+	}
+	
+	
+
+
+}
