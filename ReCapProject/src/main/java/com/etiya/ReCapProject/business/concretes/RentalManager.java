@@ -98,6 +98,7 @@ public class RentalManager implements RentalService {
             return result;
         }
         Rental rental = modelMapperService.forRequest().map(deleteRentalRequest, Rental.class);
+        this.rentalDao.delete(rental);
         return new SuccessResult(Messages.RENTALDELETE);
     }
 
@@ -252,9 +253,14 @@ return new SuccessDataResult<RentalSearchListDto>(rentalSearchListDto, Messages.
     }
 
 
-    private Result checkIsRentDateIsAfterThanReturnDate(LocalDate rentDate,LocalDate returnDate){
-        rentDate=LocalDate.now();
-        if ((rentDate.isAfter(returnDate))){
+    private Result checkIsRentDateIsAfterThanReturnDate(int rentalId,LocalDate returnDate){
+
+        var checkRental = this.rentalDao.existsById(rentalId);
+        if (!checkRental){
+        return new ErrorResult(Messages.RENTALNOTFOUND);
+        }
+        var rental = this.rentalDao.getById(rentalId);
+        if ((rental.getRentDate().isAfter(returnDate))&& !(rental.getRentDate().isEqual(returnDate))){
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
         return new SuccessResult();

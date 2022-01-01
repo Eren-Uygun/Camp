@@ -2354,6 +2354,13 @@ public class TranslationDataLoader implements CommandLineRunner {
             translationAlreadyExistsTurkishTranslation.setTranslation("Çeviri zaten kayıtlı.");
             this.translationDao.save(translationAlreadyExistsTurkishTranslation);
 
+            Translation rentalDateErrorTurkishTranslation = new Translation();
+            rentalDateErrorTurkishTranslation.setLanguage(english);
+            var rentalDateErrorTurkish = this.wordDao.getWordsByKey("rental.date.error");
+            rentalDateErrorTurkishTranslation.setWord(rentalDateErrorTurkish);
+            rentalDateErrorTurkishTranslation.setTranslation("Dönüş Tarihi Kiralama Tarihinden Önce Olamaz.");
+            this.translationDao.save(rentalDateErrorTurkishTranslation);
+
 
         }
     }
