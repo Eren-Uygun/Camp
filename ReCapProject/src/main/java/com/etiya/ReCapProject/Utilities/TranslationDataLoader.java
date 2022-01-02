@@ -2355,7 +2355,7 @@ public class TranslationDataLoader implements CommandLineRunner {
             this.translationDao.save(translationAlreadyExistsTurkishTranslation);
 
             Translation rentalDateErrorTurkishTranslation = new Translation();
-            rentalDateErrorTurkishTranslation.setLanguage(english);
+            rentalDateErrorTurkishTranslation.setLanguage(turkish);
             var rentalDateErrorTurkish = this.wordDao.getWordsByKey("rental.date.error");
             rentalDateErrorTurkishTranslation.setWord(rentalDateErrorTurkish);
             rentalDateErrorTurkishTranslation.setTranslation("Dönüş Tarihi Kiralama Tarihinden Önce Olamaz.");
