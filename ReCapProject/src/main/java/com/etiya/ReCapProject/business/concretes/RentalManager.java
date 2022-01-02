@@ -110,7 +110,8 @@ public class RentalManager implements RentalService {
                 checkIfCarIdExists(updateRentalRequest.getCarId()),
                         checkIfCarIsInMaintenance(updateRentalRequest.getCarId()),
                 checkIfLimitIsEnough(updateRentalRequest.getId(),updateRentalRequest.getCreatePaymentRequest()),
-                checkIfCityExists(updateRentalRequest.getReturnCityId()));
+                checkIfCityExists(updateRentalRequest.getReturnCityId()),
+                        checkIsRentDateIsAfterThanReturnDate(updateRentalRequest.getId(),updateRentalRequest.getReturnDate()));
         if (result != null) {
             return result;
         }

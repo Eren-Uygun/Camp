@@ -47,7 +47,7 @@ public class AdditionalRentalItemManager implements AdditionalRentalItemService 
     @Override
     public Result add(CreateAdditionalRentalItemRequest createAdditionalRentalItemRequest) {
 
-        var result = BusinessRules.run(isAdditionalServiceExists(createAdditionalRentalItemRequest.getAdditionalServiceId()),isRentalExists(createAdditionalRentalItemRequest.getRentalId()));
+        var result = BusinessRules.run(isAdditionalServiceExists(createAdditionalRentalItemRequest.getAdditionalServiceId()),isRentalExists(createAdditionalRentalItemRequest.getRentalId()),isRentalOperationFinished(createAdditionalRentalItemRequest.getRentalId()));
         if (result!=null){
             return result;
         }
@@ -70,7 +70,7 @@ public class AdditionalRentalItemManager implements AdditionalRentalItemService 
 
     @Override
     public Result update(UpdateAdditionalRentalItemRequest updateAdditionalRentalItemRequest) {
-        var result = BusinessRules.run(isAdditionalRentalItemExists(updateAdditionalRentalItemRequest.getId()),isAdditionalServiceExists(updateAdditionalRentalItemRequest.getAdditionalServiceId()),isRentalExists(updateAdditionalRentalItemRequest.getRentalId()));
+        var result = BusinessRules.run(isAdditionalRentalItemExists(updateAdditionalRentalItemRequest.getId()),isAdditionalServiceExists(updateAdditionalRentalItemRequest.getAdditionalServiceId()),isRentalExists(updateAdditionalRentalItemRequest.getRentalId()),isRentalOperationFinished(updateAdditionalRentalItemRequest.getRentalId()));
         if (result!=null){
             return result;
         }
