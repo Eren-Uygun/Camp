@@ -26,7 +26,6 @@ public class UpdateRentalRequest {
     @JsonIgnore
     private LocalDate rentDate;
 
-    @FutureOrPresent
     private LocalDate returnDate;
 
     @NotNull
