@@ -17,8 +17,6 @@ public interface InvoiceDao extends JpaRepository<Invoice, Integer>{
 
 	List<Invoice> getByCreateDateBetween(LocalDate beginDate, LocalDate endDate);
 
-
-	//int SumTotalAdditionalService();
 	
 	boolean existsByCustomerId(int customerId);
 	boolean existsByInvoiceNumber(String invoiceNumber);

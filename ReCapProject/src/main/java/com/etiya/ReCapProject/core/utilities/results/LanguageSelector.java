@@ -1,6 +1,7 @@
 package com.etiya.ReCapProject.core.utilities.results;
 
 import com.etiya.ReCapProject.Utilities.contants.Language;
+import com.etiya.ReCapProject.Utilities.contants.Path;
 import com.etiya.ReCapProject.business.abstracts.LanguageService;
 import com.etiya.ReCapProject.business.abstracts.TranslationService;
 import com.etiya.ReCapProject.business.abstracts.WordService;
@@ -25,7 +26,7 @@ public class LanguageSelector {
     }
 
    public static String languageSelector(String message){
-        String result = environment.getProperty("current_language",Language.ENGLISH);
+        String result = environment.getProperty(Path.LANGUAGEPATH,Language.ENGLISH);
 
         var language= languageService.getByLanguageName(result);
         if (language==null){

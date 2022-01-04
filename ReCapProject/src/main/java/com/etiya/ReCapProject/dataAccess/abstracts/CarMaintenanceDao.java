@@ -11,9 +11,5 @@ public interface CarMaintenanceDao extends JpaRepository<CarMaintenance, Integer
 
 	boolean existsByCarId(int carId);
 
-//	@Query(value = "Select rentals.car_id, car_maintenances.car_id"
-//			+ "from rentals"
-//			+ "left join car_maintenances"
-//			+ "on rentals.car_id=car_maintenances.car_id", nativeQuery = true)
-//	CarMaintenance findByRentalCarId();
+
 }

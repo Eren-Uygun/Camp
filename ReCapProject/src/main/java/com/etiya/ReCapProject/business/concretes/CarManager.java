@@ -39,7 +39,6 @@ public class CarManager implements CarService {
     private ColorService colorService;
     private BrandService brandService;
     private CityService cityService;
-    private Environment environment;
 
     @Autowired
     public CarManager(CarDao carDao, ModelMapperService modelMapperService, ColorService colorService,
