@@ -261,7 +261,7 @@ return new SuccessDataResult<RentalSearchListDto>(rentalSearchListDto, Messages.
         return new ErrorResult(Messages.RENTALNOTFOUND);
         }
         var rental = this.rentalDao.getById(rentalId);
-        if ((rental.getRentDate().isAfter(returnDate))&& !(rental.getRentDate().isEqual(returnDate))){
+        if ((rental.getRentDate().isAfter(returnDate)) && !(rental.getRentDate().isEqual(returnDate))){
             return new ErrorResult(Messages.RENTALDATEERROR);
         }
         return new SuccessResult();
