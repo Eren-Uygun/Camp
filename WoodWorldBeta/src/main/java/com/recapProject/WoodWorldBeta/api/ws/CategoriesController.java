@@ -1,8 +1,13 @@
 package com.recapProject.WoodWorldBeta.api.ws;
 
+import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.CategorySearchListDto;
 import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.CreateCategoryDto;
 import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.DeleteCategoryDto;
 import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.UpdateCategoryDto;
+import com.recapProject.WoodWorldBeta.business.abstracts.CategoryService;
+import com.recapProject.WoodWorldBeta.core.utils.results.DataResult;
+import com.recapProject.WoodWorldBeta.core.utils.results.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,30 +20,37 @@ import java.util.List;
 @RequestMapping(path = "/api/categories")
 public class CategoriesController {
 
+    @Autowired
+    private CategoryService categoryService;
+
 
     @RequestMapping(name = "getCategories",method = RequestMethod.GET)
     public ResponseEntity<List<?>> getAll(){
-        return ResponseEntity.ok(null);
+        DataResult<List<CategorySearchListDto>> dataResult = this.categoryService.getAll();
+        return ResponseEntity.ok().body(dataResult.getData());
     }
 
     @RequestMapping(method = RequestMethod.GET,path = "/getById")
     public ResponseEntity<?> getById(int id){
-        return ResponseEntity.ok(null);
+        DataResult<?> result = this.categoryService.getById(id);
+        return ResponseEntity.ok().body(result);
     }
 
     @RequestMapping(path = "/add",method = RequestMethod.POST,consumes = "application/json",name = "AddCategory")
     public ResponseEntity<?> add(CreateCategoryDto createCategoryDto){
-        return ResponseEntity.ok(null);
+        this.categoryService.add(createCategoryDto);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @RequestMapping(path = "/update",method = RequestMethod.PUT,consumes = "application/json",produces = "application/json",name = "UpdateCategory")
     public ResponseEntity<?> update(UpdateCategoryDto updateCategoryDto){
-        return ResponseEntity.ok(null);
+        this.categoryService.update(updateCategoryDto);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @RequestMapping(path = "/delete",method = RequestMethod.DELETE ,name = "DeleteCategory")
     public ResponseEntity<?> delete(DeleteCategoryDto deleteCategoryDto){
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 }
