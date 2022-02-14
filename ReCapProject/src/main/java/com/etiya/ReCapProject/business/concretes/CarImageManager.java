@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.etiya.ReCapProject.Utilities.contants.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -104,13 +105,11 @@ public class CarImageManager implements CarImageService {
 		this.carImageDao.save(carImage);
 		return new SuccessResult(Messages.CARIMAGEUPDATE);
 	}
-
 	private File generateImage(MultipartFile file) throws IOException {
-		String path = environment.getProperty("imagePath","defaultImagePath");
+		String path = environment.getProperty(Path.IMAGEPATH,Path.DEFAULTIMAGEPATH);
 		String imagePathGuid = java.util.UUID.randomUUID().toString();
 
-		//"C:\\Users\\doruk.senay\\Desktop\\Photos\\"
-		File imageFile = new File(path+"/"+ imagePathGuid + "."
+		File imageFile = new File("img\\"+imagePathGuid+ "."
 				+ file.getContentType().substring(file.getContentType().indexOf("/") + 1));
 		imageFile.createNewFile();
 		FileOutputStream outputImage = new FileOutputStream(imageFile);
@@ -118,7 +117,6 @@ public class CarImageManager implements CarImageService {
 		outputImage.close();
 		return imageFile;
 	}
-
 	private Result checkNumberOfCarImages(int carId) {
 		if (this.carImageDao.countCarImagesByCar_Id(carId) >= 5) {
 			return new ErrorResult(Messages.CARIMAGELIMITERROR);

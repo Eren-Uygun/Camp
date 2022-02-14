@@ -98,6 +98,7 @@ public class ReCapProjectApplication {
 	}
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResult handleHttpMessageExceptionError(HttpMessageNotReadableException httpMessageNotReadableException){
 		ErrorResult errorResult = new ErrorResult(Messages.FORMATERROR);
 		return errorResult;
