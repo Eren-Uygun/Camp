@@ -1,4 +1,4 @@
-package com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos;
+package com.recapProject.WoodWorldBeta.business.Dtos.categoryDtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

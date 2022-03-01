@@ -1,4 +1,4 @@
-package com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos;
+package com.recapProject.WoodWorldBeta.business.Dtos.categoryDtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategorySearchListDto {
+public class UpdateCategoryDto {
 
     private String Id;
 

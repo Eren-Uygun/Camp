@@ -1,4 +1,4 @@
-package com.recapProject.WoodWorldBeta.utils.configurations.ModelMapperConfiguration;
+package com.recapProject.WoodWorldBeta.utils.configurations.modelMapperConfiguration;
 
 import org.modelmapper.ModelMapper;
 

@@ -1,12 +1,11 @@
 package com.recapProject.WoodWorldBeta.api.ws;
 
-import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.CategorySearchListDto;
-import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.CreateCategoryDto;
-import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.DeleteCategoryDto;
-import com.recapProject.WoodWorldBeta.business.Dtos.CategoryDtos.UpdateCategoryDto;
+import com.recapProject.WoodWorldBeta.business.Dtos.categoryDtos.CategorySearchListDto;
+import com.recapProject.WoodWorldBeta.business.Dtos.categoryDtos.CreateCategoryDto;
+import com.recapProject.WoodWorldBeta.business.Dtos.categoryDtos.DeleteCategoryDto;
+import com.recapProject.WoodWorldBeta.business.Dtos.categoryDtos.UpdateCategoryDto;
 import com.recapProject.WoodWorldBeta.business.abstracts.CategoryService;
 import com.recapProject.WoodWorldBeta.core.utils.results.DataResult;
-import com.recapProject.WoodWorldBeta.core.utils.results.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
