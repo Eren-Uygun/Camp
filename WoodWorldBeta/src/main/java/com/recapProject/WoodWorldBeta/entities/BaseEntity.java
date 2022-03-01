@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 public abstract class BaseEntity {
 

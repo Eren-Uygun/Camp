@@ -1,4 +1,4 @@
-package com.recapProject.WoodWorldBeta.utils.configurations.swaggerConfiguration;
+package com.recapProject.WoodWorldBeta.utils.configurations.SwaggerConfiguration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
