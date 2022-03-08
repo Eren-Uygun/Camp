@@ -8,6 +8,7 @@ import com.recapProject.WoodWorldBeta.business.abstracts.CategoryService;
 import com.recapProject.WoodWorldBeta.core.utils.results.DataResult;
 import com.recapProject.WoodWorldBeta.core.utils.results.Result;
 import com.recapProject.WoodWorldBeta.dataAccess.abstracts.CategoryDao;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryDao categoryDao;
+    private ModelMapper modelMapper;
 
     @Autowired
     public CategoryServiceImpl(CategoryDao categoryDao) {

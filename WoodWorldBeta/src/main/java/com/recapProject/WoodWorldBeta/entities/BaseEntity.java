@@ -14,6 +14,8 @@ import java.sql.Date;
 @Entity
 public abstract class BaseEntity {
 
+    // id bölümü classlara özel şekle çekilebilir. Bazılar int bazıları string yapılabileceği için
+
     @Id
     @Column(name = "id")
     private String id;

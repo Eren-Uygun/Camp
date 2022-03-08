@@ -7,11 +7,15 @@ import com.recapProject.WoodWorldBeta.business.Dtos.productDtos.UpdateProductDto
 import com.recapProject.WoodWorldBeta.business.abstracts.ProductService;
 import com.recapProject.WoodWorldBeta.core.utils.results.DataResult;
 import com.recapProject.WoodWorldBeta.core.utils.results.Result;
+import com.recapProject.WoodWorldBeta.dataAccess.abstracts.ProductDao;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private ProductDao productDao;
+    private ModelMapper modelMapper;
 
     @Override
     public Result add(CreateProductDto createProductDto) {
