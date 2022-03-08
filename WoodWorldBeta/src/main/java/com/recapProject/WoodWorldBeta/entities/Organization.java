@@ -15,20 +15,21 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @PrimaryKeyJoinColumn(name = "user_id")
-@Table(name = "corporate_customers")
-public class CorporateCustomer extends Customer {
+@Table(name = "organization_customers")
+public class Organization extends Customer {
 
-    @Column(name = "company_name")
+    @Column(name = "organization_name")
     private String companyName;
 
     @Column(name = "contact_name")
     private String contactName;
 
-    @Column(name = "corporate_tax_number",unique = true)
+    @Column(name = "organization_tax_number",unique = true)
     private String taxtNumber;
 
     @Column(name = "organization_create_date")
     private Date organizationCreateDate;
+
 
     //Organization Type Enumla seçilebilir !!!! Siyasi parti , Vakıf , Belediye  , gibi
 
