@@ -1,34 +1,18 @@
 package com.bestpractiseworkshop.recap2.entities.abstracts;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class BaseEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class BaseEntity {
 
-    @Id
-    private String id;
-
-    private OffsetDateTime createDate;
-
-    private OffsetDateTime updateDate;
-
-    private LocalDateTime deleteDate;
-
-    @Column(name = "status")
-    private boolean isActive;
-
-
+    private LocalDateTime cDate;
+    private LocalDateTime uDate;
+    private boolean isActv;
     
 }
