@@ -2,7 +2,9 @@ package com.bestpractiseworkshop.recap2.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.bestpractiseworkshop.recap2.entities.abstracts.BaseEntity;
@@ -30,5 +32,8 @@ public class UserType extends BaseEntity {
 
     @Column(name = "short_code")
     private String shortCode;
+
+    @OneToOne(mappedBy = "type",fetch = FetchType.LAZY)
+    private UserTypeRel userTypeRel;
     
 }

@@ -2,6 +2,7 @@ package com.bestpractiseworkshop.recap2.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;

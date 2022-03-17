@@ -3,11 +3,13 @@ package com.bestpractiseworkshop.recap2.entities.concretes;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -36,5 +38,8 @@ public abstract class User extends BaseEntity {
 
     @Column(name = "user_password")
     private String password;
+
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+    private UserTypeRel userTypeRel;
     
 }

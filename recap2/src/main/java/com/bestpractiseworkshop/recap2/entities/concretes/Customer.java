@@ -10,8 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer extends User {
-
-    @JoinColumn(name = "user_type")
-    private UserType userType;
     
 }
